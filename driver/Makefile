@@ -17,7 +17,14 @@ module : mir.o Makefile
 emulation_module : mir_emu.o Makefile
 	insmod -f mir_emu.o n_in=8 n_out=4 in_port=0x150 out_port=0x151
 
+control_emu.sh: tclAppInit.c tclExt.h	
+	 gcc tclAppInit.c -ltk8.3 -ltcl8.3 -lpth -o $@
+
+run_control_emu: control_emu.sh gui.tcl
+	./control_emu.sh gui.tcl
+
 global_clean: clean
 
 clean: 
 	rm -f *.o
+	rm -f -- `ls -l | grep -e '^-[rw-]*x' | awk '{print $9}'`;
