@@ -9,7 +9,7 @@ MIR_INSTALL_DIR = /usr/share/mir/
 export 
 
 .PHONY: clean dumb restore backup global_clean \
-	module insert_module \
+	module insert_module insert_emulation run_emulation \
 	plugins clients \
 	install install_plugins
 
@@ -20,6 +20,8 @@ dumb:
 	# install_plugins	-  инсталирует плагины
 	# module 		-  компилирует модуль ядра
 	# insert_module 	-  вставляет модуль ядра
+	# insert_emulation	-  вставляет модуль эмулятора
+	# run_emulation		-  запускает программу управления эмулятором
 	# 
 
 restore:
@@ -84,6 +86,13 @@ module:
 
 insert_module:
 	$(MAKE) -C driver module
+
+insert_emulation:
+	$(MAKE) -C driver emulation_module
+
+run_emulation:
+	$(MAKE) -C driver run_control_emu
+
 
 
 ##########################################################################
@@ -183,7 +192,7 @@ test/pulse_recognizer: test/pulse_recognizer.cpp pulse_recognizer.o
 pulse_recognizer.o: pulse_recognizer.cpp pulse_recognizer.h 
 
 ##########################################################################
-
+#
 #	Кофигурация / начальная инициализация
 #
 ##############################################
