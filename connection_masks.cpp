@@ -75,7 +75,7 @@ void C_connection_masks::action__auto_hold(int line_id,int arg){
 	C_line * int_line = Station->lines[line_id];
 	int_line->current_connection->hold(*int_line);
 	C_connection * con = Station->get_free_connection();
-	C_line * b_line = Busses->get_bus(arg)->get_free_line(line_id);
+	C_line * b_line = Busses->get_bus(arg)->get_free_line(line_id, int_line->priority);
 	if (con && b_line && !b_line->incoming_connection){
 		int_line->current_connection = con;
 		con->add_line(*int_line);

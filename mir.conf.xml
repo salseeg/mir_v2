@@ -535,18 +535,18 @@
 		</connection_mask>
 	</Connection_masks>
 	<Station n_inner="8" n_outer="4">
-		<line id="0"  type="inner" own_bus_id="0" operator_bus_id="101" client_id="0" />
-		<line id="1"  type="inner" own_bus_id="1" operator_bus_id="101" client_id="0" />
-		<line id="2"  type="inner" own_bus_id="2" operator_bus_id="101" client_id="0" />
-		<line id="3"  type="inner" own_bus_id="3" operator_bus_id="101" client_id="0" />
-		<line id="4"  type="inner" own_bus_id="4" operator_bus_id="101" client_id="1" />
-		<line id="5"  type="inner" own_bus_id="5" operator_bus_id="101" client_id="1" />
-		<line id="6"  type="inner" own_bus_id="6" operator_bus_id="101" client_id="1" />
-		<line id="7"  type="inner" own_bus_id="7" operator_bus_id="101" client_id="1" />
-		<line id="8"  type="outer" own_bus_id="201" operator_bus_id="101" client_id="-1" />
-		<line id="9"  type="outer" own_bus_id="203" operator_bus_id="101" client_id="-1" />
-		<line id="10" type="outer" own_bus_id="203" operator_bus_id="101" client_id="-1" />
-		<line id="11" type="outer" own_bus_id="202" operator_bus_id="101" client_id="-1" />
+		<line id="0"  type="inner" own_bus_id="0" operator_bus_id="101" client_id="0" priority="0" />
+		<line id="1"  type="inner" own_bus_id="1" operator_bus_id="101" client_id="0" priority="0" />
+		<line id="2"  type="inner" own_bus_id="2" operator_bus_id="101" client_id="0" priority="0" />
+		<line id="3"  type="inner" own_bus_id="3" operator_bus_id="101" client_id="0" priority="0" />
+		<line id="4"  type="inner" own_bus_id="4" operator_bus_id="101" client_id="1" priority="0" />
+		<line id="5"  type="inner" own_bus_id="5" operator_bus_id="101" client_id="1" priority="0" />
+		<line id="6"  type="inner" own_bus_id="6" operator_bus_id="101" client_id="1" priority="0" />
+		<line id="7"  type="inner" own_bus_id="7" operator_bus_id="101" client_id="1" priority="0" />
+		<line id="8"  type="outer" own_bus_id="201" operator_bus_id="101" client_id="-1" priority="0" />
+		<line id="9"  type="outer" own_bus_id="203" operator_bus_id="101" client_id="-1" priority="0" />
+		<line id="10" type="outer" own_bus_id="203" operator_bus_id="101" client_id="-1" priority="0" />
+		<line id="11" type="outer" own_bus_id="202" operator_bus_id="101" client_id="-1" priority="0" />
 		<connection id="1"/>
 		<connection id="2"/>
 		<connection id="3"/>
@@ -612,5 +612,19 @@
 	<music>
 		<matrix_connect cord="0" line="15"/>
 	</music>
-	<Server port="3003" max_connections="32" plugins_path="/usr/share/mir/plugins/"/> 
+	<Server port="3003" max_connections="32" plugins_path="/usr/share/mir/plugins/"/>
+	<Misc
+		line__required_disconnet_time="200000"
+		line__ready_timeout="20000000"
+		line__wait_4_connect_timeout="45000000"
+		line__outer_required_disconnect_timeout="1500000"
+		line__outer_incoming_ring_timeout="4000000"
+		line__outer_requried_ring_time="300000"
+		recognition__inter_time_min="250000"
+		recognition__inter_time_max="60000000"
+		recognition__low_time_max="200000"
+		recognition__low_time_min="20000"
+		recognition__high_time_max="200000"
+		recognition__high_time_min="20000"
+	/>
 </mir_config>

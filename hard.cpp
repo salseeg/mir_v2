@@ -164,10 +164,12 @@ void C_hard::matrix(int cord, int matrix_line, on_off st){
 	write_command wc = {CT_matrix, cord, matrix_line, st};
 	::write(driver_descriptor, &wc, sizeof(wc));
 	
-	//Log->set_priority(log_priority__debug);
-	//Log->rec() << "matrix " << cord << "x" << matrix_line;
-	//Log->rec() << (st ? " on": " off");
-	//Log->write();
+#ifdef LOG_MATRIX
+	Log->set_priority(log_priority__debug);
+	Log->rec() << "matrix " << cord << "x" << matrix_line;
+	Log->rec() << (st ? " on": " off");
+	Log->write();
+#endif
 }
 
 void C_hard::set_inner(int inner_line, inner_key key, on_off st){

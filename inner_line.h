@@ -5,7 +5,7 @@
 
 class C_inner_line:public C_line{
 	public:
-		C_inner_line(int id_);
+		C_inner_line(int id_, int priori = 0);
 		~C_inner_line();
 		bool active();
 	protected:

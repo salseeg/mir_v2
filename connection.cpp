@@ -57,6 +57,12 @@ void C_connection::del_line(C_line& line){
 	Station->del_music(line);
 }
 
+void C_connection::steal_line(C_line * line){
+	if (!line) return;
+	del_line(*line);
+}
+
+
 void C_connection::silent_add_line(C_line & line){
 	lines.add(&line);				//	добавил линию в соединение
 	Hard->matrix(id, line.get_id(), on);		//	проключил линию
@@ -186,4 +192,16 @@ void C_connection::mix_without(C_line& line, C_connection& other_connection){
 	while(lr.quantity()){
 		lr.pop()->signal(line_signal__unholded_by);
 	}
+}
+
+int C_connection::get_priority(){
+	int prio = -1;			// приоритеты только положительны
+	int n = lines.quantity();
+	for (int i = 0; i < n; i++, lines.roll()){
+		int p = lines.get()->priority;
+		if (p > prio) {
+			prio = p;
+		}
+	}
+	return prio;
 }

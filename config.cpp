@@ -297,16 +297,55 @@ void server(const XML_Char ** attr){
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
+
+void misc(const XML_Char ** attr){
+	int i = 0;
+	
+	start->push(new C_ring_<command>);		//	добавляем пустой контекст
+	
+	while (attr[i]){
+		if(!strcmp(attr[i], "recognition__low_time_min")){
+			recognition__low_time_min = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "recognition__low_time_max")){
+			recognition__low_time_max = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "recognition__high_time_min")){
+			recognition__high_time_min = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "recognition__high_time_max")){
+			recognition__high_time_max = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "recognition__inter_time_min")){
+			recognition__inter_time_min = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "recognition__inter_time_max")){
+			recognition__inter_time_max = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "line__outer_requried_ring_time")){
+			line__outer_requried_ring_time = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "line__outer_incoming_ring_timeout")){
+			line__outer_incoming_ring_timeout = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "line__outer_required_disconnect_timeout")){
+			line__outer_required_disconnect_timeout = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "line__required_disconnet_time")){
+			line__required_disconnet_time = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "line__ready_timeout")){
+			line__ready_timeout = atol(attr[i + 1]);
+		}else if(!strcmp(attr[i], "line__wait_4_connect_timeout")){
+			line__wait_4_connect_timeout = atol(attr[i + 1]);
+		}
+		i += 2;
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////
+
+
 void station_line(const XML_Char ** attr){
 	start->push(new C_ring_<command>);
 	
-	int got = 0;
+	int got = 0;	// обязат параметры
 	
 	enum {in, out} type = in;
 	int id = -1; 
 	int operator_bus_id = -1;
 	int own_bus_id = -1;
 	int client_id = -1;
+	int priority = 0;
 
 	for (int i = 0; attr[i]; i += 2){
 		if (!strcmp(attr[i], "id")){
@@ -329,6 +368,8 @@ void station_line(const XML_Char ** attr){
 		}else if (!strcmp(attr[i], "client_id")){
 			client_id = atoi(attr[i + 1]);
 			got++;
+		}else if (!strcmp(attr[i], "priority")){
+			priority = atoi(attr[i + 1]);
 		}		
 	}
 	if (got > 4){
@@ -679,6 +720,13 @@ void music(const XML_Char **){
 void mir_config(const XML_Char ** attr){
 	struct command * cmd;
 	C_ring_<command> * n_context = new C_ring_<command>;
+	
+	cmd = new struct command;
+	cmd->name = new char[5];
+	strcpy(cmd->name, "Misc");
+	cmd->count = CQ_one;
+	cmd->handler = misc;
+	n_context->add(cmd);
 	
 	cmd = new struct command;
 	cmd->name = new char[7];

@@ -8,9 +8,12 @@ unsigned long line__outer_incoming_ring_timeout = 4000000;	// 4 sec
 unsigned long line__outer_requried_ring_time = 300000;		// 0.3 sec
 int skip_unpowered_count = 7;
 
-C_outer_line::C_outer_line(int id):C_line(id),
+C_outer_line::C_outer_line(int id, int priori = 0):C_line(id),
 	timer(NULL),
-	unpowered(false){}
+	unpowered(false){
+
+	priority = priori;
+}
 
 C_outer_line::~C_outer_line(){
 	if (timer) delete timer;
@@ -152,7 +155,7 @@ void C_outer_line::stage__free(){
 		return;
 	}
 	if ((bh.flow_state == bit_state__on) && (bh.flow_time > line__outer_requried_ring_time)){
-		C_line * op = Busses->get_bus(operator_bus_id)->get_free_line();
+		C_line * op = Busses->get_bus(operator_bus_id)->get_free_line(id, priority);
 		C_connection * con = Station->get_free_connection();
 		//if (!op && con) cout << con->get_id() << endl;
 		if (op && con && !op->incoming_connection){

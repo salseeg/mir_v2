@@ -13,7 +13,7 @@ class C_outer_line:public C_line{
 		bool unpowered;
 	public:
 		
-		C_outer_line(int id);
+		C_outer_line(int id,int priori = 0);
 		~C_outer_line();
 
 		int execute();

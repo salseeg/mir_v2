@@ -8,7 +8,9 @@ unsigned long line__ready_timeout = 20000000;		//	20 sec
 unsigned long line__required_disconnet_time = 200000;	//	0.2 sec
 unsigned long line__wait_4_connect_timeout = 45000000;	//	45 sec
 
-C_inner_line::C_inner_line(int id_):C_line(id_){}
+C_inner_line::C_inner_line(int id_, int priori = 0):C_line(id_){
+	priority = priori;
+}
 
 C_inner_line::~C_inner_line(){};
 

@@ -79,6 +79,7 @@ class C_line{
 		bool block_incoming;			//	блокировка входящих соединений
 		bool block_notify;			//	блокировка уведомлений
 		bool blocked;				//	блокировка для обработки одновременного обращения к линии
+		int priority;				//	приоритет линии
 		
 		C_pulse_recognizer * recognizer;
 		C_ring_<C_connection> hold_ring;	//	удержанные соединения

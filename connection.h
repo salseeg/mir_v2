@@ -23,6 +23,7 @@ class C_connection{
 		
 		void add_line(C_line & line);	//	подключить линию к соединению
 		void del_line(C_line & line);	//	отключить линию от соединения
+		void steal_line(C_line * line); //	забрать линию из соединения
 
 		void silent_add_line(C_line & line);
 		void silent_del_line(C_line & line);
@@ -36,6 +37,8 @@ class C_connection{
 
 		int get_id(){return id;}					// вернуть идентификатор соединения
 		int operator==(const C_connection& b){return id == b.id;}	// сравнить с соединением
+
+		int get_priority();		//	вернуть приориет соед = мах(приоритет линий)
 };
 
 #endif

@@ -49,7 +49,7 @@ void C_masks::action__connect(int line_id, int bus_id, int skip_len){
 void C_masks::action__connect_local(int line_id, int bus_id, int){
 	C_line * a_line = Station->lines[line_id];
 	C_bus * b_bus = Busses->get_bus(bus_id);
-	C_line * b_line = b_bus->get_free_line();
+	C_line * b_line = b_bus->get_free_line(line_id, a_line->priority);
 	C_connection * con = a_line->current_connection;
 	
 	// con->add_line(*a_line);
@@ -190,7 +190,7 @@ void C_masks::action__reserve(int line_id, int, int skip_len){
 
 void C_masks::action__direct_connect(int line_id, int bus_id, int){
 	C_line * int_line = Station->lines[line_id];
-	C_line * b_line = Busses->get_bus(bus_id)->get_free_line(line_id);
+	C_line * b_line = Busses->get_bus(bus_id)->get_free_line(line_id, int_line->priority);
 	if (b_line){
 		int_line->current_connection->silent_add_line(*b_line);
 		b_line->switch_stage(line_stage__connect);
@@ -319,7 +319,7 @@ bool C_masks::retranslate_recognized(int line_id, int bus_id, int skip_len){
 		}			
 	}else{	// начинаем
 		C_bus * bus = Busses->get_bus(bus_id);
-		ext_line = bus->get_free_line(line_id);
+		ext_line = bus->get_free_line(line_id, int_line->priority);
 		if (!ext_line) return false;
 		con->silent_add_line(*ext_line);
 		ext_line->switch_stage(line_stage__retranslation);
