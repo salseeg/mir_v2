@@ -19,7 +19,7 @@ class Mir_proto:
 		self.serv__th.start()
 	
 	def disconnect(self,silent = 0):
-		if not silent or not self.got_quit:
+		if not self.got_quit:
 			self.iface.send_command(0xffff,"")
 		while not self.got_quit:
 			time.sleep(0.01)

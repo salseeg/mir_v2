@@ -19,9 +19,10 @@ class Mir_monitor_proto:
 		except:
 			self.proto = None
 			print "Failed to connect"
-		else:
-			self.run__th = Thread(target = self.__run)
-			self.run__th.start()
+		self.stop = 0;
+		self.run__th = Thread(target = self.__run)
+		self.run__th.start()
+		#print "m_proto.run__th.start"
 
 	def disconnect(self,silent = 0):
 		if self.proto:
@@ -46,7 +47,8 @@ class Mir_monitor_proto:
 					break
 				if self.stop:
 					break
-			time.sleep(0.01)
+			time.sleep(0.1)
+			#print "m_proto.__run"
 	
 
 	def __parse_command(self, cmd):
@@ -80,6 +82,7 @@ class Mir_monitor_proto:
 
 	def action_get_lines_states(self):
 		self.proto.send_command([0x0001, ""])
+		print "line_states requested"
 			
 	def action_get_connections_states(self):
 		self.proto.send_command([0x0002, ""])
@@ -89,6 +92,4 @@ class Mir_monitor_proto:
 			
 	def action_error(self, data = ""):
 		self.proto.send_command([0xfffe, data])
-
-  
 

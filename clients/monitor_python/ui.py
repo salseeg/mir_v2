@@ -76,6 +76,7 @@ class Ui(msg_manager.P_message_manager):
 		self.root.protocol("WM_DELETE_WINDOW", self.close_ui)
 	
 	def status_clicked(self):
+		print self.status_window.get()
 		if self.status_window.get():
 			self.status_ui = status_ui.Status_ui(self.root, self)
 		else:
@@ -113,7 +114,7 @@ class Ui(msg_manager.P_message_manager):
 		if item == "connect":
 			self.connect()
 		elif item == "disconnect":
-			self.disconnect(1)
+			self.disconnect()
 
 	def connect_clicked(self):
 		if self.m_proto.check_connection():
@@ -127,7 +128,6 @@ class Ui(msg_manager.P_message_manager):
 				print "closing status..."
 				self.status_ui.close_ui()
 			print "stoppping proto..."
-			print "disconnectiong proto..."
 			self.m_proto.disconnect(silent)
 			print "disabling proto..."
 			self.disable_proto_ui()
@@ -150,6 +150,7 @@ class Ui(msg_manager.P_message_manager):
 	def disable_proto_ui(self):
 		if self.status_ui:
 			self.status_ui.close_ui()
+			self.status_ui = None
 		self.status__chk.config(state = DISABLED)
 		self.shutdown__btn.config(state = DISABLED)
 		self.connect__btn_text.set("Connect")
