@@ -8,7 +8,7 @@ class Mir_monitor_proto:
 		self.ui = ui
 		self.stop = 0
 		self.proto = None 
-		self.proto__th = None
+		self.run__th = None
 
 
 	def connect(self, addr, port, str):
@@ -20,46 +20,36 @@ class Mir_monitor_proto:
 			self.proto = None
 			print "Failed to connect"
 		else:
-			self.proto__th = Thread(target = self.proto.execute)
-			self.proto__th.start()
+			self.run__th = Thread(target = self.__run)
+			self.run__th.start()
 
 	def disconnect(self,silent = 0):
 		if self.proto:
+			self.stop = 1
+			self.run__th.join();
 			self.proto.disconnect(silent)
-			self.proto__th.join()
-			self.proto__th = None
 			self.proto = None
 		else:
 			throw("Not yet connected")
 	
 	def check_connection(self):
-		#"check_conn"
-		if self.proto:
-			return 1
-		else:
-			return 0
+		"""check if connected"""
+		return (self.proto != None)
 	
-	def run(self):
+	def __run(self):
 		while not self.stop:
-			if self.proto:
-				while 1:
-					cmd = self.proto.receive_command()
-					if cmd:
-						self.parse_command(cmd)
-					else:
-						break
-					if self.stop:
-						break
+			while 1:
+				cmd = self.proto.receive_command()
+				if cmd:
+					self.__parse_command(cmd)
+				else:
+					break
+				if self.stop:
+					break
 			time.sleep(0.01)
 	
-	def stop_running(self):
-		self.stop = 1
-	
-	def start_running(self):
-		self.stop = 0
 
-
-	def parse_command(self, cmd):
+	def __parse_command(self, cmd):
 		id = cmd[0]
 		data = cmd[1]
 		if id == 0x0001:

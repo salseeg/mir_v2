@@ -23,9 +23,8 @@ class Mir_iface:
 		self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	
 	def disconnect(self):
-		#self.sock.shutdown(2)
+		self.sock.shutdown(2)
 		self.sock.close()
-
 
 	def send_command(self, id, data):
 		self.sock.send(short2str(id))

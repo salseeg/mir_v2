@@ -13,7 +13,6 @@ class Ui(msg_manager.P_message_manager):
 	def __init__(self):
 		self.m_proto = mir_monitor_proto.Mir_monitor_proto(self)
 		self.init_ui()
-		self.m_proto__th = None
 		self.status_ui = None
 		msg_manager.P_message_manager.__init__(self)
 		#self.command_list = []
@@ -128,9 +127,6 @@ class Ui(msg_manager.P_message_manager):
 				print "closing status..."
 				self.status_ui.close_ui()
 			print "stoppping proto..."
-			self.m_proto.stop_running()
-			self.m_proto__th.join()
-			self.m_proto__th = None
 			print "disconnectiong proto..."
 			self.m_proto.disconnect(silent)
 			print "disabling proto..."
@@ -144,9 +140,6 @@ class Ui(msg_manager.P_message_manager):
 		if not self.m_proto.check_connection():
 			print "Failed to connect", self.address.get(), int(self.port.get())
 		else:
-			self.m_proto__th = Thread(target = self.m_proto.run)
-			self.m_proto__th.start()
-			print "m_proto thread started"
 			self.enable_proto_ui()
 				
 	def enable_proto_ui(self):
