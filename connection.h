@@ -14,6 +14,8 @@ class C_connection{
 		int id;				//	номер соединения
 		bool lock;			//	блокировка размножение сигналов удаления
 		void free();			//	освободить соединение
+		bool need_priority_recalc;	//	флаг потери актуальности приоритета
+		int priority;			//	приоритет
 	public:
 		C_connection(int id);
 		~C_connection();

@@ -5,6 +5,8 @@
 
 C_connection::C_connection(int connection_id):lock(false){
 	id = connection_id;
+	priority = -1;
+	need_priority_recalc = true;
 }
 
 
@@ -12,6 +14,8 @@ C_connection::~C_connection(){};
 
 
 void C_connection::add_line(C_line& line){
+	need_priority_recalc = true;
+	
 	int n = lines.quantity();
 	int i;
 
@@ -58,18 +62,21 @@ void C_connection::del_line(C_line& line){
 }
 
 void C_connection::steal_line(C_line * line){
+	need_priority_recalc = true;
 	if (!line) return;
 	del_line(*line);
 }
 
 
 void C_connection::silent_add_line(C_line & line){
+	need_priority_recalc = true;
 	lines.add(&line);				//	добавил линию в соединение
 	Hard->matrix(id, line.get_id(), on);		//	проключил линию
 	line.current_connection = this;			//
 }
 
 void C_connection::silent_del_line(C_line & line){	
+	need_priority_recalc = true;
 	int n = lines.quantity();	// количество линий в соединении
 	int i;
 
@@ -125,6 +132,7 @@ void C_connection::hold(C_line & line){
 }
 
 void C_connection::unhold(C_line & line){ // д. вызываться hold_ring.get()->unback(*this);
+	need_priority_recalc = true;
 	if (line.hold_ring.get() != this){
 		return;
 	}
@@ -158,6 +166,8 @@ void C_connection::free(){
 
 //	Объединение двух соединений
 void C_connection::mix(C_connection& other_connection){
+	need_priority_recalc = true;
+	
 	// перевести все линии другого соединения в текущее
 	int n = other_connection.lines.quantity();
 	for (int i = 0; i < n; i++){
@@ -175,6 +185,8 @@ void C_connection::mix(C_connection& other_connection){
 }
 
 void C_connection::mix_without(C_line& line, C_connection& other_connection){
+	need_priority_recalc = true;
+	
 	// перевести все линии текущего соединения в другое
 	int n = other_connection.lines.quantity();
 	C_ring_<C_line> lr;
@@ -195,13 +207,17 @@ void C_connection::mix_without(C_line& line, C_connection& other_connection){
 }
 
 int C_connection::get_priority(){
-	int prio = -1;			// приоритеты только положительны
-	int n = lines.quantity();
-	for (int i = 0; i < n; i++, lines.roll()){
-		int p = lines.get()->priority;
-		if (p > prio) {
-			prio = p;
+	if (need_priority_recalc){
+		int prio = -1;			// приоритеты только положительны
+		int n = lines.quantity();
+		for (int i = 0; i < n; i++, lines.roll()){
+			int p = lines.get()->priority;
+			if (p > prio) {
+				prio = p;
+			}
 		}
+		priority = prio;
+		need_priority_recalc = false;
 	}
-	return prio;
+	return priority;
 }
