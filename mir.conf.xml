@@ -1,0 +1,616 @@
+<?xml version="1.0"?>
+<mir_config>
+	<Hard driver_filename="/dev/mir" n_inner="8" n_outer="4"> 
+		Без подключеного драйвера станции не запускается
+		<matrix_init x="8" y="16"/> Обнуление матрицы комутации 
+	</Hard> 
+	<Melodies count="19">
+		<melody name="initial_pause" loop="off">
+			<frame state="low" duration="2000"/>
+		</melody>
+		<melody name="ring" loop="on">
+			<frame state="high" duration= "800"/>
+			<frame state="low"  duration="3200"/>
+		</melody>
+		<melody name="busy" loop="on">
+			<frame state="high" duration="300"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="deny" loop="on">
+			<frame state="high" duration="150"/>
+			<frame state="low"  duration="150"/>
+		</melody>
+		<melody name="notify" loop="on">
+			<frame state="high" duration= "250"/>
+			<frame state="low"  duration="5250"/>
+		</melody>
+		<melody name="ring_control" loop="on">
+			<frame state="high" duration= "800"/>
+			<frame state="low"  duration="3200"/>
+		</melody>
+		<melody name="ready" loop="on">
+			<frame state="high" duration="10000"/>
+		</melody>
+		<melody name="ok" loop="on">
+			<frame state="high" duration="250"/>
+			<frame state="low"  duration="100"/>
+		</melody>
+		<melody name="got_connected" loop="off">
+			<frame state="high" duration="100"/>
+			<frame state="low"  duration="200"/>
+			<frame state="high" duration="100"/>
+			<frame state="low"  duration="200"/>
+			<frame state="high" duration="100"/>
+			<frame state="low"  duration="200"/>
+		</melody>
+		<melody name="pulse_digit_0" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_1" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_2" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_3" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_4" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_5" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_6" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_7" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_8" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+		<melody name="pulse_digit_9" loop="off">
+			<frame state="low"  duration="300"/>		
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration= "40"/>
+			<frame state="high" duration= "60"/>
+			<frame state="low"  duration="300"/>
+		</melody>
+	</Melodies>
+	<Masks>	
+		<mask number="3440" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3470" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3480" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3430" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3460" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="344xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="346xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="348xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="347xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="37xxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="31xxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="32xxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="33xxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="36xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3901" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3902" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3903" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="3904" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="39xxxxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="36xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="36xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="36xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="36xxxx" bus_id="203" skip_len="1" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+
+		
+		<mask number="2xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="4xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="52xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="0"/>
+			<client id="1"/>
+		</mask>
+		<mask number="66480" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="66470" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="66460" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="66440" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="66430" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="6640xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="6644xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="6648xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="664xxxxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="666xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="66xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="6xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="7xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="80xxxxxxxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="0"/>
+		</mask>
+		<mask number="810xxxxxxxxxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="0"/>
+		</mask>
+		<mask number="8xxxxxxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="0"/>
+		</mask>
+		<mask number="926xxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="91xxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="9xxxxx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		
+		<mask number="01" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="03" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="02" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="04" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="07" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="08" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="09" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		<mask number="0xx" bus_id="202" skip_len="0" action="connect">
+			<client id="1"/>
+			<client id="0"/>
+		</mask>
+		
+		ДВО
+		<mask number="10" bus_id="201" skip_len="2" action="direct_connect">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="110x" bus_id="-1" skip_len="3" action="reserve">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="1180xx" bus_id="-1" skip_len="3" action="redirect">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="118xx" bus_id="-1" skip_len="3" action="redirect">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="117x" bus_id="-1" skip_len="3" action="block_incoming">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="116x" bus_id="-1" skip_len="3" action="block_notify">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="119" bus_id="-1" skip_len="3" action="redial">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		
+		Локальные номера
+		<mask number="12" bus_id="101" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="13" bus_id="1" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="14" bus_id="102" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="15" bus_id="103" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="16" bus_id="4" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="17" bus_id="5" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="18" bus_id="6" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+		<mask number="19" bus_id="7" skip_len="2" action="connect_local">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</mask>
+	</Masks>
+	<Connection_masks>
+		<connection_mask number="11" action="hold" arg="-1">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="12" action="mix_without" arg="-1">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="13" action="mix" arg="-1">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="2" action="auto_hold" arg="0">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="3" action="auto_hold" arg="1">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="4" action="auto_hold" arg="2">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="5" action="auto_hold" arg="3">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="6" action="auto_hold" arg="4">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="7" action="auto_hold" arg="5">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+		<connection_mask number="8" action="auto_hold" arg="6">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>	
+		<connection_mask number="9" action="auto_hold" arg="7">
+			<client id="0"/>
+			<client id="1"/>
+			<client id="2"/>
+		</connection_mask>
+	</Connection_masks>
+	<Station n_inner="8" n_outer="4">
+		<line id="0"  type="inner" own_bus_id="0" operator_bus_id="101" client_id="0" />
+		<line id="1"  type="inner" own_bus_id="1" operator_bus_id="101" client_id="0" />
+		<line id="2"  type="inner" own_bus_id="2" operator_bus_id="101" client_id="0" />
+		<line id="3"  type="inner" own_bus_id="3" operator_bus_id="101" client_id="0" />
+		<line id="4"  type="inner" own_bus_id="4" operator_bus_id="101" client_id="1" />
+		<line id="5"  type="inner" own_bus_id="5" operator_bus_id="101" client_id="1" />
+		<line id="6"  type="inner" own_bus_id="6" operator_bus_id="101" client_id="1" />
+		<line id="7"  type="inner" own_bus_id="7" operator_bus_id="101" client_id="1" />
+		<line id="8"  type="outer" own_bus_id="201" operator_bus_id="101" client_id="-1" />
+		<line id="9"  type="outer" own_bus_id="203" operator_bus_id="101" client_id="-1" />
+		<line id="10" type="outer" own_bus_id="203" operator_bus_id="101" client_id="-1" />
+		<line id="11" type="outer" own_bus_id="202" operator_bus_id="101" client_id="-1" />
+		<connection id="1"/>
+		<connection id="2"/>
+		<connection id="3"/>
+		<connection id="4"/>
+		<connection id="5"/>
+		<connection id="6"/>
+		<connection id="7"/>
+	</Station>
+	<Busses>
+		Пучки для локальных линий // 0 - 100
+		<bus id="0">
+			<line id="0"/>
+		</bus>
+		<bus id="1">
+			<line id="1"/>
+		</bus>
+		<bus id="2">
+			<line id="2"/>
+		</bus>
+		<bus id="3">
+			<line id="3"/>
+		</bus>
+		<bus id="4">
+			<line id="4"/>
+		</bus>
+		<bus id="5">
+			<line id="5"/>
+		</bus>
+		<bus id="6">
+			<line id="6"/>
+		</bus>
+		<bus id="7">
+			<line id="7"/>
+		</bus>
+		Пучек операторов	// 101 - 200
+		<bus id="101" roll="false">
+			<line id="0"/>
+			<line id="2"/>
+			<line id="3"/> 
+		</bus>
+		<bus id="102" roll="false">
+			<line id="2"/>
+			<line id="0"/>
+			<line id="3"/>
+		</bus>
+		<bus id="103" roll="false">
+			<line id="3"/> 
+			<line id="0"/>
+			<line id="2"/>
+		</bus>
+		Пучки внешних линий 	// 201 - 300
+		<bus id="201">
+			<line id="8"/>
+		</bus>
+		<bus id="202">
+			<line id="10"/>
+			<line id="9"/>
+		</bus>
+		<bus id="203">
+			<line id="11"/>
+		</bus>
+	</Busses>
+	<music>
+		<matrix_connect cord="0" line="15"/>
+	</music>
+	<Server port="3003" max_connections="32" plugins_path="/usr/share/mir/plugins/"/> 
+</mir_config>
