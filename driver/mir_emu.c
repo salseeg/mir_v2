@@ -49,7 +49,7 @@ void wrap(char *s)
 
 
 
-#define MIR_MAJOR  254 	/* резервируем этот номер для нашего устройства */
+#define MIR_MAJOR  253 	/* резервируем этот номер для нашего устройства */
 #define MIR_NAME "MIR Station"
 #define MIR_IRQ 7				/* IRQ которое мы используем */
 #define BASE_PORT	0x150		/* начальный/базовый порт */
