@@ -8,6 +8,7 @@ class P_message_manager:
 		self.exit = 0
 		self.thread = Thread(target = self.process_queue)
 		self.thread.start()
+		print "Msg man started"
 	
 	def send(self, str):
 		self.queue.append(str)
@@ -24,7 +25,7 @@ class P_message_manager:
 		self.thread.join();
 	
 	def dispatch(self):
-		s = self.queue.pop()
+		s = self.queue.pop(0)
 		if (s =="test"):
 			print "Test_message executed"
 		else:

@@ -6,18 +6,20 @@ import time, sched
 import mir_monitor_proto
 
 import status_ui
+import msg_manager
 
 
-class Ui:
+class Ui(msg_manager.P_message_manager):
 	def __init__(self):
 		self.m_proto = mir_monitor_proto.Mir_monitor_proto(self)
 		self.init_ui()
 		self.m_proto__th = None
 		self.status_ui = None
-		self.command_list = []
-		self.cmd__th = Thread(target = self.cmd_run)
-		self.cmd__th.start()
-		self.cmd_stop = 0
+		msg_manager.P_message_manager.__init__(self)
+		#self.command_list = []
+		#self.cmd__th = Thread(target = self.cmd_run)
+		#self.cmd__th.start()
+		#self.cmd_stop = 0
 	
 	def init_ui(self):
 		self.root = Tk()
@@ -84,8 +86,7 @@ class Ui:
 	def close_ui(self):
 		self.disconnect()
 		self.root.destroy()
-		self.cmd_stop = 1
-		self.cmd__th.join()
+		msg_manager.P_message_manager.done(self)
 	
 	def run(self):
 		try:
@@ -107,16 +108,13 @@ class Ui:
 			config_file.close()
 		self.disconnect()
 
-	def cmd_run(self):
-		while not self.cmd_stop:
-			while len(self.command_list):
-				item = self.command_list.pop(0)
-				print item
-				if item == "connect":
-					self.connect()
-				elif item == "disconnect":
-					self.disconnect(1)
-			time.sleep(0.1)
+	def dispatch(self):
+		item = self.queue.pop(0)
+		print item
+		if item == "connect":
+			self.connect()
+		elif item == "disconnect":
+			self.disconnect(1)
 
 	def connect_clicked(self):
 		if self.m_proto.check_connection():
@@ -127,11 +125,15 @@ class Ui:
 	def disconnect(self,silent = 0):
 		if self.m_proto.check_connection():
 			if self.status_ui:
+				print "closing status..."
 				self.status_ui.close_ui()
+			print "stoppping proto..."
 			self.m_proto.stop_running()
 			self.m_proto__th.join()
 			self.m_proto__th = None
+			print "disconnectiong proto..."
 			self.m_proto.disconnect(silent)
+			print "disabling proto..."
 			self.disable_proto_ui()
 	
 	def connect(self):
@@ -159,8 +161,6 @@ class Ui:
 		self.shutdown__btn.config(state = DISABLED)
 		self.connect__btn_text.set("Connect")
 
-				
-	
 	def act_shutdown(self):
 		self.m_proto.action_shutdown()
 
@@ -172,7 +172,7 @@ class Ui:
 		
 	def react_disconnect(self):
 		#self.connect(1)
-		self.command_list.append("disconnect")
+		self.send("disconnect")
 		# messagebox("Disconnected by station")
 		
 	def react_show_lines_states(self,data):
