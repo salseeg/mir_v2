@@ -118,8 +118,8 @@ mir_station_2: mir_station_2.cpp $(L_ARCH)
 #
 #################################################
 
-libcore.a: connection.o line.o inner_line.o outer_line.o station.o music.o 
-	ar ru libcore.a connection.o line.o inner_line.o outer_line.o station.o music.o
+libcore.a: connection.o line.o inner_line.o outer_line.o station.o  
+	ar ru libcore.a connection.o line.o inner_line.o outer_line.o station.o 
 
 connection.o: connection.cpp connection.h
 
@@ -130,8 +130,6 @@ inner_line.o: inner_line.cpp inner_line.h
 outer_line.o: outer_line.cpp outer_line.h
 
 station.o: station.cpp station.h
-
-music.o: music.cpp music.h
 
 ##########################################################################
 #

@@ -23,7 +23,6 @@
 #include "outer_line.h"
 #include "masks.h"
 #include "connection_masks.h"
-#include "music.h"
 
 
 enum command_quantity{
@@ -709,7 +708,7 @@ void music(const XML_Char **){
 //	}else{
 //		Log->set_priority(log_priority__debug);
 //		Log->rec() << "Проигрывание музыки включено";
-/		Log->write();	
+//		Log->write();	
 //	}
 }
 
