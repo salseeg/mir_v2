@@ -22,6 +22,9 @@ C_socket::C_socket(){
 	other_side.port = 0;
 	sock_id = ::socket(PF_INET, SOCK_STREAM, 0);
 	state = sock_state__free;
+
+	int optval = 1;
+	setsockopt(sock_id ,SOL_SOCKET,SO_REUSEADDR, &optval, sizeof(optval));
 }
 
 
@@ -31,6 +34,9 @@ C_socket::C_socket(int sock, inet_address os){
 	other_side.name = new char[::strlen(os.name)+1];
 	other_side.name = ::strcpy(other_side.name,os.name);
 	other_side.port = os.port;
+
+	int optval = 1;
+	setsockopt(sock_id ,SOL_SOCKET,SO_REUSEADDR, &optval, sizeof(optval));
 }
 
 
