@@ -18,6 +18,7 @@ dumb:
 	# mir_station_2		-  компилирует станцию
 	# intstall		-  инсталирует станцию
 	# install_plugins	-  инсталирует плагины
+	# install_player	-  инсталирует проигрыватель музыки
 	# module 		-  компилирует модуль ядра
 	# insert_module 	-  вставляет модуль ядра
 	# insert_emulation	-  вставляет модуль эмулятора
@@ -37,6 +38,7 @@ global_clean: clean
 	$(MAKE) -C net global_clean
 	$(MAKE) -C log global_clean
 	$(MAKE) -C driver global_clean
+	$(MAKE) -C tools global_clean
 
 clean:
 	rm -f -- *.o *.a 
@@ -49,12 +51,16 @@ clean:
 #
 ####################################
 
-install: mir_station_2 mir.conf.xml install_plugins 
+install: mir_station_2 mir.conf.xml install_plugins install_player
 	cp mir_station_2 $(MIR_INSTALL_DIR)
 	cp mir.conf.xml $(MIR_INSTALL_DIR)
 
 install_plugins:
 	$(MAKE) -C plugins install
+
+install_player:
+	$(MAKE) -C tools m_player
+	cp tools/m_player $(MIR_INSTALL_DIR)
 
 #########################################################################
 #

@@ -702,15 +702,15 @@ void music(const XML_Char **){
 
 	start->push(context);
 
-	if (init_music() < 0){
-		Log->set_priority(log_priority__error);
-		Log->rec() << "Ошибка включения музыки";
-		Log->write();	
-	}else{
-		Log->set_priority(log_priority__debug);
-		Log->rec() << "Проигрывание музыки включено";
-		Log->write();	
-	}
+//	if (init_music() < 0){
+//		Log->set_priority(log_priority__error);
+//		Log->rec() << "Ошибка включения музыки";
+//		Log->write();	
+//	}else{
+//		Log->set_priority(log_priority__debug);
+//		Log->rec() << "Проигрывание музыки включено";
+/		Log->write();	
+//	}
 }
 
 

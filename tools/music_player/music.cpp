@@ -9,7 +9,6 @@
 #include <sys/soundcard.h>
 #include <signal.h>
 
-#include "log/log.h"
 
 char * music__raw_filename = "/usr/share/mir/mir_music";
 
@@ -38,10 +37,7 @@ int init_music(){
 	/* mir_music - symbol link to real *.raw file */
 	dev = open(music__raw_filename,O_RDONLY);
 	if (dev < 0) {
-		Log->set_priority(log_priority__critical);
-		Log->rec() << "init_music :  не могу открыть " << music__raw_filename;
-		Log->write();
-		
+		perror("init_music");
 		return -1;
 	}
 	fstat(dev,&inf); 
@@ -53,9 +49,7 @@ int init_music(){
 	/* configuring mixer */
 	dev = open("/dev/mixer",O_WRONLY);
 	if (dev < 0){
-		Log->set_priority(log_priority__error);
-		Log->rec() << "init_music :  не могу открыть mixer";
-		Log->write();
+		printf("init_music :  не могу открыть mixer\n");
 	}
 	volume_level = (LEVEL << 8)|LEVEL;
 	ioctl(dev,SOUND_MIXER_WRITE_PCM,&volume_level);
@@ -64,10 +58,7 @@ int init_music(){
 
 	dev = open("/dev/dsp",O_WRONLY);
 	if (dev == -1) {
-		Log->set_priority(log_priority__critical);
-		Log->rec() << "init_music :  не могу открыть /dev/dsp";
-		Log->write();
-		
+		perror("init_music");
 		delete mem;
 		return -1;
 	}
