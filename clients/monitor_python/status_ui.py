@@ -16,6 +16,16 @@ class Status_ui:
 		self.request__th.start()
 
 	def init_ui(self, line_n = 12, con_n = 7):
+		self.menubar = Menu(self.root)
+		#
+		self.filemenubar = Menu(self.menubar, tearoff = 0)
+		self.filemenubar.add_command(label = k2u("Перезапуск станции"))
+		self.filemenubar.add_separator()
+		self.filemenubar.add_command(label = k2u("Выход"))
+		self.menubar.add_cascade(label = k2u("Файл"), menu = self.filemenubar)
+		#
+		self.root.config(menu = self.menubar)
+		#
 		self.root.protocol("WM_DELETE_WINDOW", self.close_ui)
 		#
 		self.line__lbl = Label(self.root)
@@ -102,6 +112,21 @@ class Status_ui:
 			self.owner__lbls[i].grid(row = 5, column = i + 1, padx = 0, pady = 0)
 			i = i + 1
 		###########################
+		i = 0
+		self.cell = []
+		self.cell__lbls = []
+		while i < con_n:
+			self.cell.append([])
+			self.cell__lbls.append([])
+			j = 0
+			while j < line_n:
+				self.cell[i].append(StringVar())
+				self.cell[i][j].set("-")
+				self.cell__lbls[i].append(Label(self.root))
+				self.cell__lbls[i][j].config(textvariable = self.cell[i][j])
+				self.cell__lbls[i][j].grid(row = 6 + i, column = j + 1, padx = 0, pady = 0)
+				j = j + 1				
+			i = i + 1
 
 	def close_ui(self):
 		self.stop_request = 1
@@ -114,11 +139,11 @@ class Status_ui:
 		while not self.stop_request:
 			self.gui.m_proto.action_get_lines_states()
 			self.gui.m_proto.action_get_connections_states()
-			print "request done"
-			time.sleep(0.3)
+			#print "request done"
+			time.sleep(1.5)
 	
 	def react_show_lines_states(self, data):
-		print data
+		#print data
 		strs = data.splitlines()
 		ar = []
 		for i in strs:
@@ -153,6 +178,32 @@ class Status_ui:
 
 	def react_show_connections_states(self, data):
 		#self.connections_states.set(data)
-		pass
+		strs = data.splitlines()
+		for s in strs:
+			#print s
+			(head, tail) = s.split(':')
+			#print '-'+tail+'-'
+			#print head.split(' ')
+			(p, p1, istr, q) = head.split(' ')
+			try: 
+				i = int(istr)
+			except:
+				print istr;
+				i = 0
+
+			if (tail.find('free') < 0):
+				con_lines = tail.split(' ')
+				for js in con_lines:
+					try:
+						j = int(js)
+					except:
+						pass
+					else:
+						#print i
+						#print j
+						self.cell[i-1][j].set('=#=')
+			else:	
+				for c in self.cell[i-1]:
+					c.set('---')
 		
 
