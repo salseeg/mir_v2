@@ -19,10 +19,11 @@ class Mir_monitor_proto:
 		except:
 			self.proto = None
 			print "Failed to connect"
-		self.stop = 0;
-		self.run__th = Thread(target = self.__run)
-		self.run__th.start()
-		#print "m_proto.run__th.start"
+		else:
+			self.stop = 0;
+			self.run__th = Thread(target = self.__run)
+			self.run__th.start()
+			#print "m_proto.run__th.start"
 
 	def disconnect(self,silent = 0):
 		if self.proto:

@@ -6,3 +6,5 @@ monitor: monitor.py
 global_clean: clean
 
 clean:
+	rm -f -- *.pyc
+	rm -f -- *.pyo

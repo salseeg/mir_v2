@@ -8,6 +8,8 @@ import mir_monitor_proto
 import status_ui
 import msg_manager
 
+def k2u(str):
+	return unicode(str,"koi8-r")
 
 class Ui(msg_manager.P_message_manager):
 	def __init__(self):
@@ -27,13 +29,13 @@ class Ui(msg_manager.P_message_manager):
 		#
 		self.status_window = IntVar()
 		self.status__chk = Checkbutton(self.toolbar)
-		self.status__chk["text"] = "status window"
+		self.status__chk["text"] = k2u("окно состояния")
 		self.status__chk["variable"] = self.status_window
 		self.status__chk.config(state = DISABLED, command = self.status_clicked)
 		self.status__chk.grid(sticky = E+W)
 		#
 		self.shutdown__btn = Button(self.toolbar)
-		self.shutdown__btn.config(text = "Shutdown", command = self.act_shutdown, state = DISABLED)
+		self.shutdown__btn.config(text = k2u("Перезапуск"), command = self.act_shutdown, state = DISABLED)
 		self.shutdown__btn.grid(sticky = E+W)
 		#
 		self.toolbar.pack({"side":"left"})
@@ -45,11 +47,11 @@ class Ui(msg_manager.P_message_manager):
 		self.config = Frame(self.root)
 		#
 		self.adress__lbl = Label(self.config)
-		self.adress__lbl.config(text = "Address")
+		self.adress__lbl.config(text = k2u("Адрес"))
 		self.adress__lbl.grid()
 		#
 		self.port__lbl = Label(self.config)
-		self.port__lbl.config(text = "Port")
+		self.port__lbl.config(text = k2u("Порт"))
 		self.port__lbl.grid()
 		#
 		self.address = StringVar()

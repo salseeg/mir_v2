@@ -2,11 +2,12 @@ from Tkinter import *
 from threading import *
 import time
 
-import locale
+
+def k2u(str):
+	return unicode(str,"koi8-r")
 
 class Status_ui:
 	def __init__(self, master, gui):
-		locale.setlocale(locale.LC_ALL,"")
 		self.gui = gui
 		self.root = Toplevel(master)
 		self.init_ui()
@@ -18,7 +19,7 @@ class Status_ui:
 		self.root.protocol("WM_DELETE_WINDOW", self.close_ui)
 		#
 		self.line__lbl = Label(self.root)
-		self.line__lbl.config(text = "Линия [line]")
+		self.line__lbl.config(text = k2u("Линия"))
 		self.line__lbl.grid()
 		i = 0
 		self.lines__lbls = []
@@ -32,7 +33,7 @@ class Status_ui:
 			i = i + 1
 		#
 		self.state__lbl = Label(self.root)
-		self.state__lbl.config(text = "Состояние [state]")
+		self.state__lbl.config(text = k2u("Состояние"))
 		self.state__lbl.grid()
 		i = 0
 		self.state__lbls = []
@@ -41,13 +42,12 @@ class Status_ui:
 			self.state.append(StringVar())
 			self.state[i].set("-")
 			self.state__lbls.append(Label(self.root))
-			self.state__lbls[i].config(textvariable = self.state[i], font = ("-*-fixed-medium-r-normal-*-*-100-*-*-p-*-koi8-r"))
+			self.state__lbls[i].config(textvariable = self.state[i], font = ("fixed"))
 			self.state__lbls[i].grid(row = 1, column = i + 1, padx = 0, pady = 0)
 			i = i + 1
-
 		#
 		self.con__lbl = Label(self.root)
-		self.con__lbl.config(text = "Соединение [current_con]")
+		self.con__lbl.config(text = k2u("Соединение"))
 		self.con__lbl.grid()
 		i = 0
 		self.con__lbls = []
@@ -59,6 +59,49 @@ class Status_ui:
 			self.con__lbls[i].config(textvariable = self.con[i])
 			self.con__lbls[i].grid(row = 2, column = i + 1, padx = 0, pady = 0)
 			i = i + 1
+		#
+		self.incom__lbl = Label(self.root)
+		self.incom__lbl.config(text = k2u("Вход. соединение"))
+		self.incom__lbl.grid()
+		i = 0
+		self.incom__lbls = []
+		self.incom = []
+		while i < line_n:
+			self.incom.append(StringVar())
+			self.incom[i].set("-")
+			self.incom__lbls.append(Label(self.root))
+			self.incom__lbls[i].config(textvariable = self.incom[i])
+			self.incom__lbls[i].grid(row = 3, column = i + 1, padx = 0, pady = 0)
+			i = i + 1
+		#
+		self.num__lbl = Label(self.root)
+		self.num__lbl.config(text = k2u("Номер"))
+		self.num__lbl.grid()
+		i = 0
+		self.num__lbls = []
+		self.num = []
+		while i < line_n:
+			self.num.append(StringVar())
+			self.num[i].set("-")
+			self.num__lbls.append(Label(self.root))
+			self.num__lbls[i].config(textvariable = self.num[i])
+			self.num__lbls[i].grid(row = 4, column = i + 1, padx = 0, pady = 0)
+			i = i + 1
+		#
+		self.owner__lbl = Label(self.root)
+		self.owner__lbl.config(text = k2u("Владелец"))
+		self.owner__lbl.grid()
+		i = 0
+		self.owner__lbls = []
+		self.owner = []
+		while i < line_n:
+			self.owner.append(StringVar())
+			self.owner[i].set("-")
+			self.owner__lbls.append(Label(self.root))
+			self.owner__lbls[i].config(textvariable = self.owner[i])
+			self.owner__lbls[i].grid(row = 5, column = i + 1, padx = 0, pady = 0)
+			i = i + 1
+		###########################
 
 	def close_ui(self):
 		self.stop_request = 1
@@ -89,11 +132,24 @@ class Status_ui:
 		n = len(ar)
 		while i < n:
 			self.lines[i].set(ar[i][0])
-			self.state[i].set(ar[i][1])
-			self.con[i].set(ar[i][2])
+			self.state[i].set(k2u(ar[i][1]))
+			if (ar[i][2] < 0):
+				self.con[i].set(k2u("нет"))
+			else:
+				self.con[i].set(ar[i][2])
+			if (ar[i][3] < 0):
+				self.incom[i].set(k2u("нет"))
+			else:
+				self.incom[i].set(ar[i][2])
+			if (ar[i][4] == "(null)"):
+				self.num[i].set("-")
+			else:
+				self.num[i].set(ar[i][2])
+			if (ar[i][5] < 0):
+				self.owner[i].set(k2u("нет"))
+			else:
+				self.owner[i].set(ar[i][2])
 			i = i + 1
-
-		
 
 	def react_show_connections_states(self, data):
 		#self.connections_states.set(data)

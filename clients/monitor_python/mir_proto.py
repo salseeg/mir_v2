@@ -10,13 +10,14 @@ class Mir_proto:
 			self.iface.connect(addr, port)
 		except:
 			throw("Failed to connect")
+		else:
+			self.iface.send_command(0, plugin + ':' + client + '\000')
+			self.stop_executing = 0
+			self.got_quit = 0
+			self.serv__th = Thread(target = self.__execute)
+			self.serv__th.start()
 		self.recieved = []
 		self.to_send = []
-		self.iface.send_command(0, plugin + ':' + client + '\000')
-		self.stop_executing = 0
-		self.got_quit = 0
-		self.serv__th = Thread(target = self.__execute)
-		self.serv__th.start()
 	
 	def disconnect(self,silent = 0):
 		if not self.got_quit:
