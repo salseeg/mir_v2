@@ -14,12 +14,10 @@ C_service_command::C_service_command():
 	data(NULL), id(0xffff), data_size(0){}
 
 C_service_command::C_service_command(unsigned short id_, long ds_,
-		char * d_):id(id_), data_size(ds_){
+		char * d_):data(NULL),id(id_), data_size(ds_){
 	if (d_) {
 		data = new char[data_size];
 		memcpy(data, d_, data_size);
-	}else{
-		data = NULL;
 	}
 }
 
@@ -27,29 +25,33 @@ C_service_command & C_service_command::operator=(const C_service_command &b){
 	if (this == &b) return *this;
 	id = b.id;
 	data_size = b.data_size;
-	if (data) delete data;
+	if (data) {
+		delete data;
+		data = NULL;
+	}
 	if (data_size){
 		data = new char[data_size];
 		memcpy(data, b.data, data_size);
-	}else{
-		data = NULL;
 	}
 	return *this;
 }
 
 C_service_command::~C_service_command(){
-	delete[] data;
+	if (data){
+		delete data;
+	}
 }
 
 void C_service_command::set_data(const char * s, long ds_){
-	if (data) delete data;
+	if (data) {
+		delete data;
+		data = NULL;
+		data_size = 0;
+	}
 	if (s){
 		data = new char [ds_];
 		memcpy(data, s, ds_);
 		data_size = ds_;
-	}else{
-		data = NULL;
-		data_size = 0;
 	}
 }
 
@@ -108,7 +110,10 @@ void C_service::buf_refresh(){
 		//	cout << hex << buf[buf_len + j];
 		//}
 		//cout << endl;
-		if (p) delete[] p;
+		if (p){
+			delete[] p;
+			p = NULL;
+		}
 		buf_len += i;
 	}
 	delete b;
@@ -121,7 +126,7 @@ void C_service::write(const C_service_command &command){
 }
 
 C_service_command * C_service::read(){
-	C_service_command * command;
+	C_service_command * command = NULL;
 
 	int n = sizeof(short) + sizeof(long);
 	if (buf_len < n) return NULL;
@@ -140,7 +145,7 @@ C_service_command * C_service::read(){
 	char * p = buf;
 	buf_len -= n;
 	if (buf_len > 0){
-		buf = new char[buf_len - n];
+		buf = new char[buf_len];   // [buf_len - n] ???
 		::memcpy(buf, p + n, buf_len);
 	}else{
 		buf = NULL;

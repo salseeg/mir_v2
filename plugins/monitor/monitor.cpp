@@ -7,7 +7,7 @@
 #include "../../aux/ring_.h"
 #include "file_sender.h"
 
-#define BUF_SIZE 1024
+#define BUF_SIZE 1024 << 1
 
 //  :::::: Команды плагину ::::::::
 //  0x0001	Получить состояния линий		0x0001

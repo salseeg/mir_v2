@@ -10,8 +10,8 @@
 #include <unistd.h>
 
 
-// для работы без железа раскоментировать 
-#define NO_HARD_SLEEP
+//для работы с железом закоментировать 
+//#define NO_HARD_SLEEP
 
 #define CONF_FILE_NAME "/usr/share/mir/mir.conf.xml"
 
