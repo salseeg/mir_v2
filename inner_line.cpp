@@ -32,7 +32,7 @@ void C_inner_line::signal__holded_freed(){
 
 void C_inner_line::signal__line_added(){
 	if (stage == line_stage__wait){
-		stage = line_stage__connect;
+		switch_stage(line_stage__connect);
 		Station->switcher.player(id, inner_key__kna).reset();
 		if (!recognizer){
 			recognizer = new C_pulse_recognizer;
@@ -43,7 +43,7 @@ void C_inner_line::signal__line_added(){
 void C_inner_line::signal__line_deleted(){
 	if (stage == line_stage__connect){
 		if (current_connection->lines.quantity() < 2){
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			current_connection->del_line(*this);
 			Station->switcher.player(id, inner_key__kna).add(melody__busy);	
 			if (recognizer) {
@@ -56,7 +56,7 @@ void C_inner_line::signal__line_deleted(){
 
 void C_inner_line::signal__line_dialed(){
 	if (stage == line_stage__wait){
-		stage = line_stage__connect;
+		switch_stage(line_stage__connect);
 		Station->switcher.player(id, inner_key__kna).reset();
 		if (recognizer) delete recognizer;
 		recognizer = new C_pulse_recognizer;
@@ -64,7 +64,7 @@ void C_inner_line::signal__line_dialed(){
 		for (int i = 0, n = con->lines.quantity(); i < n; i++, con->lines.roll()){
 			C_line * b_line = con->lines.get();
 			if (*b_line != *this){
-				b_line->stage = line_stage__connect;
+				b_line->switch_stage(line_stage__connect);
 				break;
 			}
 		}
@@ -96,7 +96,7 @@ void C_inner_line::stage__disconnect(){
 	bit_history &bh = Hard->get_state_inner(id);
 	if (bh.flow_state == bit_state__off){
 		if (bh.flow_time > line__required_disconnet_time){
-			stage = line_stage__free;
+			switch_stage(line_stage__free);
 			Station->switcher.player(id, inner_key__kna).reset();
 			Station->switcher.player(id, inner_key__pv).reset();
 		}
@@ -107,12 +107,12 @@ void C_inner_line::stage__disconnect(){
 void C_inner_line::stage__ready(){
 	bit_history &bh = Hard->get_state_inner(id);
 	if (bh.flow_state == bit_state__off){
-		stage = line_stage__digits;
+		switch_stage(line_stage__digits);
 		Station->switcher.player(id, inner_key__kna).reset();
 		recognizer = new C_pulse_recognizer();
 	}else{
 		if (bh.flow_time > line__ready_timeout){
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			Station->switcher.player(id, inner_key__kna).add(melody__busy);
 			C_connection * con = current_connection;
 			con->del_line(*this);
@@ -129,7 +129,7 @@ void C_inner_line::stage__digits(){
 	}
 	switch (rr){
 		case recognition_result__error:{
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			Station->switcher.player(id, inner_key__kna).add(melody__busy);
 			C_connection * con = current_connection;
 			con->del_line(*this);
@@ -163,7 +163,7 @@ void C_inner_line::stage__wait(){
 		}
 
 		if (i == n){	
-			//	 error
+			//	 error !!!! TODO найти причину 
 			Log->set_priority(log_priority__error);
 			Log->rec() << "Line[" << id << "] wait stage : не найдена вызываемая линия !";
 			Log->write();
@@ -174,7 +174,7 @@ void C_inner_line::stage__wait(){
 		//con->free();
 
 		Station->switcher.player(id, inner_key__kna).add(melody__busy);
-		stage = line_stage__disconnected;
+		switch_stage(line_stage__disconnected);
 		if (recognizer) {
 			delete recognizer;
 			recognizer = NULL;
@@ -191,7 +191,7 @@ void C_inner_line::stage__connect(){
 				Connection_masks->check(id);
 			}break;
 			case recognition_result__error:{
-				stage = line_stage__disconnected;
+				switch_stage(line_stage__disconnected);
 				current_connection->del_line(*this);
 				Station->switcher.player(id, inner_key__kna).add(melody__busy);
 				if (recognizer) {
@@ -203,7 +203,7 @@ void C_inner_line::stage__connect(){
 		}
 	}else{
 		if (bh.flow_state == bit_state__off){
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			current_connection->del_line(*this);
 			Station->switcher.player(id, inner_key__kna).add(melody__busy);
 			if (recognizer) {
@@ -224,7 +224,7 @@ void C_inner_line::stage__retranslation(){
 	}
 	switch(rr){
 		case recognition_result__error:{
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			current_connection->del_line(*this);
 			Station->switcher.player(id, inner_key__kna).add(melody__busy);
 			if (recognizer) {
@@ -252,7 +252,7 @@ void C_inner_line::stage__incoming(){
 	Log->set_priority(log_priority__error);
 	Log->rec() << "Line[" << id << "] incoming stage : недопустимое состояние!";
 	Log->write();
-	stage = line_stage__free;
+	switch_stage(line_stage__free);
 }
 
 void C_inner_line::stage__free(){
@@ -262,13 +262,13 @@ void C_inner_line::stage__free(){
 		if (incoming_connection){
 			incoming_connection->add_line(*this);
 			incoming_connection = NULL;
-			stage = line_stage__connect;
+			switch_stage(line_stage__connect);
 			recognizer = new C_pulse_recognizer;
 			Station->switcher.player(id, inner_key__kna).reset();	
 			Station->switcher.player(id, inner_key__pv).reset();
 		}else if (hold_ring.quantity()){
 			hold_ring.get()->unhold(*this);
-			stage = line_stage__connect;
+			switch_stage(line_stage__connect);
 			recognizer = new C_pulse_recognizer;
 			Station->switcher.player(id, inner_key__kna).reset();	
 			Station->switcher.player(id, inner_key__pv).reset();
@@ -276,10 +276,10 @@ void C_inner_line::stage__free(){
 			current_connection = Station->get_free_connection();
 			if (current_connection){
 				current_connection->add_line(*this);
-				stage = line_stage__ready;
+				switch_stage(line_stage__ready);
 				Station->switcher.player(id, inner_key__kna).add(melody__ready);
 			}else{
-				stage = line_stage__disconnected;
+				switch_stage(line_stage__disconnected);
 				Station->switcher.player(id, inner_key__kna).add(melody__deny);
 			}
 		}

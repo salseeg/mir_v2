@@ -27,13 +27,13 @@ C_masks::action C_masks::actions[mask_action_count] = {
 void C_masks::action__connect(int line_id, int bus_id, int skip_len){
 	if (retranslate_recognized(line_id, bus_id, skip_len)){
 		C_line * int_line = Station->lines[line_id];
-		int_line->stage = line_stage__wait;
+		int_line->switch_stage(line_stage__wait);
 		int_line->remember_number();
 		delete int_line->recognizer;
 		int_line->recognizer = NULL;
 	}else{
 		C_line * int_line = Station->lines[line_id];
-		int_line->stage = line_stage__disconnected;
+		int_line->switch_stage(line_stage__disconnected);
 		Station->switcher.player(line_id, inner_key__kna).add(melody__busy);
 		C_connection * con = int_line->current_connection;
 		if (con){
@@ -53,11 +53,11 @@ void C_masks::action__connect_local(int line_id, int bus_id, int){
 	C_connection * con = a_line->current_connection;
 	
 	// con->add_line(*a_line);
-	a_line->stage = line_stage__wait;
+	a_line->switch_stage(line_stage__wait);
 	
 	if (b_line){	//	линия Б свободна
 		if (b_line->incoming_connection){
-			a_line->stage = line_stage__disconnected;
+			a_line->switch_stage(line_stage__disconnected);
 			con->del_line(*a_line);
 			Station->switcher.player(a_line->get_id(), inner_key__kna).add(melody__busy);
 			if (a_line->recognizer){
@@ -77,7 +77,7 @@ void C_masks::action__connect_local(int line_id, int bus_id, int){
 		b_line = b_bus->lines.get();
 		b_bus->lines.roll();
 		if (b_line->incoming_connection){
-			a_line->stage = line_stage__disconnected;
+			a_line->switch_stage(line_stage__disconnected);
 			con->del_line(*a_line);
 			Station->switcher.player(a_line->get_id(), inner_key__kna).add(melody__busy);
 			if (a_line->recognizer){
@@ -94,7 +94,7 @@ void C_masks::action__connect_local(int line_id, int bus_id, int){
 					a_line->recognizer = new C_pulse_recognizer;
 				}
 			}else{
-				a_line->stage = line_stage__disconnected;
+				a_line->switch_stage(line_stage__disconnected);
 				con->del_line(*a_line);
 				Station->switcher.player(a_line->get_id(), inner_key__kna).add(melody__busy);
 				if (a_line->recognizer){
@@ -153,7 +153,7 @@ void C_masks::action__redirect(int line_id, int, int skip_len){
 		}break;
 	}	
 	int_line->current_connection->del_line(*int_line);
-	int_line->stage = line_stage__disconnected;
+	int_line->switch_stage(line_stage__disconnected);
 	Station->switcher.player(int_line->get_id(), inner_key__kna).add(success ? melody__ok : melody__deny);	
 
 	delete int_line->recognizer;
@@ -181,7 +181,7 @@ void C_masks::action__reserve(int line_id, int, int skip_len){
 		}
 	}
 	int_line->current_connection->del_line(*int_line);
-	int_line->stage = line_stage__disconnected;
+	int_line->switch_stage(line_stage__disconnected);
 	Station->switcher.player(int_line->get_id(), inner_key__kna).add(success ? melody__ok : melody__deny);	
 
 	delete int_line->recognizer;
@@ -193,15 +193,15 @@ void C_masks::action__direct_connect(int line_id, int bus_id, int){
 	C_line * b_line = Busses->get_bus(bus_id)->get_free_line(line_id);
 	if (b_line){
 		int_line->current_connection->silent_add_line(*b_line);
-		b_line->stage = line_stage__connect;
-		int_line->stage = line_stage__retranslation;
+		b_line->switch_stage(line_stage__connect);
+		int_line->switch_stage(line_stage__retranslation);
 
 		delete int_line->recognizer;
 		int_line->recognizer = new C_pulse_recognizer();
 		Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ok);	
 	}else{
 		int_line->current_connection->del_line(*int_line);
-		int_line->stage = line_stage__disconnected;
+		int_line->switch_stage(line_stage__disconnected);
 		Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__deny);	
 
 		delete int_line->recognizer;
@@ -218,7 +218,7 @@ void C_masks::action__block_incoming(int line_id, int, int skip_len){
 	int_line->block_incoming = (pr[skip_len] != 0);
 	
 	int_line->current_connection->del_line(*int_line);
-	int_line->stage = line_stage__disconnected;
+	int_line->switch_stage(line_stage__disconnected);
 	Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ok);	
 
 	delete int_line->recognizer;
@@ -233,7 +233,7 @@ void C_masks::action__block_notify(int line_id, int, int skip_len){
 	int_line->block_notify = (pr[skip_len] != 0);
 	
 	int_line->current_connection->del_line(*int_line);
-	int_line->stage = line_stage__disconnected;
+	int_line->switch_stage(line_stage__disconnected);
 	Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ok);	
 
 	delete int_line->recognizer;
@@ -293,7 +293,7 @@ void C_masks::check(int line_id){
 		// disconnect --(signal__line_deleted)--> ext_disconnect
 		
 		C_line * int_line = Station->lines[line_id];
-		int_line->stage = line_stage__disconnected;
+		int_line->switch_stage(line_stage__disconnected);
 		Station->switcher.player(line_id, inner_key__kna).add(melody__deny);
 		C_connection * con = int_line->current_connection;
 		if (con){
@@ -322,7 +322,7 @@ bool C_masks::retranslate_recognized(int line_id, int bus_id, int skip_len){
 		ext_line = bus->get_free_line(line_id);
 		if (!ext_line) return false;
 		con->silent_add_line(*ext_line);
-		ext_line->stage = line_stage__retranslation;
+		ext_line->switch_stage(line_stage__retranslation);
 		ext_line->signal(line_signal__line_added);		// to connect outer ????
 		Station->switcher.player(ext_line->get_id(), outer_key__ik).add(melody__initial_pause);
 	}

@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include "log/log.h"
 
+char * stage_name[line_stage_count] = {
+	"free",
+	"ready",
+	"digits",
+	"wait",
+	"retranslation",
+	"connect",
+	"disconnect",
+	"incoming"	
+};
+
+
 int C_line::get_id(){
 	return id;
 }
@@ -65,4 +77,13 @@ int C_line::execute(){
 
 void C_line::signal(line_signal sig){
 	(this->*signal_handlers[sig])();
+}
+
+void C_line::switch_stage(line_stage new_stage){
+	Log->set_priority(log_priority__debug);
+	Log->rec() << "line[" << get_id() << "] " << stage_name[stage];
+	Log->rec() << " -> " << stage_name[new_stage];
+	Log->write();
+	stage = new_stage;
+	
 }

@@ -99,6 +99,7 @@ class C_line{
 		virtual bool active()=0;		//	активная линия (управляет пасивными(внешними) в соединении)
 					
 		void signal(line_signal sig);
+		virtual void switch_stage(line_stage new_stage);
 };
 
 #endif 

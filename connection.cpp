@@ -114,7 +114,7 @@ void C_connection::hold(C_line & line){
 		l->signal(line_signal__holded_by);
 	}
 
-	line.stage = line_stage__free;
+	line.switch_stage(line_stage__free);
 	holded_by.add(&line);
 }
 

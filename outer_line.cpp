@@ -35,7 +35,7 @@ void C_outer_line::signal__holded_freed(){} 	// do not care
 
 void C_outer_line::signal__line_added(){
 	if (stage == line_stage__wait){
-		stage = line_stage__connect;
+		switch_stage(line_stage__connect);
 		connect();
 	}else if (stage == line_stage__retranslation){
 		connect();
@@ -51,7 +51,7 @@ void C_outer_line::signal__line_deleted(){
 			if (con->lines.get(i)->active()) break;
 		}
 		if (i == n){
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			disconnect();
 			con->del_line(*this);		
 		}
@@ -112,7 +112,7 @@ void C_outer_line::stage__wait(){
 				Log->rec() << "Line [" << id << "] wait stage : не могу найти оператора!";
 				Log->write();
 			}
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			C_connection * con = current_connection;
 			con->del_line(*this);
 			//con->free();			
@@ -130,7 +130,7 @@ void C_outer_line::stage__wait(){
 					}
 				}
 				if (!op){
-					stage = line_stage__disconnected;
+					switch_stage(line_stage__disconnected);
 					C_connection * con = current_connection;
 					con->del_line(*this);
 				}
@@ -145,7 +145,7 @@ void C_outer_line::stage__free(){
 	if ((bh.powered == power_error) && (!(bh.flow_state == bit_state__on)) && (unpowered_count++ > skip_unpowered_count)){
 		unpowered_count = 0;
 		unpowered = true;
-		stage = line_stage__disconnected;
+		switch_stage(line_stage__disconnected);
 		Log->set_priority(log_priority__error);
 		Log->rec() << "Линия [" << id << "] : потеря питания!";
 		Log->write();
@@ -157,7 +157,7 @@ void C_outer_line::stage__free(){
 		//if (!op && con) cout << con->get_id() << endl;
 		if (op && con && !op->incoming_connection){
 			con->add_line(*this);
-			stage = line_stage__wait;
+			switch_stage(line_stage__wait);
 			op->incoming_connection = con;
 			Station->switcher.player(op->get_id(), inner_key__pv).add(melody__ring);
 	
@@ -168,7 +168,7 @@ void C_outer_line::stage__free(){
 			if (con) {
 				Station->free_connection(con);
 			}
-			stage = line_stage__disconnected;
+			switch_stage(line_stage__disconnected);
 			disconnect();
 		}
 	}
@@ -184,7 +184,7 @@ void C_outer_line::stage__disconnect(){
 				if (bh.powered == power_ok){
 					unpowered = false;
 
-					stage = line_stage__free;
+					switch_stage(line_stage__free);
 			
 					Log->set_priority(log_priority__info);
 					Log->rec() << "Линия [" << id << "] : питание востановлено";
@@ -192,7 +192,7 @@ void C_outer_line::stage__disconnect(){
 					
 				}
 			}else{
-				stage = line_stage__free;
+				switch_stage(line_stage__free);
 			}
 		}
 	}else{

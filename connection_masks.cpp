@@ -16,13 +16,13 @@ void C_connection_masks::action__hold(int line_id, int){
 	int_line->current_connection->hold(*int_line);
 	C_connection * con = Station->get_free_connection();
 	if (con){
-		int_line->stage = line_stage__ready;
+		int_line->switch_stage(line_stage__ready);
 		int_line->current_connection = con;
 		con->add_line(*int_line);
 		Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ok);
 		Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ready);
 	}else{
-		int_line->stage = line_stage__disconnected;
+		int_line->switch_stage(line_stage__disconnected);
 	}	
 	if (int_line->recognizer) {
 		delete int_line->recognizer;
@@ -51,12 +51,12 @@ void C_connection_masks::action__mix_without(int line_id, int){
 		//C_connection * con = Station->get_free_connection();
 		C_connection * con = int_line->current_connection;
 		if (con){
-			int_line->stage = line_stage__ready;
+			int_line->switch_stage(line_stage__ready);
 			//int_line->current_connection = con;
 			Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ok);
 			Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__ready);
 		}else{
-			int_line->stage = line_stage__disconnected;
+			int_line->switch_stage(line_stage__disconnected);
 			Station->switcher.player(int_line->get_id(), inner_key__kna).add(melody__busy);
 		}		
 		if (int_line->recognizer) {
@@ -81,13 +81,13 @@ void C_connection_masks::action__auto_hold(int line_id,int arg){
 		con->add_line(*int_line);
 		b_line->incoming_connection = con;
 
-		int_line->stage = line_stage__wait;		
+		int_line->switch_stage(line_stage__wait);		
 		
 		Station->switcher.player(line_id, inner_key__kna).add(melody__ring);
 		Station->switcher.player(b_line->get_id(), inner_key__pv).add(melody__ring);
 	}else{
 		Station->switcher.player(line_id, inner_key__kna).add(melody__busy);
-		int_line->stage = line_stage__disconnected;
+		int_line->switch_stage(line_stage__disconnected);
 		if (con) Station->free_connection(con);
 	}	
 	if (int_line->recognizer) {
