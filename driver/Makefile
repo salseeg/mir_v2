@@ -21,7 +21,7 @@ control_emu.sh: tclAppInit.c tclExt.h
 	 gcc tclAppInit.c -ltk8.3 -ltcl8.3 -lpth -o $@
 
 run_control_emu: control_emu.sh gui.tcl
-	./control_emu.sh gui.tcl
+	./control_emu.sh gui.tcl &
 
 global_clean: clean
 
