@@ -7,7 +7,6 @@
 
 #include <expat.h>
 #include "aux/ring_.h"
-#include "log/log.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -23,6 +22,10 @@
 #include "outer_line.h"
 #include "masks.h"
 #include "connection_masks.h"
+
+#ifdef LOG_CONFIG
+#include "log/log.h"
+#endif
 
 
 enum command_quantity{
@@ -68,8 +71,9 @@ void frame_load(const XML_Char ** attr){
 	}
 	if (got == 2){
 		(*Melodies)[curr_melody]->add_frame(fr);
+#ifdef LOG_CONFIG		
 		Log->rec() << ".";
-
+#endif
 		start->push(new C_ring_<command>);
 	}
 }
@@ -140,12 +144,16 @@ void melody(const XML_Char ** attr){
 				name = melody__initial_pause;
 				got++;
 			}else{
+#ifdef LOG_CONFIG				
 				Log->set_priority(log_priority__warning);
 				Log->rec() << "Неизвестная мелодия : " << attr[i + 1];
 				Log->write();
+#endif
 			}
+#ifdef LOG_CONFIG			
 			Log->set_priority(log_priority__debug);
 			Log->rec() << "       мелодия : " << attr[i + 1];
+#endif
 		} else if (!strcmp(attr[i], "loop")){
 			if (!strcmp(attr[i + 1], "on")){
 				loop = true;
@@ -183,9 +191,11 @@ void melodies(const XML_Char ** attr){
 		if (!::strcmp(attr[i], "count")){
 			count = atoi((char *) attr[i + 1]);
 			Melodies = new C_melodies(count);
+#ifdef LOG_CONFIG			
 			Log->set_priority(log_priority__debug);
 			Log->rec() << "Мелодии [" << count << "]";
 			Log->write();
+#endif 
 			
 			struct command * cmd = new command;
 			C_ring_<command> * context = new C_ring_<command>;
@@ -226,9 +236,11 @@ void matrix_init(const XML_Char ** attr){
 		for (int i = 0; i < x; i++)
 			for (int j = 0; j < y; j++)
 				Hard->matrix(i, j, off);
+#ifdef LOG_CONFIG		
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "Матрица комутаций обнулена.";
 		Log->write();
+#endif
 	}
 }
 
@@ -266,10 +278,12 @@ void hard(const XML_Char ** attr){
 	}
 	if (got == 3){
 		Hard = new C_hard(drv_fn, n_inner, n_outer);
+#ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "Инициализирован интерфейс с аппаратурой ";
 		Log->rec() << n_inner << "x" << n_outer;
 		Log->write();
+#endif
 	}
 }
 
@@ -282,9 +296,11 @@ void server(const XML_Char ** attr){
 	while (attr[i]){
 		if(!strcmp(attr[i], "port")){
 			Server = new C_server(atoi(attr[i + 1]));
+#ifdef LOG_CONFIG			
 			Log->set_priority(log_priority__debug);
 			Log->rec() << "Сервер ожидает входящие соединения. [ " << attr[i + 1] << " ]";
 			Log->write();
+#endif
 		}else if(!strcmp(attr[i], "max_connections")){
 			server_max_connections = atoi(attr[i + 1]);
 		}else if(!strcmp(attr[i], "plugins_path")){
@@ -382,10 +398,11 @@ void station_line(const XML_Char ** attr){
 		l->client_id = client_id;
 		l->operator_bus_id = operator_bus_id;
 		Station->lines[id] = l;
-
+#ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "    Линия " << id << ((type == in) ? " внутреняя":" внешняя");
 		Log->write();
+#endif
 	}
 }
 
@@ -395,10 +412,11 @@ void station_connection(const XML_Char ** attr){
 	if (!strcmp(attr[0], "id")){
 		int id = atoi(attr[1]);
 		Station->free_connections.add(new C_connection(id));
-
+#ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "    Соединение " << id;
 		Log->write();
+#endif
 	}
 }
 
@@ -439,10 +457,11 @@ void station(const XML_Char ** attr){
 		cmd->count = CQ_several;
 		cmd->handler = station_connection;
 		context->add(cmd);
-
+#ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "Станция [ внутр: " << n_i << ", внешн: " << n_o << " ]";
 		Log->write();
+#endif
 	}
 	start->push(context);
 }
@@ -453,10 +472,11 @@ void bus_line(const XML_Char ** attr){
 	if (!::strcmp(attr[0], "id")){
 		int id = ::atoi(attr[1]);
 		Busses->ring.get()->lines.add(Station->lines[id]);
-		
+#ifdef LOG_CONFIG		
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "       линия " << id;
 		Log->write();
+#endif
 
 	}
 }
@@ -487,10 +507,11 @@ void bus(const XML_Char ** attr){
 		cmd->count = CQ_several;
 		cmd->handler = bus_line;
 		context->add(cmd);
-		
+#ifdef LOG_CONFIG		
 		Log->set_priority(log_priority__debug);
 		Log->rec() << "    пучек " << id; 
 		Log->write();
+#endif
 	}
 	start->push(context);		// добавляем контекст
 }
@@ -509,11 +530,11 @@ void busses(const XML_Char ** attr){
 	start->push(context);		// добавляем контекст
 
 	Busses = new C_busses;
-
+#ifdef LOG_CONFIG
 	Log->set_priority(log_priority__debug);
 	Log->rec() << "Пучки";
 	Log->write();
-
+#endif
 }
 //////////////////////////////////////////////////////////////////////////////////
 void mask_client(const XML_Char ** attr){
@@ -521,8 +542,9 @@ void mask_client(const XML_Char ** attr){
 	if (!strcmp(attr[0], "id")){
 		int id = atoi(attr[1]);
 		Masks->ring.get(-1)->allow_client(id);
-
+#ifdef LOG_CONFIG
 		Log->rec() << " " << id;
+#endif
 	}
 }
 
@@ -560,10 +582,11 @@ void mask(const XML_Char ** attr){
 			cmd->count = CQ_several;
 			cmd->handler = mask_client;
 			context->add(cmd);
-
+#ifdef LOG_CONFIG
 			Log->set_priority(log_priority__debug);
 			Log->rec() << "   маска " << number << " (" << skip_len << ") ";
 			Log->rec() << action_name << ", пучек " << bus_id << ", клиенты :";	
+#endif
 		} else{
 			delete m;
 		}
@@ -585,11 +608,11 @@ void masks(const XML_Char **){
 	start->push(context);
 
 	Masks = new C_masks();
-
+#ifdef LOG_CONFIG
 	Log->set_priority(log_priority__debug);
 	Log->rec() << "Маски";
 	Log->write();
-	
+#endif	
 }
 //////////////////////////////////////////////////////////////////////////////////
 void con_mask_client(const XML_Char ** attr){
@@ -597,8 +620,9 @@ void con_mask_client(const XML_Char ** attr){
 	if (!strcmp(attr[0], "id")){
 		int id = atoi(attr[1]);
 		Connection_masks->ring.get(-1)->allow_client(id);
-
+#ifdef LOG_CONFIG
 		Log->rec() << " " << id;
+#endif 
 	}
 }
 
@@ -632,10 +656,11 @@ void con_mask(const XML_Char ** attr){
 			cmd->count = CQ_several;
 			cmd->handler = con_mask_client;
 			context->add(cmd);
-
+#ifdef LOG_CONFIG
 			Log->set_priority(log_priority__debug);
 			Log->rec() << "   маска " << number << "  ";
 			Log->rec() << action_name << " [ " << arg << " ] клиенты :";	
+#endif
 		} else{
 			delete m;
 		}
@@ -657,10 +682,11 @@ void con_masks(const XML_Char **){
 	start->push(context);
 
 	Connection_masks = new C_connection_masks();
-
+#ifdef LOG_CONFIG
 	Log->set_priority(log_priority__debug);
 	Log->rec() << "Маски соединения";
 	Log->write();	
+#endif
 }
 
 ////////////////////////////////////////////////////////
