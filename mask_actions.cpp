@@ -1,4 +1,4 @@
-#include <mir/mask_actions.h>
+#include "mask_actions.h"
 
 const char * mask_action_names[mask_action_count] = {
 	"connect",

@@ -1,6 +1,6 @@
-#include <mir/switcher.h>
-#include <mir/inner_player.h>
-#include <mir/outer_player.h>
+#include "switcher.h"
+#include "inner_player.h"
+#include "outer_player.h"
 
 C_switcher::C_switcher(int n_i, int n_o){
 	n_inner = n_i;

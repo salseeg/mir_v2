@@ -1,7 +1,7 @@
-#include <mir/hard.h>
-#include <mir/pulse_recognizer.h>
-#include <mir/config.h>
-#include <mir/log/log.h>
+#include "../hard.h"
+#include "../pulse_recognizer.h"
+#include "../config.h"
+#include "../log/log.h"
 
 #include <iostream.h>
 

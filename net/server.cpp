@@ -1,4 +1,4 @@
-#include <mir/net/server.h>
+#include "server.h"
 
 int server_max_connections = 32;
 C_server * Server;

@@ -1,4 +1,4 @@
-#include <mir/inner_player.h>
+#include "inner_player.h"
 
 C_inner_player::C_inner_player(int line, inner_key k){
 	time = 0;

@@ -25,7 +25,7 @@
 *
 ****************************************/
 
-#include <mir/net/socket.h>
+#include "socket.h"
 #include <stdlib.h>
 
 extern char * plugins_path;	//	путь к плагинам

@@ -1,8 +1,8 @@
 #ifndef __MIR__SWITCHER
 #define __MIR__SWITCHER
 
-#include <mir/player.h>
-#include <mir/hard.h>
+#include "player.h"
+#include "hard.h"
 
 class C_switcher{
 	private:

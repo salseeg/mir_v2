@@ -1,4 +1,4 @@
-#include <mir/bus.h>
+#include "bus.h"
 #include <stdlib.h>
 
 C_bus::C_bus(int id, bool roll_){

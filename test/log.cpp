@@ -1,4 +1,4 @@
-#include <mir/log/log.h>
+#include "../log/log.h"
 
 int main(){
 	Log = new C_log("log_test");	

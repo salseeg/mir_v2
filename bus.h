@@ -1,8 +1,8 @@
 #ifndef __MIR__BUS
 #define __MIR__BUS
 
-#include <mir/line.h>
-#include <mir/aux/ring_.h>
+#include "line.h"
+#include "aux/ring_.h"
 
 class C_bus{
 	private:		

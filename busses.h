@@ -1,8 +1,8 @@
 #ifndef __MIR__BUSSES
 #define __MIR__BUSSES
 
-#include <mir/bus.h>
-#include <mir/aux/ring_.h>
+#include "bus.h"
+#include "aux/ring_.h"
 
 class C_busses{
 	public:

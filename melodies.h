@@ -1,8 +1,8 @@
 #ifndef __MIR__MELODIES
 #define __MIR__MELODIES
 
-#include <mir/melody.h>
-#include <mir/aux/array_.h>
+#include "melody.h"
+#include "aux/array_.h"
 
 enum melody_name{		// Мелодии	
 	melody__digit_0 = 0,	//	импульсный 0

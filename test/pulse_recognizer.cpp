@@ -1,5 +1,5 @@
-#include <mir/interface/driver.h>
-#include <mir/pulse_recognizer.h>
+#include "../interface/driver.h"
+#include "../pulse_recognizer.h"
 
 #include <iostream>		//	cout
 #include <sys/types.h>		// +

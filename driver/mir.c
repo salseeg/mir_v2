@@ -15,7 +15,7 @@
 /*	#include "types.h"	*/
 /*	#include "constants.h"	*/
 /*#include "driver.h"*/
-#include <mir/interface/driver.h>
+#include "../interface/driver.h"
 
 /*#define DEBUG*/
 

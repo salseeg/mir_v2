@@ -1,7 +1,7 @@
 #ifndef __MIR__INNER_LINE
 #define __MIR__INNER_LINE
 
-#include <mir/line.h>
+#include "line.h"
 
 class C_inner_line:public C_line{
 	public:

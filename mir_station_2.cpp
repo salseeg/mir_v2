@@ -1,11 +1,11 @@
-#include <mir/config.h>
-#include <mir/hard.h>
-#include <mir/masks.h>
-#include <mir/melodies.h>
-#include <mir/net/server.h>
-#include <mir/station.h>
-#include <mir/log/log.h>
-#include <mir/busses.h>
+#include "config.h"
+#include "hard.h"
+#include "masks.h"
+#include "melodies.h"
+#include "net/server.h"
+#include "station.h"
+#include "log/log.h"
+#include "busses.h"
 
 #include <unistd.h>
 

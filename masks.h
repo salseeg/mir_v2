@@ -3,8 +3,8 @@
 //
 //	Массив масок
 //
-#include <mir/mask.h>
-#include <mir/aux/ring_.h>
+#include "mask.h"
+#include "aux/ring_.h"
 
 class C_masks{
 	private:

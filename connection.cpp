@@ -1,6 +1,6 @@
-#include <mir/connection.h>
-#include <mir/log/log.h>
-#include <mir/hard.h>
+#include "connection.h"
+#include "log/log.h"
+#include "hard.h"
 
 
 C_connection::C_connection(int connection_id):lock(false){

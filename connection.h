@@ -6,8 +6,8 @@
 
 class C_connection;
 
-#include <mir/aux/ring_.h>
-#include <mir/line.h>
+#include "aux/ring_.h"
+#include "line.h"
 
 class C_connection{
 	private:

@@ -5,8 +5,8 @@
 //	Массив масок
 //	доступных в соединении
 //
-#include <mir/connection_mask.h>
-#include <mir/aux/ring_.h>
+#include "connection_mask.h"
+#include "aux/ring_.h"
 
 class C_connection_masks{
 	private:

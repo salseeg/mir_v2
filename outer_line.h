@@ -2,8 +2,8 @@
 #ifndef __MIR__OUTER_LINE
 #define __MIR__OUTER_LINE
 
-#include <mir/line.h>
-#include <mir/timer.h>
+#include "line.h"
+#include "timer.h"
 
 class C_outer_line:public C_line{
 	private:

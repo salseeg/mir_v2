@@ -1,8 +1,8 @@
-#include <mir/inner_line.h>
-#include <mir/hard.h>
-#include <mir/log/log.h>
-#include <mir/masks.h>
-#include <mir/connection_masks.h>
+#include "inner_line.h"
+#include "hard.h"
+#include "log/log.h"
+#include "masks.h"
+#include "connection_masks.h"
 
 unsigned long line__ready_timeout = 20000000;		//	20 sec
 unsigned long line__required_disconnet_time = 200000;	//	0.2 sec

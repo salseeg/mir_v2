@@ -1,14 +1,14 @@
 #ifndef __MIR__STATION
 #define __MIR__STATION
 
-#include <mir/aux/ring_.h>
-#include <mir/aux/array_.h>
+#include "aux/ring_.h"
+#include "aux/array_.h"
 
 class C_station;
 
-#include <mir/connection.h>
-#include <mir/line.h>
-#include <mir/switcher.h>
+#include "connection.h"
+#include "line.h"
+#include "switcher.h"
 
 class C_station{
 	private:

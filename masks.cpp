@@ -1,8 +1,8 @@
-#include <mir/masks.h>
-#include <mir/station.h>
-#include <mir/switcher.h>
-#include <mir/busses.h>
-//#include <mir/hard.h>
+#include "masks.h"
+#include "station.h"
+#include "switcher.h"
+#include "busses.h"
+//#include "hard.h"
 
 C_masks * Masks = NULL;
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <mir/net/socket.h>
+#include "../net/socket.h"
 #include <unistd.h>
 
 /**************************************************

@@ -5,7 +5,7 @@
 //	для отправки очередной части вызывается send
 //	для проверки завершения отправки - check_complete
 
-#include <mir/net/socket.h>
+#include "../../net/socket.h"
 
 class C_file_sender{
 	private:

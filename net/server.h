@@ -6,9 +6,9 @@
 //	Обслуживает пульты, мониторы, и т.п 
 //	
 
-#include <mir/net/socket.h>
-#include <mir/net/service.h>
-#include <mir/aux/ring_.h>
+#include "socket.h"
+#include "service.h"
+#include "../aux/ring_.h"
 
 extern int server_max_connections;	//	максимальное количество соединений
 

@@ -1,5 +1,5 @@
-#include <mir/hard.h>
-#include <mir/log/log.h>
+#include "hard.h"
+#include "log/log.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

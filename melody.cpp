@@ -1,4 +1,4 @@
-#include <mir/melody.h>
+#include "melody.h"
 #include <stdlib.h>
 
 C_melody::C_melody(bool looped):loop(looped),duration(0){}

@@ -1,6 +1,6 @@
-#include <mir/connection_masks.h>
-#include <mir/station.h>
-#include <mir/busses.h>
+#include "connection_masks.h"
+#include "station.h"
+#include "busses.h"
 
 C_connection_masks * Connection_masks = NULL;
 

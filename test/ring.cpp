@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <mir/aux/ring.h>
+#include "../aux/ring.h"
 
 /*
 *	Test of abstract ring

@@ -1,4 +1,4 @@
-#include <mir/busses.h>
+#include "busses.h"
 #include <stdlib.h>
 
 C_busses * Busses = NULL;

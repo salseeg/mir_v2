@@ -1,6 +1,6 @@
-#include <mir/net/socket.h>
-#include <mir/interface/plugin.h>
-#include <mir/log/log.h>
+#include "../../net/socket.h"
+#include "../../interface/plugin.h"
+#include "../../log/log.h"
 #include <unistd.h>
 
 #include <iostream>

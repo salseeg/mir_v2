@@ -10,7 +10,7 @@
 *
 *****************************/
 
-#include <mir/net/socket.h>
+#include "../net/socket.h"
 
 #define B 1024
 

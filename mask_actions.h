@@ -11,7 +11,7 @@ enum mask_action{
 	mask_action__block_incoming,	//	блокировка входящих соединений
 	mask_action__block_notify	//	блокировка уведомлений
 };
-const mask_action_count = 8;
+const int mask_action_count = 8;
 
 extern const char * mask_action_names[];
 

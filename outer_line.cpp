@@ -1,7 +1,7 @@
-#include <mir/outer_line.h>
-#include <mir/hard.h>
-#include <mir/log/log.h>
-#include <mir/busses.h>
+#include "outer_line.h"
+#include "hard.h"
+#include "log/log.h"
+#include "busses.h"
 	
 long line__outer_required_disconnect_timeout = 1500000;// 1.5 sec
 unsigned long line__outer_incoming_ring_timeout = 4000000;	// 4 sec

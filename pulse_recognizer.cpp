@@ -1,5 +1,5 @@
-#include <mir/pulse_recognizer.h>
-#include <mir/log/log.h>
+#include "pulse_recognizer.h"
+#include "log/log.h"
 #include <stdlib.h>
 #include <string.h>
 

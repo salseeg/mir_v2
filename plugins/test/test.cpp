@@ -1,5 +1,5 @@
-#include <mir/interface/plugin.h>
-#include <mir/log/log.h>
+#include "../../interface/plugin.h"
+#include "../../log/log.h"
 #include <iostream>
 
 //extern char * plugins_path;

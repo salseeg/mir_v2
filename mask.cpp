@@ -1,5 +1,5 @@
-#include <mir/mask.h>
-#include <mir/station.h>
+#include "mask.h"
+#include "station.h"
 #include <stdlib.h>
 
 C_mask::C_mask(){

@@ -6,9 +6,9 @@
 *	для внешней линии
 * 
 **********************************/
-#include <mir/player.h>
-#include <mir/hard.h>
-#include <mir/aux/ring_.h>
+#include "player.h"
+#include "hard.h"
+#include "aux/ring_.h"
 
 class C_outer_player:public C_player{
 	private:

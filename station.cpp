@@ -1,5 +1,5 @@
-#include <mir/station.h>
-#include <mir/log/log.h>	//	Log
+#include "station.h"
+#include "log/log.h"	//	Log
 
 C_station * Station;
 

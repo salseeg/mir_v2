@@ -1,6 +1,6 @@
-#include <mir/config.h>
-#include <mir/hard.h>
-#include <mir/melodies.h>
+#include "../config.h"
+#include "../hard.h"
+#include "../melodies.h"
 
 #include <iostream>
 

@@ -7,8 +7,8 @@
 //	дополнительных услуг
 //	доступных в соединениии
 //
-#include <mir/connection_mask_actions.h>
-#include <mir/aux/ring_.h>
+#include "connection_mask_actions.h"
+#include "aux/ring_.h"
 
 enum connection_mask_check{
 	connection_mask_check__completed,	//	маска совпала

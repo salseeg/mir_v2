@@ -1,9 +1,9 @@
 
-#include <mir/pulse_recognizer.h>
-#include <mir/config.h>
-#include <mir/log/log.h>
-#include <mir/station.h>
-#include <mir/masks.h>
+#include "../pulse_recognizer.h"
+#include "../config.h"
+#include "../log/log.h"
+#include "../station.h"
+#include "../masks.h"
 
 #include <iostream.h>
 

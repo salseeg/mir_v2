@@ -1,6 +1,6 @@
-#include <mir/line.h>
+#include "line.h"
 #include <stdlib.h>
-#include <mir/log/log.h>
+#include "log/log.h"
 
 int C_line::get_id(){
 	return id;

@@ -1,4 +1,4 @@
-#include <mir/outer_player.h>
+#include "outer_player.h"
 
 C_outer_player::C_outer_player(int line, outer_key k){
 	time = 0;

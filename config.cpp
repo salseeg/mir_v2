@@ -6,8 +6,8 @@
 //
 
 #include <expat.h>
-#include <mir/aux/ring_.h>
-#include <mir/log/log.h>
+#include "aux/ring_.h"
+#include "log/log.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -15,15 +15,15 @@
 #define NUMBER_BUF_SIZE 100
 #define FUNC_NAME_BUF 100
 
-#include <mir/net/server.h>
-#include <mir/hard.h>
-#include <mir/melodies.h>
-#include <mir/busses.h>
-#include <mir/inner_line.h>
-#include <mir/outer_line.h>
-#include <mir/masks.h>
-#include <mir/connection_masks.h>
-#include <mir/music.h>
+#include "net/server.h"
+#include "hard.h"
+#include "melodies.h"
+#include "busses.h"
+#include "inner_line.h"
+#include "outer_line.h"
+#include "masks.h"
+#include "connection_masks.h"
+#include "music.h"
 
 
 enum command_quantity{

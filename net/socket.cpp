@@ -1,4 +1,4 @@
-#include <mir/net/socket.h>
+#include "socket.h"
 /**********************************************
 *
 *	TODO: errors handling

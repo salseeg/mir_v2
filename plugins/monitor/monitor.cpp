@@ -1,10 +1,10 @@
-#include <mir/interface/plugin.h>
-#include <mir/log/log.h>
-#include <mir/station.h>
+#include "../../interface/plugin.h"
+#include "../../log/log.h"
+#include "../../station.h"
 
 #include <stdio.h>
 #include <string.h>
-#include <mir/aux/ring_.h>
+#include "../../aux/ring_.h"
 #include "file_sender.h"
 
 #define BUF_SIZE 1024
@@ -16,8 +16,8 @@
 //  0x0004	Получить файл журнала			0x0004
 //  0x0005	Загрузить файл конфигурации		 ----
 //  0x0006	Загрузить плагин			 ----
-//  0x0007	Выключить программу (перезапуск)	 ----
-//  0x0008	Выключить станцию (poweroff)		 ----
+//  0x0007	Выключить программу (перезапуск)	0xffff
+//  0x0008	Выключить станцию (poweroff)		0xffff
 
 char * stage_names[] = {
 	"Свободен",

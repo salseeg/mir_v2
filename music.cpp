@@ -9,7 +9,7 @@
 #include <sys/soundcard.h>
 #include <signal.h>
 
-#include <mir/log/log.h>
+#include "log/log.h"
 
 char * music__raw_filename = "/usr/share/mir/mir_music";
 

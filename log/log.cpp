@@ -1,4 +1,4 @@
-#include <mir/log/log.h>
+#include "log.h"
 #include <syslog.h>
 #include <string.h>
 

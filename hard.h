@@ -6,20 +6,20 @@
 	
 // TODO оптимизация изменений ключей
 
-#include <mir/interface/driver.h>
+#include "interface/driver.h"
 
 enum inner_key{		// Ключи внутренних линий
 	inner_key__kna,	//	сигнала
 	inner_key__pv	//	посылка вызова
 };
-const inner_key_count = 2;
+const int inner_key_count = 2;
 
 enum outer_key{		// Ключи внешних линий
 	outer_key__kv,	//	шлейфа
 	outer_key__sk,	//	шунтирующий
 	outer_key__ik	//	импульсный
 };
-const outer_key_count = 3;
+const int outer_key_count = 3;
 
 class C_hard{
 	private:

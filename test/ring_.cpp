@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <mir/aux/ring_.h>
+#include "../aux/ring_.h"
 /*
 *	Test of ring template
 *

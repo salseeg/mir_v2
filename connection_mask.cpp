@@ -1,6 +1,6 @@
 
-#include <mir/connection_mask.h>
-#include <mir/station.h>
+#include "connection_mask.h"
+#include "station.h"
 #include <stdlib.h>
 
 C_connection_mask::C_connection_mask(){

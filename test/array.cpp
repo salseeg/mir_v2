@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <mir/aux/array.h>
+#include "../aux/array.h"
 
 
 int main(){

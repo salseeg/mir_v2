@@ -1,5 +1,5 @@
 #include <iostream>
-#include <mir/aux/array_.h>
+#include "../aux/array_.h"
 
 
 int main(){

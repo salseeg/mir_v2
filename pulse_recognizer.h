@@ -5,8 +5,8 @@
 *	Распознование импульсного набора
 *
 ****************************************/ 
-#include <mir/aux/array_.h>
-#include <mir/interface/driver.h>
+#include "aux/array_.h"
+#include "interface/driver.h"
 #include <stdlib.h>
 
 enum recognition_result{			// Результат распознования

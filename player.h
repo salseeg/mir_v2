@@ -5,7 +5,7 @@
 * 	Плейер. Интерфейс.
 *
 ***********************************/
-#include <mir/melodies.h>
+#include "melodies.h"
 
 class C_player{
 	public:

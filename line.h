@@ -5,13 +5,13 @@
 //	Линия - базовый для входных и выходных линий
 //	
 
-#include <mir/aux/ring_.h>
+#include "aux/ring_.h"
 
 class C_line;
 
-#include <mir/connection.h>
-#include <mir/station.h>
-#include <mir/pulse_recognizer.h>
+#include "connection.h"
+#include "station.h"
+#include "pulse_recognizer.h"
 
 enum line_signal{			// Сигналы линии
 	line_signal__line_deleted,	//	отключилась линия от тукущего соединения

@@ -1,7 +1,7 @@
 #include <dlfcn.h>
 #include <string.h>
-#include <mir/log/log.h>
-#include <mir/net/service.h>
+#include "../log/log.h"
+#include "service.h"
 #include <iostream.h>
 
 

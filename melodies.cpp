@@ -1,5 +1,5 @@
 #include <stdlib.h>		//	NULL
-#include <mir/melodies.h>
+#include "melodies.h"
 
 C_melodies * Melodies = NULL;
 

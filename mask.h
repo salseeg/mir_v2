@@ -5,8 +5,8 @@
 //	телефонных номеров и
 //	дополнительных услуг
 //
-#include <mir/mask_actions.h>
-#include <mir/aux/ring_.h>
+#include "mask_actions.h"
+#include "aux/ring_.h"
 
 enum mask_check{
 	mask_check__completed,		//	маска совпала

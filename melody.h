@@ -1,7 +1,7 @@
 #ifndef __MIR__MELODY
 #define __MIR__MELODY
 
-#include <mir/aux/ring_.h>
+#include "aux/ring_.h"
 
 
 enum melody_state{			// Состояние мелодии
