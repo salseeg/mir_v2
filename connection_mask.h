@@ -2,30 +2,30 @@
 #ifndef __MIR__CONNECTION_MASK
 #define __MIR__CONNECTION_MASK
 //
-//	Маска
-//	телефонных номеров и
-//	дополнительных услуг
-//	доступных в соединениии
+//	п°п╟я│п╨п╟
+//	я┌п╣п╩п╣я└п╬п╫п╫я▀я┘ п╫п╬п╪п╣я─п╬п╡ п╦
+//	п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘ я┐я│п╩я┐пЁ
+//	п╢п╬я│я┌я┐п©п╫я▀я┘ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦п╦
 //
 #include "connection_mask_actions.h"
 #include "aux/ring_.h"
 
 enum connection_mask_check{
-	connection_mask_check__completed,	//	маска совпала
-	connection_mask_check__not_completed,	//	маска может совпасть необходимо больше цифр
-	connection_mask_check__not_match,	//	маска не подходит
-	connection_mask_check__not_allowed	//	нет прав для доступа к маске
+	connection_mask_check__completed,	//	п╪п╟я│п╨п╟ я│п╬п╡п©п╟п╩п╟
+	connection_mask_check__not_completed,	//	п╪п╟я│п╨п╟ п╪п╬п╤п╣я┌ я│п╬п╡п©п╟я│я┌я▄ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ п╠п╬п╩я▄я┬п╣ я├п╦я└я─
+	connection_mask_check__not_match,	//	п╪п╟я│п╨п╟ п╫п╣ п©п╬п╢я┘п╬п╢п╦я┌
+	connection_mask_check__not_allowed	//	п╫п╣я┌ п©я─п╟п╡ п╢п╩я▐ п╢п╬я│я┌я┐п©п╟ п╨ п╪п╟я│п╨п╣
 };
 
 class C_connection_mask{
 	private:		
-		char * number;		//	маска номера
-		C_ring_<int> secure;	//	профили доступа
+		char * number;		//	п╪п╟я│п╨п╟ п╫п╬п╪п╣я─п╟
+		C_ring_<int> secure;	//	п©я─п╬я└п╦п╩п╦ п╢п╬я│я┌я┐п©п╟
 
 		bool check_permission(int line_id);
 	public:
-		connection_mask_action func;	//	вид услуги
-		int arg;			//	доп агрумент (например номер лок линии для автоудержания)
+		connection_mask_action func;	//	п╡п╦п╢ я┐я│п╩я┐пЁп╦
+		int arg;			//	п╢п╬п© п╟пЁя─я┐п╪п╣п╫я┌ (п╫п╟п©я─п╦п╪п╣я─ п╫п╬п╪п╣я─ п╩п╬п╨ п╩п╦п╫п╦п╦ п╢п╩я▐ п╟п╡я┌п╬я┐п╢п╣я─п╤п╟п╫п╦я▐)
 
 		C_connection_mask();
 		~C_connection_mask();

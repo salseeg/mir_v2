@@ -20,7 +20,7 @@ int C_station::n_out(){
 }
 
 //
-//	Работа с соединениями
+//	п═п╟п╠п╬я┌п╟ я│ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐п╪п╦
 //
 C_connection * C_station::get_free_connection(){
 	C_connection * res = free_connections.pop();
@@ -33,7 +33,7 @@ C_connection * C_station::get_free_connection(){
 void C_station::free_connection(C_connection * con){
 	int n = connections.quantity();
 
-	for (int i = 0; i < n; i++, connections.roll()){					//	??? можно оптимизировать перебор ???
+	for (int i = 0; i < n; i++, connections.roll()){					//	??? п╪п╬п╤п╫п╬ п╬п©я┌п╦п╪п╦п╥п╦я─п╬п╡п╟я┌я▄ п©п╣я─п╣п╠п╬я─ ???
 		if (connections.get() == con){
 			free_connections.add(connections.pop());
 			break;
@@ -42,11 +42,11 @@ void C_station::free_connection(C_connection * con){
 }
 
 //
-// 	Работа с музыкой
+// 	п═п╟п╠п╬я┌п╟ я│ п╪я┐п╥я▀п╨п╬п╧
 //
-// 	Музыка на первом шнурке
-// 	current_connection указывает на реальное соединение
-// 	переключается только матрица
+// 	п°я┐п╥я▀п╨п╟ п╫п╟ п©п╣я─п╡п╬п╪ я┬п╫я┐я─п╨п╣
+// 	current_connection я┐п╨п╟п╥я▀п╡п╟п╣я┌ п╫п╟ я─п╣п╟п╩я▄п╫п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣
+// 	п©п╣я─п╣п╨п╩я▌я┤п╟п╣я┌я│я▐ я┌п╬п╩я▄п╨п╬ п╪п╟я┌я─п╦я├п╟
 // 	
 void C_station::add_music(C_line& ab){
 	int i;

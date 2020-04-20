@@ -2,7 +2,7 @@
 #define MIR__CONFIG
 
 //
-//	Конфигурирует и инициализирует основные объекты
+//	п п╬п╫я└п╦пЁя┐я─п╦я─я┐п╣я┌ п╦ п╦п╫п╦я├п╦п╟п╩п╦п╥п╦я─я┐п╣я┌ п╬я│п╫п╬п╡п╫я▀п╣ п╬п╠я┼п╣п╨я┌я▀
 //
 
 #include <expat.h>
@@ -43,7 +43,7 @@ C_ring_< C_ring_<command> > * start;
 C_ring_<command> * end;
 
 /***********************************************************************************/
-//	обработчики
+//	п╬п╠я─п╟п╠п╬я┌я┤п╦п╨п╦
 /***********************************************************************************/
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -146,13 +146,13 @@ void melody(const XML_Char ** attr){
 			}else{
 #ifdef LOG_CONFIG				
 				Log->set_priority(log_priority__warning);
-				Log->rec() << "Неизвестная мелодия : " << attr[i + 1];
+				Log->rec() << "п²п╣п╦п╥п╡п╣я│я┌п╫п╟я▐ п╪п╣п╩п╬п╢п╦я▐ : " << attr[i + 1];
 				Log->write();
 #endif
 			}
 #ifdef LOG_CONFIG			
 			Log->set_priority(log_priority__debug);
-			Log->rec() << "       мелодия : " << attr[i + 1];
+			Log->rec() << "       п╪п╣п╩п╬п╢п╦я▐ : " << attr[i + 1];
 #endif
 		} else if (!strcmp(attr[i], "loop")){
 			if (!strcmp(attr[i + 1], "on")){
@@ -193,7 +193,7 @@ void melodies(const XML_Char ** attr){
 			Melodies = new C_melodies(count);
 #ifdef LOG_CONFIG			
 			Log->set_priority(log_priority__debug);
-			Log->rec() << "Мелодии [" << count << "]";
+			Log->rec() << "п°п╣п╩п╬п╢п╦п╦ [" << count << "]";
 			Log->write();
 #endif 
 			
@@ -238,7 +238,7 @@ void matrix_init(const XML_Char ** attr){
 				Hard->matrix(i, j, off);
 #ifdef LOG_CONFIG		
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "Матрица комутаций обнулена.";
+		Log->rec() << "п°п╟я┌я─п╦я├п╟ п╨п╬п╪я┐я┌п╟я├п╦п╧ п╬п╠п╫я┐п╩п╣п╫п╟.";
 		Log->write();
 #endif
 	}
@@ -255,7 +255,7 @@ void hard(const XML_Char ** attr){
 	cmd->handler = matrix_init;
 	context->add(cmd);
 	
-	start->push(context);		// добавляем контекст
+	start->push(context);		// п╢п╬п╠п╟п╡п╩я▐п╣п╪ п╨п╬п╫я┌п╣п╨я│я┌
 
 
 	int i = 0;
@@ -280,7 +280,7 @@ void hard(const XML_Char ** attr){
 		Hard = new C_hard(drv_fn, n_inner, n_outer);
 #ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "Инициализирован интерфейс с аппаратурой ";
+		Log->rec() << "п≤п╫п╦я├п╦п╟п╩п╦п╥п╦я─п╬п╡п╟п╫ п╦п╫я┌п╣я─я└п╣п╧я│ я│ п╟п©п©п╟я─п╟я┌я┐я─п╬п╧ ";
 		Log->rec() << n_inner << "x" << n_outer;
 		Log->write();
 #endif
@@ -291,14 +291,14 @@ void hard(const XML_Char ** attr){
 void server(const XML_Char ** attr){
 	int i = 0;
 	
-	start->push(new C_ring_<command>);		//	добавляем пустой контекст
+	start->push(new C_ring_<command>);		//	п╢п╬п╠п╟п╡п╩я▐п╣п╪ п©я┐я│я┌п╬п╧ п╨п╬п╫я┌п╣п╨я│я┌
 	
 	while (attr[i]){
 		if(!strcmp(attr[i], "port")){
 			Server = new C_server(atoi(attr[i + 1]));
 #ifdef LOG_CONFIG			
 			Log->set_priority(log_priority__debug);
-			Log->rec() << "Сервер ожидает входящие соединения. [ " << attr[i + 1] << " ]";
+			Log->rec() << "п║п╣я─п╡п╣я─ п╬п╤п╦п╢п╟п╣я┌ п╡я┘п╬п╢я▐я┴п╦п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐. [ " << attr[i + 1] << " ]";
 			Log->write();
 #endif
 		}else if(!strcmp(attr[i], "max_connections")){
@@ -316,7 +316,7 @@ void server(const XML_Char ** attr){
 void misc(const XML_Char ** attr){
 	int i = 0;
 	
-	start->push(new C_ring_<command>);		//	добавляем пустой контекст
+	start->push(new C_ring_<command>);		//	п╢п╬п╠п╟п╡п╩я▐п╣п╪ п©я┐я│я┌п╬п╧ п╨п╬п╫я┌п╣п╨я│я┌
 	
 	while (attr[i]){
 		if(!strcmp(attr[i], "recognition__low_time_min")){
@@ -353,7 +353,7 @@ void misc(const XML_Char ** attr){
 void station_line(const XML_Char ** attr){
 	start->push(new C_ring_<command>);
 	
-	int got = 0;	// обязат параметры
+	int got = 0;	// п╬п╠я▐п╥п╟я┌ п©п╟я─п╟п╪п╣я┌я─я▀
 	
 	enum {in, out} type = in;
 	int id = -1; 
@@ -400,7 +400,7 @@ void station_line(const XML_Char ** attr){
 		Station->lines[id] = l;
 #ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "    Линия " << id << ((type == in) ? " внутреняя":" внешняя");
+		Log->rec() << "    п⌡п╦п╫п╦я▐ " << id << ((type == in) ? " п╡п╫я┐я┌я─п╣п╫я▐я▐":" п╡п╫п╣я┬п╫я▐я▐");
 		Log->write();
 #endif
 	}
@@ -414,7 +414,7 @@ void station_connection(const XML_Char ** attr){
 		Station->free_connections.add(new C_connection(id));
 #ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "    Соединение " << id;
+		Log->rec() << "    п║п╬п╣п╢п╦п╫п╣п╫п╦п╣ " << id;
 		Log->write();
 #endif
 	}
@@ -459,7 +459,7 @@ void station(const XML_Char ** attr){
 		context->add(cmd);
 #ifdef LOG_CONFIG
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "Станция [ внутр: " << n_i << ", внешн: " << n_o << " ]";
+		Log->rec() << "п║я┌п╟п╫я├п╦я▐ [ п╡п╫я┐я┌я─: " << n_i << ", п╡п╫п╣я┬п╫: " << n_o << " ]";
 		Log->write();
 #endif
 	}
@@ -474,7 +474,7 @@ void bus_line(const XML_Char ** attr){
 		Busses->ring.get()->lines.add(Station->lines[id]);
 #ifdef LOG_CONFIG		
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "       линия " << id;
+		Log->rec() << "       п╩п╦п╫п╦я▐ " << id;
 		Log->write();
 #endif
 
@@ -509,11 +509,11 @@ void bus(const XML_Char ** attr){
 		context->add(cmd);
 #ifdef LOG_CONFIG		
 		Log->set_priority(log_priority__debug);
-		Log->rec() << "    пучек " << id; 
+		Log->rec() << "    п©я┐я┤п╣п╨ " << id; 
 		Log->write();
 #endif
 	}
-	start->push(context);		// добавляем контекст
+	start->push(context);		// п╢п╬п╠п╟п╡п╩я▐п╣п╪ п╨п╬п╫я┌п╣п╨я│я┌
 }
 
 void busses(const XML_Char ** attr){
@@ -527,12 +527,12 @@ void busses(const XML_Char ** attr){
 	cmd->handler = bus;
 	context->add(cmd);
 	
-	start->push(context);		// добавляем контекст
+	start->push(context);		// п╢п╬п╠п╟п╡п╩я▐п╣п╪ п╨п╬п╫я┌п╣п╨я│я┌
 
 	Busses = new C_busses;
 #ifdef LOG_CONFIG
 	Log->set_priority(log_priority__debug);
-	Log->rec() << "Пучки";
+	Log->rec() << "п÷я┐я┤п╨п╦";
 	Log->write();
 #endif
 }
@@ -584,8 +584,8 @@ void mask(const XML_Char ** attr){
 			context->add(cmd);
 #ifdef LOG_CONFIG
 			Log->set_priority(log_priority__debug);
-			Log->rec() << "   маска " << number << " (" << skip_len << ") ";
-			Log->rec() << action_name << ", пучек " << bus_id << ", клиенты :";	
+			Log->rec() << "   п╪п╟я│п╨п╟ " << number << " (" << skip_len << ") ";
+			Log->rec() << action_name << ", п©я┐я┤п╣п╨ " << bus_id << ", п╨п╩п╦п╣п╫я┌я▀ :";	
 #endif
 		} else{
 			delete m;
@@ -610,7 +610,7 @@ void masks(const XML_Char **){
 	Masks = new C_masks();
 #ifdef LOG_CONFIG
 	Log->set_priority(log_priority__debug);
-	Log->rec() << "Маски";
+	Log->rec() << "п°п╟я│п╨п╦";
 	Log->write();
 #endif	
 }
@@ -658,8 +658,8 @@ void con_mask(const XML_Char ** attr){
 			context->add(cmd);
 #ifdef LOG_CONFIG
 			Log->set_priority(log_priority__debug);
-			Log->rec() << "   маска " << number << "  ";
-			Log->rec() << action_name << " [ " << arg << " ] клиенты :";	
+			Log->rec() << "   п╪п╟я│п╨п╟ " << number << "  ";
+			Log->rec() << action_name << " [ " << arg << " ] п╨п╩п╦п╣п╫я┌я▀ :";	
 #endif
 		} else{
 			delete m;
@@ -684,7 +684,7 @@ void con_masks(const XML_Char **){
 	Connection_masks = new C_connection_masks();
 #ifdef LOG_CONFIG
 	Log->set_priority(log_priority__debug);
-	Log->rec() << "Маски соединения";
+	Log->rec() << "п°п╟я│п╨п╦ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐";
 	Log->write();	
 #endif
 }
@@ -729,11 +729,11 @@ void music(const XML_Char **){
 
 //	if (init_music() < 0){
 //		Log->set_priority(log_priority__error);
-//		Log->rec() << "Ошибка включения музыки";
+//		Log->rec() << "п·я┬п╦п╠п╨п╟ п╡п╨п╩я▌я┤п╣п╫п╦я▐ п╪я┐п╥я▀п╨п╦";
 //		Log->write();	
 //	}else{
 //		Log->set_priority(log_priority__debug);
-//		Log->rec() << "Проигрывание музыки включено";
+//		Log->rec() << "п÷я─п╬п╦пЁя─я▀п╡п╟п╫п╦п╣ п╪я┐п╥я▀п╨п╦ п╡п╨п╩я▌я┤п╣п╫п╬";
 //		Log->write();	
 //	}
 }

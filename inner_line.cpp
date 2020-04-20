@@ -19,7 +19,7 @@ bool C_inner_line::active(){
 }
 
 ///////////////////////////////////
-//	óÉÇÎÁÌÙ
+//	Ð¡Ð¸Ð³Ð½Ð°Ð»Ñ‹
 ////////////////	
 void C_inner_line::signal__holded_freed(){
 	int n = hold_ring.quantity();
@@ -92,7 +92,7 @@ void C_inner_line::signal__holded_by(){
 }
 
 ///////////////////////////////////
-//	óÏÓÔÏÑÎÉÑ
+//	Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ñ
 //////////////////
 void C_inner_line::stage__disconnect(){
 	bit_history &bh = Hard->get_state_inner(id);
@@ -165,9 +165,9 @@ void C_inner_line::stage__wait(){
 		}
 
 		if (i == n){	
-			//	 error !!!! TODO ÎÁÊÔÉ ÐÒÉÞÉÎÕ 
+			//	 error !!!! TODO Ð½Ð°Ð¹Ñ‚Ð¸ Ð¿Ñ€Ð¸Ñ‡Ð¸Ð½Ñƒ 
 			Log->set_priority(log_priority__error);
-			Log->rec() << "Line[" << id << "] wait stage : ÎÅ ÎÁÊÄÅÎÁ ×ÙÚÙ×ÁÅÍÁÑ ÌÉÎÉÑ !";
+			Log->rec() << "Line[" << id << "] wait stage : Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÐ¼Ð°Ñ Ð»Ð¸Ð½Ð¸Ñ !";
 			Log->write();
 		}
 
@@ -252,7 +252,7 @@ void C_inner_line::stage__retranslation(){
 
 void C_inner_line::stage__incoming(){
 	Log->set_priority(log_priority__error);
-	Log->rec() << "Line[" << id << "] incoming stage : ÎÅÄÏÐÕÓÔÉÍÏÅ ÓÏÓÔÏÑÎÉÅ!";
+	Log->rec() << "Line[" << id << "] incoming stage : Ð½ÐµÐ´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ð¾Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ!";
 	Log->write();
 	switch_stage(line_stage__free);
 }

@@ -2,13 +2,13 @@
 #define __MIR__MATRIX
 
 //
-//	Матрица комутации. Интерфейс.
+//	п°п╟я┌я─п╦я├п╟ п╨п╬п╪я┐я┌п╟я├п╦п╦. п≤п╫я┌п╣я─я└п╣п╧я│.
 //
 
 class C_matrix{
 	public:
-		virtual void connect(int connection_id, int line_id) = 0;	//	проключить точку
-		virtual void disconnect(int conection_id, int line_id) = 0;	//	отключить точку
+		virtual void connect(int connection_id, int line_id) = 0;	//	п©я─п╬п╨п╩я▌я┤п╦я┌я▄ я┌п╬я┤п╨я┐
+		virtual void disconnect(int conection_id, int line_id) = 0;	//	п╬я┌п╨п╩я▌я┤п╦я┌я▄ я┌п╬я┤п╨я┐
 };
 
 #endif

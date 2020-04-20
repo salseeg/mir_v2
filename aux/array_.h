@@ -2,7 +2,7 @@
 #define __MIR__ARRAY_
 
 //
-//	Динамический массив указателей. Шаблон.
+//	п■п╦п╫п╟п╪п╦я┤п╣я│п╨п╦п╧ п╪п╟я│я│п╦п╡ я┐п╨п╟п╥п╟я┌п╣п╩п╣п╧. п╗п╟п╠п╩п╬п╫.
 //
 
 #include <stdlib.h>		//	NULL
@@ -10,14 +10,14 @@
 template <class T>
 class C_array_{
 	private:
-		T ** array;		//	массив указателей
-		unsigned int len;	//	длина массива
+		T ** array;		//	п╪п╟я│я│п╦п╡ я┐п╨п╟п╥п╟я┌п╣п╩п╣п╧
+		unsigned int len;	//	п╢п╩п╦п╫п╟ п╪п╟я│я│п╦п╡п╟
 	public:
 		C_array_();
 		~C_array_();
-		T * & operator[] (unsigned int index);		//	доступ к элементу
-		void operator= (unsigned int length);		// 	установить длину
-		operator int();					//	вернуть длину
+		T * & operator[] (unsigned int index);		//	п╢п╬я│я┌я┐п© п╨ я█п╩п╣п╪п╣п╫я┌я┐
+		void operator= (unsigned int length);		// 	я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╢п╩п╦п╫я┐
+		operator int();					//	п╡п╣я─п╫я┐я┌я▄ п╢п╩п╦п╫я┐
 };
 
 template <class T>

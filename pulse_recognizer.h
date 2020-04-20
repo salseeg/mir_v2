@@ -2,24 +2,24 @@
 #define __MIR__PULSE_RECOGNIZER
 /***************************************************
 *
-*	Распознование импульсного набора
+*	п═п╟я│п©п╬п╥п╫п╬п╡п╟п╫п╦п╣ п╦п╪п©я┐п╩я▄я│п╫п╬пЁп╬ п╫п╟п╠п╬я─п╟
 *
 ****************************************/ 
 #include "aux/array_.h"
 #include "interface/driver.h"
 #include <stdlib.h>
 
-enum recognition_result{			// Результат распознования
-	recognition_result__digit,		//	цифра закончена
-	recognition_result__not_started,	//	цифра не начата
-	recognition_result__not_ended,		//	цифра не закончена
-	recognition_result__error		//	ошибка
+enum recognition_result{			// п═п╣п╥я┐п╩я▄я┌п╟я┌ я─п╟я│п©п╬п╥п╫п╬п╡п╟п╫п╦я▐
+	recognition_result__digit,		//	я├п╦я└я─п╟ п╥п╟п╨п╬п╫я┤п╣п╫п╟
+	recognition_result__not_started,	//	я├п╦я└я─п╟ п╫п╣ п╫п╟я┤п╟я┌п╟
+	recognition_result__not_ended,		//	я├п╦я└я─п╟ п╫п╣ п╥п╟п╨п╬п╫я┤п╣п╫п╟
+	recognition_result__error		//	п╬я┬п╦п╠п╨п╟
 };
 
 class C_pulse_recognizer{
 	private:
-		char count;			//	кол-во импульсов
-		char may_count;			//	можно ли считать импульсы
+		char count;			//	п╨п╬п╩-п╡п╬ п╦п╪п©я┐п╩я▄я│п╬п╡
+		char may_count;			//	п╪п╬п╤п╫п╬ п╩п╦ я│я┤п╦я┌п╟я┌я▄ п╦п╪п©я┐п╩я▄я│я▀
 		char * array;			//
 		int length;			//
 	public:
@@ -28,7 +28,7 @@ class C_pulse_recognizer{
 
 		char operator[](int index);		// [0-9]*
 		int get_length(){return length;}
-		int retranslated_count;			// счетчик набранных цифр // небуферизируемый набор
+		int retranslated_count;			// я│я┤п╣я┌я┤п╦п╨ п╫п╟п╠я─п╟п╫п╫я▀я┘ я├п╦я└я─ // п╫п╣п╠я┐я└п╣я─п╦п╥п╦я─я┐п╣п╪я▀п╧ п╫п╟п╠п╬я─
 		operator char *();
 		recognition_result recognize(bit_history& bit);		
 };

@@ -2,27 +2,27 @@
 #define __MIR__SERVER
 
 //
-//	Сервер входящих соединений
-//	Обслуживает пульты, мониторы, и т.п 
+//	п║п╣я─п╡п╣я─ п╡я┘п╬п╢я▐я┴п╦я┘ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧
+//	п·п╠я│п╩я┐п╤п╦п╡п╟п╣я┌ п©я┐п╩я▄я┌я▀, п╪п╬п╫п╦я┌п╬я─я▀, п╦ я┌.п© 
 //	
 
 #include "socket.h"
 #include "service.h"
 #include "../aux/ring_.h"
 
-extern int server_max_connections;	//	максимальное количество соединений
+extern int server_max_connections;	//	п╪п╟п╨я│п╦п╪п╟п╩я▄п╫п╬п╣ п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧
 
 class C_server{
 	private:
-		C_socket sock;			//	сокет
-		C_ring_<C_service> services;	//	кольцо сервисов
+		C_socket sock;			//	я│п╬п╨п╣я┌
+		C_ring_<C_service> services;	//	п╨п╬п╩я▄я├п╬ я│п╣я─п╡п╦я│п╬п╡
 		
-		int check();			//	проверка входящих
-		int work();			//	обслуживание подключенных
+		int check();			//	п©я─п╬п╡п╣я─п╨п╟ п╡я┘п╬п╢я▐я┴п╦я┘
+		int work();			//	п╬п╠я│п╩я┐п╤п╦п╡п╟п╫п╦п╣ п©п╬п╢п╨п╩я▌я┤п╣п╫п╫я▀я┘
 	public:
 		C_server(int port);
 		~C_server();
-		int execute();			//	обработка
+		int execute();			//	п╬п╠я─п╟п╠п╬я┌п╨п╟
 };
 
 extern C_server * Server;

@@ -2,8 +2,8 @@
 #ifndef __MIR__CONNECTION_MASKS
 #define __MIR__CONNECTION_MASKS
 //
-//	Массив масок
-//	доступных в соединении
+//	п°п╟я│я│п╦п╡ п╪п╟я│п╬п╨
+//	п╢п╬я│я┌я┐п©п╫я▀я┘ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦
 //
 #include "connection_mask.h"
 #include "aux/ring_.h"
@@ -19,8 +19,8 @@ class C_connection_masks{
 		void action__auto_hold(int line_id, int arg);
 
 	public:
-		C_ring_<C_connection_mask> ring;	//	кольцо масок
-		void check(int line_id);		//	проверка маски и перевод линии в соотв сост
+		C_ring_<C_connection_mask> ring;	//	п╨п╬п╩я▄я├п╬ п╪п╟я│п╬п╨
+		void check(int line_id);		//	п©я─п╬п╡п╣я─п╨п╟ п╪п╟я│п╨п╦ п╦ п©п╣я─п╣п╡п╬п╢ п╩п╦п╫п╦п╦ п╡ я│п╬п╬я┌п╡ я│п╬я│я┌
 };
 
 extern C_connection_masks * Connection_masks;

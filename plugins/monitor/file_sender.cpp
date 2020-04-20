@@ -15,7 +15,7 @@ C_file_sender::C_file_sender(short cmd, char * filename) throw (char *){
 	fd = open(filename, O_RDONLY);
 
 	if (fd < 0) 
-		throw("îÅ ÍÏÇÕ ÏÔËÒÙÔØ ÆÁÊÌ!");
+		throw("ÐÐµ Ð¼Ð¾Ð³Ñƒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»!");
 }
 
 C_file_sender::~C_file_sender(){

@@ -10,7 +10,7 @@
 C_socket client;
 C_service * service;
 
-char * s_i = "test.so:Тест плагинов";
+char * s_i = "test.so:п╒п╣я│я┌ п©п╩п╟пЁп╦п╫п╬п╡";
 char * n_p = "new path";
 
 

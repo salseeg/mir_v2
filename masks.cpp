@@ -55,7 +55,7 @@ void C_masks::action__connect_local(int line_id, int bus_id, int){
 	// con->add_line(*a_line);
 	a_line->switch_stage(line_stage__wait);
 	
-	if (b_line){	//	линия Б свободна
+	if (b_line){	//	п╩п╦п╫п╦я▐ п▒ я│п╡п╬п╠п╬п╢п╫п╟
 		if (b_line->incoming_connection){
 			a_line->switch_stage(line_stage__disconnected);
 			con->del_line(*a_line);
@@ -73,7 +73,7 @@ void C_masks::action__connect_local(int line_id, int bus_id, int){
 				a_line->recognizer = new C_pulse_recognizer;
 			}
 		}
-	}else{		//	линия Б занята
+	}else{		//	п╩п╦п╫п╦я▐ п▒ п╥п╟п╫я▐я┌п╟
 		b_line = b_bus->lines.get();
 		b_bus->lines.roll();
 		if (b_line->incoming_connection){
@@ -146,7 +146,7 @@ void C_masks::action__redirect(int line_id, int, int skip_len){
 			if ((pr[skip_len + 1] < 1) || (pr[skip_len + 1]) > 4) break;
 			if ((pr[skip_len + 2] < 2) || (pr[skip_len + 2]) > 9) break;
 			
-			// assume разница между номером и ид = 2
+			// assume я─п╟п╥п╫п╦я├п╟ п╪п╣п╤п╢я┐ п╫п╬п╪п╣я─п╬п╪ п╦ п╦п╢ = 2
 			Station->lines[pr[skip_len + 1] + Station->n_in()]->operator_bus_id = Station->lines[pr[skip_len + 2] - 2]->own_bus_id;	
 			
 			success = true;
@@ -274,7 +274,7 @@ void C_masks::check(int line_id){
 		}
 		not_match = false;
 		if (m->func != mask_action__connect) continue;
-		// если звонок наружу
+		// п╣я│п╩п╦ п╥п╡п╬п╫п╬п╨ п╫п╟я─я┐п╤я┐
 		if (st == zero){
 			bus_id = m->bus_id;
 			skip_len = m->skip_len;
@@ -311,13 +311,13 @@ bool C_masks::retranslate_recognized(int line_id, int bus_id, int skip_len){
 	C_line * int_line = Station->lines[line_id];
 	C_connection * con = int_line->current_connection;
 	C_line * ext_line = NULL;
-	if (con->lines.quantity() == 2){	// продолжаем
+	if (con->lines.quantity() == 2){	// п©я─п╬п╢п╬п╩п╤п╟п╣п╪
 		ext_line = int_line;
 		while (*ext_line == *int_line){
 			ext_line = con->lines.get();
 			con->lines.roll(1);
 		}			
-	}else{	// начинаем
+	}else{	// п╫п╟я┤п╦п╫п╟п╣п╪
 		C_bus * bus = Busses->get_bus(bus_id);
 		ext_line = bus->get_free_line(line_id, int_line->priority);
 		if (!ext_line) return false;

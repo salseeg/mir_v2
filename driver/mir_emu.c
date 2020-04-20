@@ -28,10 +28,10 @@ MODULE_PARM(n_in, "i");
 MODULE_PARM(out_port, "i");
 MODULE_PARM(n_out, "i");
 
-MODULE_PARM_DESC(in_port, "Порт внутренних линий");
-MODULE_PARM_DESC(n_in, "Количество внутренних линий");
-MODULE_PARM_DESC(out_port, "Порт внутренних линий");
-MODULE_PARM_DESC(n_out, "Количество внешних линий");
+MODULE_PARM_DESC(in_port, "п÷п╬я─я┌ п╡п╫я┐я┌я─п╣п╫п╫п╦я┘ п╩п╦п╫п╦п╧");
+MODULE_PARM_DESC(n_in, "п п╬п╩п╦я┤п╣я│я┌п╡п╬ п╡п╫я┐я┌я─п╣п╫п╫п╦я┘ п╩п╦п╫п╦п╧");
+MODULE_PARM_DESC(out_port, "п÷п╬я─я┌ п╡п╫я┐я┌я─п╣п╫п╫п╦я┘ п╩п╦п╫п╦п╧");
+MODULE_PARM_DESC(n_out, "п п╬п╩п╦я┤п╣я│я┌п╡п╬ п╡п╫п╣я┬п╫п╦я┘ п╩п╦п╫п╦п╧");
 
 static unsigned int in_port;
 static unsigned int n_in;
@@ -49,45 +49,45 @@ void wrap(char *s)
 
 
 
-#define MIR_MAJOR  253 	/* резервируем этот номер для нашего устройства */
+#define MIR_MAJOR  253 	/* я─п╣п╥п╣я─п╡п╦я─я┐п╣п╪ я█я┌п╬я┌ п╫п╬п╪п╣я─ п╢п╩я▐ п╫п╟я┬п╣пЁп╬ я┐я│я┌я─п╬п╧я│я┌п╡п╟ */
 #define MIR_NAME "MIR Station"
-#define MIR_IRQ 7				/* IRQ которое мы используем */
-#define BASE_PORT	0x150		/* начальный/базовый порт */
-#define EXT_PORT	16			/* количество портов вобщем */
-#define ONOFF_PORT 0x153		/* порт для включения/выключения прерывания */
+#define MIR_IRQ 7				/* IRQ п╨п╬я┌п╬я─п╬п╣ п╪я▀ п╦я│п©п╬п╩я▄п╥я┐п╣п╪ */
+#define BASE_PORT	0x150		/* п╫п╟я┤п╟п╩я▄п╫я▀п╧/п╠п╟п╥п╬п╡я▀п╧ п©п╬я─я┌ */
+#define EXT_PORT	16			/* п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ п©п╬я─я┌п╬п╡ п╡п╬п╠я┴п╣п╪ */
+#define ONOFF_PORT 0x153		/* п©п╬я─я┌ п╢п╩я▐ п╡п╨п╩я▌я┤п╣п╫п╦я▐/п╡я▀п╨п╩я▌я┤п╣п╫п╦я▐ п©я─п╣я─я▀п╡п╟п╫п╦я▐ */
 #define irq_on outb(1,ONOFF_PORT);
 #define irq_off outb(0,ONOFF_PORT);
-#define INNER_PORT 	0x150		/* порт внутрених линий */
-#define OUTER_PORT	0x151		/* порт внешних линий */
-#define TIME_XXX	13000		/* время помехи */
+#define INNER_PORT 	0x150		/* п©п╬я─я┌ п╡п╫я┐я┌я─п╣п╫п╦я┘ п╩п╦п╫п╦п╧ */
+#define OUTER_PORT	0x151		/* п©п╬я─я┌ п╡п╫п╣я┬п╫п╦я┘ п╩п╦п╫п╦п╧ */
+#define TIME_XXX	13000		/* п╡я─п╣п╪я▐ п©п╬п╪п╣я┘п╦ */
 
 #ifdef DEBUG
 static struct timeval t1;
 static long ff = 0;
 #endif
 
-/* Буфер хранения портов */
+/* п▒я┐я└п╣я─ я┘я─п╟п╫п╣п╫п╦я▐ п©п╬я─я┌п╬п╡ */
 static struct photo {
-		char inner;				/*	размер переменных должен соответствовать */ 
-		char outer;				/*  количеству портов */
+		char inner;				/*	я─п╟п╥п╪п╣я─ п©п╣я─п╣п╪п╣п╫п╫я▀я┘ п╢п╬п╩п╤п╣п╫ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╬п╡п╟я┌я▄ */ 
+		char outer;				/*  п╨п╬п╩п╦я┤п╣я│я┌п╡я┐ п©п╬я─я┌п╬п╡ */
 }ph;
 
 static struct xxx_array {
 		unsigned long *inner;
 		unsigned long *outer;
-}xxx;		/* время помехи */
+}xxx;		/* п╡я─п╣п╪я▐ п©п╬п╪п╣я┘п╦ */
 
 static struct timeval perv_t,cur_t;
 
 
-/* состояния абонентов */
+/* я│п╬я│я┌п╬я▐п╫п╦я▐ п╟п╠п╬п╫п╣п╫я┌п╬п╡ */
 static struct bit_history  *inner; 
 static struct bit_history  *outer;
 static unsigned long delta_time;
 
 static wait_queue_head_t base;		
 
-/* хранение состояния различных ключей */
+/* я┘я─п╟п╫п╣п╫п╦п╣ я│п╬я│я┌п╬я▐п╫п╦я▐ я─п╟п╥п╩п╦я┤п╫я▀я┘ п╨п╩я▌я┤п╣п╧ */
 typedef unsigned char uchar;
 static uchar buf_kna;
 static uchar buf_pv;
@@ -99,10 +99,10 @@ static uchar buf_sk;
 static int mir_open (struct inode *in, struct file *f)
 {
 #ifdef DEBUG
-		wrap ("Кто-то стучится # Someone knocking (open)");
+		wrap ("п я┌п╬-я┌п╬ я│я┌я┐я┤п╦я┌я│я▐ # Someone knocking (open)");
 #endif
 				MOD_INC_USE_COUNT;
-				init_waitqueue_head(&base); /* инициализация для 2.4.x */
+				init_waitqueue_head(&base); /* п╦п╫п╦я├п╦п╟п╩п╦п╥п╟я├п╦я▐ п╢п╩я▐ 2.4.x */
 				return 0;
 }
 
@@ -114,12 +114,12 @@ static ssize_t mir_read (struct file *file, char *buf, size_t len, loff_t *offse
 		char * bb;
 		long i;
 #ifdef DEBUG
-		wrap ("Операция чтения # Read operation");
+		wrap ("п·п©п╣я─п╟я├п╦я▐ я┤я┌п╣п╫п╦я▐ # Read operation");
 #endif
 		get_user((struct bit_history *)arr,&(p->bits));
 		get_user(line_type,&(p->line_type));
 
-		/* заполнение структуры */
+		/* п╥п╟п©п╬п╩п╫п╣п╫п╦п╣ я│я┌я─я┐п╨я┌я┐я─я▀ */
 		put_user(delta_time,&(p->delta_time));
 		if (line_type == LT_inner){
 				bb = (char *)inner;
@@ -167,7 +167,7 @@ static ssize_t mir_write (struct file *f, const char *buf, size_t len, loff_t *o
 
 		switch (command.type) {
 				case CT_init:
-						/* Инициализация структур */
+						/* п≤п╫п╦я├п╦п╟п╩п╦п╥п╟я├п╦я▐ я│я┌я─я┐п╨я┌я┐я─ */
 						do_gettimeofday(&perv_t);
 						i = n_in;
 						do{
@@ -185,7 +185,7 @@ static ssize_t mir_write (struct file *f, const char *buf, size_t len, loff_t *o
 								outer[i].flow_time = 0;
 								xxx.outer[i]  = 0;
 						}while (i > 0);
-						/* обнуление регистров ключей прогр и аппаратных */
+						/* п╬п╠п╫я┐п╩п╣п╫п╦п╣ я─п╣пЁп╦я│я┌я─п╬п╡ п╨п╩я▌я┤п╣п╧ п©я─п╬пЁя─ п╦ п╟п©п©п╟я─п╟я┌п╫я▀я┘ */
 						//outb(1, KNA_ADDR);
 						buf_kna = 1;
 						//outb(0,PV_ADDR);
@@ -197,15 +197,15 @@ static ssize_t mir_write (struct file *f, const char *buf, size_t len, loff_t *o
 						//outb(0,SK_ADDR);
 						buf_sk = 0;
 #ifdef DEBUG
-						wrap("Включаем прерывание # Enable IRQ");
+						wrap("п▓п╨п╩я▌я┤п╟п╣п╪ п©я─п╣я─я▀п╡п╟п╫п╦п╣ # Enable IRQ");
 #endif
 						//irq_on;
 						break;
 				case CT_matrix:
-#define MATR_ADDR	0x152		// регистр матрицы
-#define REG_STROBE	0x153		// регистр строба
+#define MATR_ADDR	0x152		// я─п╣пЁп╦я│я┌я─ п╪п╟я┌я─п╦я├я▀
+#define REG_STROBE	0x153		// я─п╣пЁп╦я│я┌я─ я│я┌я─п╬п╠п╟
 #define STROBE 	outb(1, REG_STROBE)
-						// проключить точку коммутации
+						// п©я─п╬п╨п╩я▌я┤п╦я┌я▄ я┌п╬я┤п╨я┐ п╨п╬п╪п╪я┐я┌п╟я├п╦п╦
 						{
 						//outb(c, MATR_ADDR);
 						//STROBE;
@@ -312,7 +312,7 @@ static void bottom_half ()
 #endif
 		delta = (unsigned long)( (cur_t.tv_sec-perv_t.tv_sec)*1000000+(cur_t.tv_usec - perv_t.tv_usec) );
 		delta_time = delta;
-		i = n_in; mask = 0x80;			/* маска зависит от количества */
+		i = n_in; mask = 0x80;			/* п╪п╟я│п╨п╟ п╥п╟п╡п╦я│п╦я┌ п╬я┌ п╨п╬п╩п╦я┤п╣я│я┌п╡п╟ */
 		do{
 				i--; tmp = ((ph.inner & mask) != 0);
 				xxx.inner[i] += delta;
@@ -333,13 +333,13 @@ static void bottom_half ()
 				}
 				mask >>= 1;
 		}while (i > 0);
-		/* без процедур/- быстрее */
+		/* п╠п╣п╥ п©я─п╬я├п╣п╢я┐я─/- п╠я▀я│я┌я─п╣п╣ */
 
-		i = n_out; mask = 0x08;		/* маска зависит от количества */
+		i = n_out; mask = 0x08;		/* п╪п╟я│п╨п╟ п╥п╟п╡п╦я│п╦я┌ п╬я┌ п╨п╬п╩п╦я┤п╣я│я┌п╡п╟ */
 		do{
 				i--; tmp = ((ph.outer  & mask) != 0);
 				xxx.outer[i] += delta;
-				/* наличие питания на линии */
+				/* п╫п╟п╩п╦я┤п╦п╣ п©п╦я┌п╟п╫п╦я▐ п╫п╟ п╩п╦п╫п╦п╦ */
 				outer[i].powered = ((ph.outer >> 4) & mask) != 0;
 				if ((tmp && !outer[i].flow_state) || (!tmp && outer[i].flow_state)){
 						if (xxx.outer[i] > TIME_XXX){
@@ -370,17 +370,17 @@ static void bottom_half ()
 static int mir_ioctl (struct inode *none, struct file *none2, unsigned int x, unsigned long y)
 {
 #ifdef DEBUG
-		wrap("Прерывание # Interrupt");
+		wrap("п÷я─п╣я─я▀п╡п╟п╫п╦п╣ # Interrupt");
 #endif
-		/* первая инструкция - чтение !!!!! */
-		/* фотографируем порты*/
+		/* п©п╣я─п╡п╟я▐ п╦п╫я│я┌я─я┐п╨я├п╦я▐ - я┤я┌п╣п╫п╦п╣ !!!!! */
+		/* я└п╬я┌п╬пЁя─п╟я└п╦я─я┐п╣п╪ п©п╬я─я┌я▀*/
 		/*printk("You send %d", x); //  debug info   */
 		ph.inner = (unsigned char) x;	 
 		ph.outer = (unsigned char) (x>>8);
 
 		if (ph.outer & 0xf) wrap ("There is 1");/*  ????????*/
 
-		/* берем текущее время */
+		/* п╠п╣я─п╣п╪ я┌п╣п╨я┐я┴п╣п╣ п╡я─п╣п╪я▐ */
 		do_gettimeofday(&cur_t);
 		bottom_half();
 		return 0;

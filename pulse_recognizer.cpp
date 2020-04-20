@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-// èÁÒÁËÔÅÒÉÓÔÉËÉ ×ÈÏÄÎÏÇÏ ÎÁÂÏÒÁ (ÍËÓ)
-unsigned long recognition__low_time_min   =    20000;	// ÍÉÎÉÍÁÌØÎÏÅ ×ÒÅÍÑ ÐÁÕÚÙ
-unsigned long recognition__low_time_max   =   200000;	// ÍÁËÓÉÍÁÌØÎÏÅ ×ÒÅÍÑ ÐÁÕÚÙ
-unsigned long recognition__high_time_min  =    20000;	// ÍÉÎÉÍÁÌØÎÏÅ ×ÒÅÍÑ ÉÍÐÕÌØÓÁ
-unsigned long recognition__high_time_max  =   200000;	// ÍÁËÓÉÍÁÌØÎÏÅ ×ÒÅÍÑ ÉÍÐÕÌØÓÁ
-unsigned long recognition__inter_time_min =   250000;	// ÍÉÎÉÍÁÌØÎÏÅ ×ÒÅÍÑ ÍÅÖÄÕ ÃÉÆÒÁÍÉ
-unsigned long recognition__inter_time_max = 60000000;	// ÍÁËÓÉÍÁÌØÎÏÅ ×ÒÅÍÑ ÍÅÖÄÕ ÃÉÆÒÁÍÉ
-// inter_time_max ÍÅÛÁÅÔ ÐÏÓÔÏÑÎÎÏÍÕ ÒÁÓÐÏÚÎÁÎÉÀ ÎÏÍÅÒÁ × ÓÏÅÄÉÎÅÎÉÉ
+// Ð¥Ð°Ñ€Ð°ÐºÑ‚ÐµÑ€Ð¸ÑÑ‚Ð¸ÐºÐ¸ Ð²Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð½Ð°Ð±Ð¾Ñ€Ð° (Ð¼ÐºÑ)
+unsigned long recognition__low_time_min   =    20000;	// Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð°ÑƒÐ·Ñ‹
+unsigned long recognition__low_time_max   =   200000;	// Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð°ÑƒÐ·Ñ‹
+unsigned long recognition__high_time_min  =    20000;	// Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¸Ð¼Ð¿ÑƒÐ»ÑŒÑÐ°
+unsigned long recognition__high_time_max  =   200000;	// Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¸Ð¼Ð¿ÑƒÐ»ÑŒÑÐ°
+unsigned long recognition__inter_time_min =   250000;	// Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¼ÐµÐ¶Ð´Ñƒ Ñ†Ð¸Ñ„Ñ€Ð°Ð¼Ð¸
+unsigned long recognition__inter_time_max = 60000000;	// Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¼ÐµÐ¶Ð´Ñƒ Ñ†Ð¸Ñ„Ñ€Ð°Ð¼Ð¸
+// inter_time_max Ð¼ÐµÑˆÐ°ÐµÑ‚ Ð¿Ð¾ÑÑ‚Ð¾ÑÐ½Ð½Ð¾Ð¼Ñƒ Ñ€Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ð½Ð¸ÑŽ Ð½Ð¾Ð¼ÐµÑ€Ð° Ð² ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ð¸
 
 C_pulse_recognizer::C_pulse_recognizer(char * s = NULL):
 	count(0), 
@@ -33,7 +33,7 @@ recognition_result C_pulse_recognizer::recognize(bit_history& bit){
 	if (bit.flow_time == 0) return recognition_result__not_started;
 	if (bit.fixed_time == 0) return recognition_result__not_started;
 	if (bit.flow_state == bit_state__off){
-		// ÐÏÌÏÖÉÔÅÌØÎÙÊ ÐÅÒÅÈÏÄ	
+		// Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´	
 		if ((bit.flow_time > recognition__high_time_max) ||
 		   ((bit.fixed_time >= recognition__low_time_max) && 
 		    (bit.fixed_time <= recognition__inter_time_min))){
@@ -43,7 +43,7 @@ recognition_result C_pulse_recognizer::recognize(bit_history& bit){
 			may_count = 1;
 		}
 	}else{
-		// ÏÔÒÉÃÁÔÅÌØÎÙÊ ÐÅÒÅÈÏÄ
+		// Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´
 		//if (bit.flow_time > recognition__inter_time_max){
 		//	count = 0;
 		//	return recognition_result__error;

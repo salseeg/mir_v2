@@ -1,7 +1,7 @@
 #ifndef __MIR__CONNECTION
 #define __MIR__CONNECTION
 //
-//	Соединение
+//	п║п╬п╣п╢п╦п╫п╣п╫п╦п╣
 //
 
 class C_connection;
@@ -11,36 +11,36 @@ class C_connection;
 
 class C_connection{
 	private:
-		int id;				//	номер соединения
-		bool lock;			//	блокировка размножение сигналов удаления
-		void free();			//	освободить соединение
-		bool need_priority_recalc;	//	флаг потери актуальности приоритета
-		int priority;			//	приоритет
+		int id;				//	п╫п╬п╪п╣я─ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
+		bool lock;			//	п╠п╩п╬п╨п╦я─п╬п╡п╨п╟ я─п╟п╥п╪п╫п╬п╤п╣п╫п╦п╣ я│п╦пЁп╫п╟п╩п╬п╡ я┐п╢п╟п╩п╣п╫п╦я▐
+		void free();			//	п╬я│п╡п╬п╠п╬п╢п╦я┌я▄ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣
+		bool need_priority_recalc;	//	я└п╩п╟пЁ п©п╬я┌п╣я─п╦ п╟п╨я┌я┐п╟п╩я▄п╫п╬я│я┌п╦ п©я─п╦п╬я─п╦я┌п╣я┌п╟
+		int priority;			//	п©я─п╦п╬я─п╦я┌п╣я┌
 	public:
 		C_connection(int id);
 		~C_connection();
 		
-		C_ring_<C_line> lines;		//	линии
-		C_ring_<C_line> holded_by;	//	список линий которые удерживают данную линию
+		C_ring_<C_line> lines;		//	п╩п╦п╫п╦п╦
+		C_ring_<C_line> holded_by;	//	я│п©п╦я│п╬п╨ п╩п╦п╫п╦п╧ п╨п╬я┌п╬я─я▀п╣ я┐п╢п╣я─п╤п╦п╡п╟я▌я┌ п╢п╟п╫п╫я┐я▌ п╩п╦п╫п╦я▌
 		
-		void add_line(C_line & line);	//	подключить линию к соединению
-		void del_line(C_line & line);	//	отключить линию от соединения
-		void steal_line(C_line * line); //	забрать линию из соединения
+		void add_line(C_line & line);	//	п©п╬п╢п╨п╩я▌я┤п╦я┌я▄ п╩п╦п╫п╦я▌ п╨ я│п╬п╣п╢п╦п╫п╣п╫п╦я▌
+		void del_line(C_line & line);	//	п╬я┌п╨п╩я▌я┤п╦я┌я▄ п╩п╦п╫п╦я▌ п╬я┌ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
+		void steal_line(C_line * line); //	п╥п╟п╠я─п╟я┌я▄ п╩п╦п╫п╦я▌ п╦п╥ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
 
 		void silent_add_line(C_line & line);
 		void silent_del_line(C_line & line);
 
-		void move_line(C_line& line, C_connection& dst_conection); 	// перевести линию из данного соединения в назначенное
-		void mix(C_connection& other_connection);			// объединить два соединения 
-		void mix_without(C_line& line, C_connection& other_connection);	// объединить два соединения без инициатора
+		void move_line(C_line& line, C_connection& dst_conection); 	// п©п╣я─п╣п╡п╣я│я┌п╦ п╩п╦п╫п╦я▌ п╦п╥ п╢п╟п╫п╫п╬пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ п╡ п╫п╟п╥п╫п╟я┤п╣п╫п╫п╬п╣
+		void mix(C_connection& other_connection);			// п╬п╠я┼п╣п╢п╦п╫п╦я┌я▄ п╢п╡п╟ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ 
+		void mix_without(C_line& line, C_connection& other_connection);	// п╬п╠я┼п╣п╢п╦п╫п╦я┌я▄ п╢п╡п╟ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ п╠п╣п╥ п╦п╫п╦я├п╦п╟я┌п╬я─п╟
 
-		void hold(C_line & line);	//	удержать соединение линией
-		void unhold(C_line & line);	//	вернуться линией к удержаному ранее соединению
+		void hold(C_line & line);	//	я┐п╢п╣я─п╤п╟я┌я▄ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣ п╩п╦п╫п╦п╣п╧
+		void unhold(C_line & line);	//	п╡п╣я─п╫я┐я┌я▄я│я▐ п╩п╦п╫п╦п╣п╧ п╨ я┐п╢п╣я─п╤п╟п╫п╬п╪я┐ я─п╟п╫п╣п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦я▌
 
-		int get_id(){return id;}					// вернуть идентификатор соединения
-		int operator==(const C_connection& b){return id == b.id;}	// сравнить с соединением
+		int get_id(){return id;}					// п╡п╣я─п╫я┐я┌я▄ п╦п╢п╣п╫я┌п╦я└п╦п╨п╟я┌п╬я─ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
+		int operator==(const C_connection& b){return id == b.id;}	// я│я─п╟п╡п╫п╦я┌я▄ я│ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣п╪
 
-		int get_priority();		//	вернуть приориет соед = мах(приоритет линий)
+		int get_priority();		//	п╡п╣я─п╫я┐я┌я▄ п©я─п╦п╬я─п╦п╣я┌ я│п╬п╣п╢ = п╪п╟я┘(п©я─п╦п╬я─п╦я┌п╣я┌ п╩п╦п╫п╦п╧)
 };
 
 #endif

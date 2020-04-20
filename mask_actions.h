@@ -2,14 +2,14 @@
 #define __MIR__MASK_ACTIONS
 
 enum mask_action{
-	mask_action__connect = 0,	//	соединить
-	mask_action__connect_local,	//	соединить с внутренним
-	mask_action__redial,		//	набрать последний номер
-	mask_action__redirect,		//	передать полномочия
-	mask_action__reserve,		//	резервирование внешней линии
-	mask_action__direct_connect,	//	прямое проключение на внеш линию без ДВОС
-	mask_action__block_incoming,	//	блокировка входящих соединений
-	mask_action__block_notify	//	блокировка уведомлений
+	mask_action__connect = 0,	//	я│п╬п╣п╢п╦п╫п╦я┌я▄
+	mask_action__connect_local,	//	я│п╬п╣п╢п╦п╫п╦я┌я▄ я│ п╡п╫я┐я┌я─п╣п╫п╫п╦п╪
+	mask_action__redial,		//	п╫п╟п╠я─п╟я┌я▄ п©п╬я│п╩п╣п╢п╫п╦п╧ п╫п╬п╪п╣я─
+	mask_action__redirect,		//	п©п╣я─п╣п╢п╟я┌я▄ п©п╬п╩п╫п╬п╪п╬я┤п╦я▐
+	mask_action__reserve,		//	я─п╣п╥п╣я─п╡п╦я─п╬п╡п╟п╫п╦п╣ п╡п╫п╣я┬п╫п╣п╧ п╩п╦п╫п╦п╦
+	mask_action__direct_connect,	//	п©я─я▐п╪п╬п╣ п©я─п╬п╨п╩я▌я┤п╣п╫п╦п╣ п╫п╟ п╡п╫п╣я┬ п╩п╦п╫п╦я▌ п╠п╣п╥ п■п▓п·п║
+	mask_action__block_incoming,	//	п╠п╩п╬п╨п╦я─п╬п╡п╨п╟ п╡я┘п╬п╢я▐я┴п╦я┘ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧
+	mask_action__block_notify	//	п╠п╩п╬п╨п╦я─п╬п╡п╨п╟ я┐п╡п╣п╢п╬п╪п╩п╣п╫п╦п╧
 };
 const int mask_action_count = 8;
 

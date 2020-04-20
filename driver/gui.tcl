@@ -9,7 +9,7 @@ for {set i 0} {$i < 8} {incr i} \
 		button .f$i.up$i -text "Up $j" -command "pup $i"; \
 		button .f$i.do$i -text "DOwn $j" -command "pdown $i";\
 		entry .f$i.input; \
-		button .f$i.call -text "îÁÂÅÒÉ" -command "z $i" ;\
+		button .f$i.call -text "ÐÐ°Ð±ÐµÑ€Ð¸" -command "z $i" ;\
 		pack  .f$i.up$i .f$i.do$i .f$i.call -side left; \
 		pack .f$i.input; \
 		pack .f$i -side top\

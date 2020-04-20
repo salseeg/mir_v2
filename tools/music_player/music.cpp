@@ -13,8 +13,8 @@
 char * music__raw_filename = "/usr/share/mir/mir_music";
 
 /* 
- * в случае ошибки функция возвратит -1 
- * обработка результата возлагается на основную программу 
+ * п╡ я│п╩я┐я┤п╟п╣ п╬я┬п╦п╠п╨п╦ я└я┐п╫п╨я├п╦я▐ п╡п╬п╥п╡я─п╟я┌п╦я┌ -1 
+ * п╬п╠я─п╟п╠п╬я┌п╨п╟ я─п╣п╥я┐п╩я▄я┌п╟я┌п╟ п╡п╬п╥п╩п╟пЁп╟п╣я┌я│я▐ п╫п╟ п╬я│п╫п╬п╡п╫я┐я▌ п©я─п╬пЁя─п╟п╪п╪я┐ 
  */
 #define LEVEL 100
 
@@ -49,7 +49,7 @@ int init_music(){
 	/* configuring mixer */
 	dev = open("/dev/mixer",O_WRONLY);
 	if (dev < 0){
-		printf("init_music :  не могу открыть mixer\n");
+		printf("init_music :  п╫п╣ п╪п╬пЁя┐ п╬я┌п╨я─я▀я┌я▄ mixer\n");
 	}
 	volume_level = (LEVEL << 8)|LEVEL;
 	ioctl(dev,SOUND_MIXER_WRITE_PCM,&volume_level);

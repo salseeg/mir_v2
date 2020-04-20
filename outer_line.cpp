@@ -112,7 +112,7 @@ void C_outer_line::stage__wait(){
 				Station->switcher.player(op->get_id(), inner_key__pv).reset();
 			} else {
 				Log->set_priority(log_priority__error);
-				Log->rec() << "Line [" << id << "] wait stage : ÎÅ ÍÏÇÕ ÎÁÊÔÉ ÏÐÅÒÁÔÏÒÁ!";
+				Log->rec() << "Line [" << id << "] wait stage : Ð½Ðµ Ð¼Ð¾Ð³Ñƒ Ð½Ð°Ð¹Ñ‚Ð¸ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð°!";
 				Log->write();
 			}
 			switch_stage(line_stage__disconnected);
@@ -120,7 +120,7 @@ void C_outer_line::stage__wait(){
 			con->del_line(*this);
 			//con->free();			
 		}else{
-			/*//	Ú×ÏÎÀ ÌÉ Ñ ËÏÍÕ-ÎÉÂÕÄØ
+			/*//	Ð·Ð²Ð¾Ð½ÑŽ Ð»Ð¸ Ñ ÐºÐ¾Ð¼Ñƒ-Ð½Ð¸Ð±ÑƒÐ´ÑŒ
 			C_connection * con = current_connection;
 			int n = con->lines.quantity();
 			if (n < 2){
@@ -150,7 +150,7 @@ void C_outer_line::stage__free(){
 		unpowered = true;
 		switch_stage(line_stage__disconnected);
 		Log->set_priority(log_priority__error);
-		Log->rec() << "ìÉÎÉÑ [" << id << "] : ÐÏÔÅÒÑ ÐÉÔÁÎÉÑ!";
+		Log->rec() << "Ð›Ð¸Ð½Ð¸Ñ [" << id << "] : Ð¿Ð¾Ñ‚ÐµÑ€Ñ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ!";
 		Log->write();
 		return;
 	}
@@ -165,7 +165,7 @@ void C_outer_line::stage__free(){
 			Station->switcher.player(op->get_id(), inner_key__pv).add(melody__ring);
 	
 			Log->set_priority(log_priority__info);
-			Log->rec() << "÷ÎÅÛÎÑÑ ÌÉÎÉÑ (" << id << ") ×ÈÏÄÑÝÅÅ ÓÏÅÄÉÎÅÎÉÅ";
+			Log->rec() << "Ð’Ð½ÐµÑˆÐ½ÑÑ Ð»Ð¸Ð½Ð¸Ñ (" << id << ") Ð²Ñ…Ð¾Ð´ÑÑ‰ÐµÐµ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ";
 			Log->write();
 		} else {
 			if (con) {
@@ -190,7 +190,7 @@ void C_outer_line::stage__disconnect(){
 					switch_stage(line_stage__free);
 			
 					Log->set_priority(log_priority__info);
-					Log->rec() << "ìÉÎÉÑ [" << id << "] : ÐÉÔÁÎÉÅ ×ÏÓÔÁÎÏ×ÌÅÎÏ";
+					Log->rec() << "Ð›Ð¸Ð½Ð¸Ñ [" << id << "] : Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ð²Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾";
 					Log->write();
 					
 				}

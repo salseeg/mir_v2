@@ -1,34 +1,34 @@
 #ifndef __MIR__HARD
 #define __MIR__HARD
 //
-//	Взаимодействие с аппаратным уровнем
+//	п▓п╥п╟п╦п╪п╬п╢п╣п╧я│я┌п╡п╦п╣ я│ п╟п©п©п╟я─п╟я┌п╫я▀п╪ я┐я─п╬п╡п╫п╣п╪
 //
 	
-// TODO оптимизация изменений ключей
+// TODO п╬п©я┌п╦п╪п╦п╥п╟я├п╦я▐ п╦п╥п╪п╣п╫п╣п╫п╦п╧ п╨п╩я▌я┤п╣п╧
 
 #include "interface/driver.h"
 
-enum inner_key{		// Ключи внутренних линий
-	inner_key__kna,	//	сигнала
-	inner_key__pv	//	посылка вызова
+enum inner_key{		// п п╩я▌я┤п╦ п╡п╫я┐я┌я─п╣п╫п╫п╦я┘ п╩п╦п╫п╦п╧
+	inner_key__kna,	//	я│п╦пЁп╫п╟п╩п╟
+	inner_key__pv	//	п©п╬я│я▀п╩п╨п╟ п╡я▀п╥п╬п╡п╟
 };
 const int inner_key_count = 2;
 
-enum outer_key{		// Ключи внешних линий
-	outer_key__kv,	//	шлейфа
-	outer_key__sk,	//	шунтирующий
-	outer_key__ik	//	импульсный
+enum outer_key{		// п п╩я▌я┤п╦ п╡п╫п╣я┬п╫п╦я┘ п╩п╦п╫п╦п╧
+	outer_key__kv,	//	я┬п╩п╣п╧я└п╟
+	outer_key__sk,	//	я┬я┐п╫я┌п╦я─я┐я▌я┴п╦п╧
+	outer_key__ik	//	п╦п╪п©я┐п╩я▄я│п╫я▀п╧
 };
 const int outer_key_count = 3;
 
 class C_hard{
 	private:
-		int driver_descriptor;		//	дескриптор драйвера
-		int n_inner;			//	кол-во внутр линий
-		int n_outer;			//	кол-во внешн линий
+		int driver_descriptor;		//	п╢п╣я│п╨я─п╦п©я┌п╬я─ п╢я─п╟п╧п╡п╣я─п╟
+		int n_inner;			//	п╨п╬п╩-п╡п╬ п╡п╫я┐я┌я─ п╩п╦п╫п╦п╧
+		int n_outer;			//	п╨п╬п╩-п╡п╬ п╡п╫п╣я┬п╫ п╩п╦п╫п╦п╧
 		
-		bit_history * inner_states;	//	состояния внутр линий
-		bit_history * outer_states;	//	состояния внешн линий
+		bit_history * inner_states;	//	я│п╬я│я┌п╬я▐п╫п╦я▐ п╡п╫я┐я┌я─ п╩п╦п╫п╦п╧
+		bit_history * outer_states;	//	я│п╬я│я┌п╬я▐п╫п╦я▐ п╡п╫п╣я┬п╫ п╩п╦п╫п╦п╧
 		
 		on_off * kna;
 		on_off * pv;
@@ -44,7 +44,7 @@ class C_hard{
 
 		unsigned long delta;
 		
-		void read();			//	считать состояния
+		void read();			//	я│я┤п╦я┌п╟я┌я▄ я│п╬я│я┌п╬я▐п╫п╦я▐
 
 	public:
 		

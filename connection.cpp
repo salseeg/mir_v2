@@ -19,7 +19,7 @@ void C_connection::add_line(C_line& line){
 	int n = lines.quantity();
 	int i;
 
-	for (i = 0; i < n; i++){	//	 уведомление о добавлении линии
+	for (i = 0; i < n; i++){	//	 я┐п╡п╣п╢п╬п╪п╩п╣п╫п╦п╣ п╬ п╢п╬п╠п╟п╡п╩п╣п╫п╦п╦ п╩п╦п╫п╦п╦
 		C_line * l = lines.get(i);
 		l->signal(line_signal__line_added);
 	}
@@ -29,7 +29,7 @@ void C_connection::add_line(C_line& line){
 
 
 void C_connection::del_line(C_line& line){
-	// удаляет из соединения и отключает на матрице
+	// я┐п╢п╟п╩я▐п╣я┌ п╦п╥ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ п╦ п╬я┌п╨п╩я▌я┤п╟п╣я┌ п╫п╟ п╪п╟я┌я─п╦я├п╣
 
 	silent_del_line(line);
 
@@ -70,55 +70,55 @@ void C_connection::steal_line(C_line * line){
 
 void C_connection::silent_add_line(C_line & line){
 	need_priority_recalc = true;
-	lines.add(&line);				//	добавил линию в соединение
-	Hard->matrix(id, line.get_id(), on);		//	проключил линию
+	lines.add(&line);				//	п╢п╬п╠п╟п╡п╦п╩ п╩п╦п╫п╦я▌ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣
+	Hard->matrix(id, line.get_id(), on);		//	п©я─п╬п╨п╩я▌я┤п╦п╩ п╩п╦п╫п╦я▌
 	line.current_connection = this;			//
 }
 
 void C_connection::silent_del_line(C_line & line){	
 	need_priority_recalc = true;
-	int n = lines.quantity();	// количество линий в соединении
+	int n = lines.quantity();	// п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ п╩п╦п╫п╦п╧ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦
 	int i;
 
 	for (i = 0; i < n; i++){
 		C_line * l = lines.get(i);
-		if (*l == line) { //	найти нужную линию 	
-			// удалить и отключить
+		if (*l == line) { //	п╫п╟п╧я┌п╦ п╫я┐п╤п╫я┐я▌ п╩п╦п╫п╦я▌ 	
+			// я┐п╢п╟п╩п╦я┌я▄ п╦ п╬я┌п╨п╩я▌я┤п╦я┌я▄
 			l->current_connection = NULL;
 			Hard->matrix(id, lines.pop(i)->get_id(), off);
 			break;
 		}
 	}
-	if (i == n){ 	//	не найдена линия
+	if (i == n){ 	//	п╫п╣ п╫п╟п╧п╢п╣п╫п╟ п╩п╦п╫п╦я▐
 		Log->set_priority(log_priority__error);
-		Log->rec() << "Не найдена линия[" << line.get_id();
-		Log->rec() << "] в соединении [" << id << "]";
+		Log->rec() << "п²п╣ п╫п╟п╧п╢п╣п╫п╟ п╩п╦п╫п╦я▐[" << line.get_id();
+		Log->rec() << "] п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦ [" << id << "]";
 		Log->write();
 		return;	
 	}
 }
 
 void C_connection::hold(C_line & line){
-	int n = lines.quantity();	// количество линий в соединении
+	int n = lines.quantity();	// п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ п╩п╦п╫п╦п╧ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦
 	int i;
 
 	for (i = 0; i < n; i++){
 		C_line * l = lines.get(i);
-		if (*l == line) { //	найти нужную линию 	
+		if (*l == line) { //	п╫п╟п╧я┌п╦ п╫я┐п╤п╫я┐я▌ п╩п╦п╫п╦я▌ 	
 			//if (n == 1){
 			//	Station->del_music(line);
 			//}
-			// удалить и отключить
+			// я┐п╢п╟п╩п╦я┌я▄ п╦ п╬я┌п╨п╩я▌я┤п╦я┌я▄
 			l->current_connection = NULL;
 			l->hold_ring.push(this);			
 			Hard->matrix(id, lines.pop(i)->get_id(), off);
 			break;
 		}
 	}
-	if (i == n){ 	//	не найдена линия
+	if (i == n){ 	//	п╫п╣ п╫п╟п╧п╢п╣п╫п╟ п╩п╦п╫п╦я▐
 		Log->set_priority(log_priority__error);
-		Log->rec() << "hold: Не найдена линия[" << line.get_id();
-		Log->rec() << "] в соединении [" << id << "]";
+		Log->rec() << "hold: п²п╣ п╫п╟п╧п╢п╣п╫п╟ п╩п╦п╫п╦я▐[" << line.get_id();
+		Log->rec() << "] п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦ [" << id << "]";
 		Log->write();
 		return;	
 	}
@@ -131,7 +131,7 @@ void C_connection::hold(C_line & line){
 	holded_by.add(&line);
 }
 
-void C_connection::unhold(C_line & line){ // д. вызываться hold_ring.get()->unback(*this);
+void C_connection::unhold(C_line & line){ // п╢. п╡я▀п╥я▀п╡п╟я┌я▄я│я▐ hold_ring.get()->unback(*this);
 	need_priority_recalc = true;
 	if (line.hold_ring.get() != this){
 		return;
@@ -164,11 +164,11 @@ void C_connection::free(){
 	Station->free_connection(this);
 }
 
-//	Объединение двух соединений
+//	п·п╠я┼п╣п╢п╦п╫п╣п╫п╦п╣ п╢п╡я┐я┘ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧
 void C_connection::mix(C_connection& other_connection){
 	need_priority_recalc = true;
 	
-	// перевести все линии другого соединения в текущее
+	// п©п╣я─п╣п╡п╣я│я┌п╦ п╡я│п╣ п╩п╦п╫п╦п╦ п╢я─я┐пЁп╬пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ п╡ я┌п╣п╨я┐я┴п╣п╣
 	int n = other_connection.lines.quantity();
 	for (int i = 0; i < n; i++){
 		C_line * l = other_connection.lines.get();
@@ -179,7 +179,7 @@ void C_connection::mix(C_connection& other_connection){
 		l->current_connection = this;
 		l->signal(line_signal__unholded_by);
 	}
-	// освободить другое соединение
+	// п╬я│п╡п╬п╠п╬п╢п╦я┌я▄ п╢я─я┐пЁп╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣
 	other_connection.free();
 	
 }
@@ -187,7 +187,7 @@ void C_connection::mix(C_connection& other_connection){
 void C_connection::mix_without(C_line& line, C_connection& other_connection){
 	need_priority_recalc = true;
 	
-	// перевести все линии текущего соединения в другое
+	// п©п╣я─п╣п╡п╣я│я┌п╦ п╡я│п╣ п╩п╦п╫п╦п╦ я┌п╣п╨я┐я┴п╣пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ п╡ п╢я─я┐пЁп╬п╣
 	int n = other_connection.lines.quantity();
 	C_ring_<C_line> lr;
 	for (int i = 0; i < n; i++, other_connection.lines.roll()){
@@ -208,7 +208,7 @@ void C_connection::mix_without(C_line& line, C_connection& other_connection){
 
 int C_connection::get_priority(){
 	if (need_priority_recalc){
-		int prio = -1;			// приоритеты только положительны
+		int prio = -1;			// п©я─п╦п╬я─п╦я┌п╣я┌я▀ я┌п╬п╩я▄п╨п╬ п©п╬п╩п╬п╤п╦я┌п╣п╩я▄п╫я▀
 		int n = lines.quantity();
 		for (int i = 0; i < n; i++, lines.roll()){
 			int p = lines.get()->priority;

@@ -1,43 +1,43 @@
 #ifndef __MIR__SOCKET
 #define __MIR__SOCKET
 //
-//	Сокет
+//	п║п╬п╨п╣я┌
 //
 
-enum sock_state{		// Состояния сокета:
-	sock_state__free,	// 	свободен
-	sock_state__connected,	// 	подключен
-	sock_state__binded,	// 	привязан
-	sock_state__listened	// 	слушает
+enum sock_state{		// п║п╬я│я┌п╬я▐п╫п╦я▐ я│п╬п╨п╣я┌п╟:
+	sock_state__free,	// 	я│п╡п╬п╠п╬п╢п╣п╫
+	sock_state__connected,	// 	п©п╬п╢п╨п╩я▌я┤п╣п╫
+	sock_state__binded,	// 	п©я─п╦п╡я▐п╥п╟п╫
+	sock_state__listened	// 	я│п╩я┐я┬п╟п╣я┌
 };
 
-enum sock_blocking{		// Блокировка
-	sock_blocking__on,	//	включен
-	sock_blocking__off	//	выключена
+enum sock_blocking{		// п▒п╩п╬п╨п╦я─п╬п╡п╨п╟
+	sock_blocking__on,	//	п╡п╨п╩я▌я┤п╣п╫
+	sock_blocking__off	//	п╡я▀п╨п╩я▌я┤п╣п╫п╟
 };
 
-struct inet_address{		// Адрес второй стороны
-	char * name;		//	имя (somwhere.net / 122.22.33.4)
-	int port;		//	порт (21)
+struct inet_address{		// п░п╢я─п╣я│ п╡я┌п╬я─п╬п╧ я│я┌п╬я─п╬п╫я▀
+	char * name;		//	п╦п╪я▐ (somwhere.net / 122.22.33.4)
+	int port;		//	п©п╬я─я┌ (21)
 };
 
 class C_socket{
 	private:
-		int sock_id;					// хендл сокета
-		sock_state state;				// состояние сокета
-		inet_address other_side;			// адрес второй стороны
+		int sock_id;					// я┘п╣п╫п╢п╩ я│п╬п╨п╣я┌п╟
+		sock_state state;				// я│п╬я│я┌п╬я▐п╫п╦п╣ я│п╬п╨п╣я┌п╟
+		inet_address other_side;			// п╟п╢я─п╣я│ п╡я┌п╬я─п╬п╧ я│я┌п╬я─п╬п╫я▀
 	public:
-		C_socket();					// создание сокета
-		C_socket(int sock_id,inet_address os);		// новое соединение
-		~C_socket();					// удаление сокета
-		int connect(char * server_name,int server_port);// подключение сокета к удаленному серверу
-		int bind(int port);				// привязка сокета к локальному порту
-		C_socket * accept();				// прием поступающего соединения
-		int listen(int queue_size);			// устанавливает размер очереди для поступающих соединений
-		int read(void * buf,int len);			// чтение данных
-		int write(const void * buf,int len);		// запись данных
-		int close();					// завершение соединения
-		inet_address * get_other_side();		// адрес инициатора поступивщего соединения
-		int set_blocking(sock_blocking b);		// устанавливает/снимает блокировку
+		C_socket();					// я│п╬п╥п╢п╟п╫п╦п╣ я│п╬п╨п╣я┌п╟
+		C_socket(int sock_id,inet_address os);		// п╫п╬п╡п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣
+		~C_socket();					// я┐п╢п╟п╩п╣п╫п╦п╣ я│п╬п╨п╣я┌п╟
+		int connect(char * server_name,int server_port);// п©п╬п╢п╨п╩я▌я┤п╣п╫п╦п╣ я│п╬п╨п╣я┌п╟ п╨ я┐п╢п╟п╩п╣п╫п╫п╬п╪я┐ я│п╣я─п╡п╣я─я┐
+		int bind(int port);				// п©я─п╦п╡я▐п╥п╨п╟ я│п╬п╨п╣я┌п╟ п╨ п╩п╬п╨п╟п╩я▄п╫п╬п╪я┐ п©п╬я─я┌я┐
+		C_socket * accept();				// п©я─п╦п╣п╪ п©п╬я│я┌я┐п©п╟я▌я┴п╣пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
+		int listen(int queue_size);			// я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟п╣я┌ я─п╟п╥п╪п╣я─ п╬я┤п╣я─п╣п╢п╦ п╢п╩я▐ п©п╬я│я┌я┐п©п╟я▌я┴п╦я┘ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧
+		int read(void * buf,int len);			// я┤я┌п╣п╫п╦п╣ п╢п╟п╫п╫я▀я┘
+		int write(const void * buf,int len);		// п╥п╟п©п╦я│я▄ п╢п╟п╫п╫я▀я┘
+		int close();					// п╥п╟п╡п╣я─я┬п╣п╫п╦п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
+		inet_address * get_other_side();		// п╟п╢я─п╣я│ п╦п╫п╦я├п╦п╟я┌п╬я─п╟ п©п╬я│я┌я┐п©п╦п╡я┴п╣пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐
+		int set_blocking(sock_blocking b);		// я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟п╣я┌/я│п╫п╦п╪п╟п╣я┌ п╠п╩п╬п╨п╦я─п╬п╡п╨я┐
 };
 #endif

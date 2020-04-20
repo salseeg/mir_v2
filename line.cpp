@@ -65,7 +65,7 @@ void C_line::remember_number(){
 	last_number = *recognizer;
 
 	Log->set_priority(log_priority__info);
-	Log->rec() << "линия " << id << " : " << last_number;
+	Log->rec() << "п╩п╦п╫п╦я▐ " << id << " : " << last_number;
 	Log->write();
 }
 

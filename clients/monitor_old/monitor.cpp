@@ -128,7 +128,7 @@ void main_loop(){
 				break;
 		}
 		if (!skip_rec){
-			do{	//	ĞÒÉÅÍ ÓÏÏÂİÅÎÉÑ ÏÔ ÓÅÒ×ÅÒÁ
+			do{	//	Ğ¿Ñ€Ğ¸ĞµĞ¼ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ñ Ğ¾Ñ‚ ÑĞµÑ€Ğ²ĞµÑ€Ğ°
 				service->buf_refresh();
 				ans = service->read();
 				if (!ans){

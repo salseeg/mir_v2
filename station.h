@@ -18,9 +18,9 @@ class C_station{
 		C_station(int n_i_, int n_o_);			
 		~C_station();
 		
-		C_array_<C_line> lines;				//	линии
-		C_ring_<C_connection> connections;		//	используемые шнурки
-		C_ring_<C_connection> free_connections;		//	свободные шнурки
+		C_array_<C_line> lines;				//	п╩п╦п╫п╦п╦
+		C_ring_<C_connection> connections;		//	п╦я│п©п╬п╩я▄п╥я┐п╣п╪я▀п╣ я┬п╫я┐я─п╨п╦
+		C_ring_<C_connection> free_connections;		//	я│п╡п╬п╠п╬п╢п╫я▀п╣ я┬п╫я┐я─п╨п╦
 		C_switcher switcher;
 
 		

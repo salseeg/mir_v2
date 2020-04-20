@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <mir_config>
 	<Hard driver_filename="/dev/mir" n_inner="8" n_outer="4"> 
-		Без подключеного драйвера станции не запускается
-		<matrix_init x="8" y="16"/> Обнуление матрицы комутации 
+		п▒п╣п╥ п©п╬п╢п╨п╩я▌я┤п╣п╫п╬пЁп╬ п╢я─п╟п╧п╡п╣я─п╟ я│я┌п╟п╫я├п╦п╦ п╫п╣ п╥п╟п©я┐я│п╨п╟п╣я┌я│я▐
+		<matrix_init x="8" y="16"/> п·п╠п╫я┐п╩п╣п╫п╦п╣ п╪п╟я┌я─п╦я├я▀ п╨п╬п╪я┐я┌п╟я├п╦п╦ 
 	</Hard> 
 	<Melodies count="19">
 		<melody name="initial_pause" loop="off">
@@ -398,7 +398,7 @@
 			<client id="0"/>
 		</mask>
 		
-		ДВО
+		п■п▓п·
 		<mask number="10" bus_id="201" skip_len="2" action="direct_connect">
 			<client id="0"/>
 			<client id="1"/>
@@ -435,7 +435,7 @@
 			<client id="2"/>
 		</mask>
 		
-		Локальные номера
+		п⌡п╬п╨п╟п╩я▄п╫я▀п╣ п╫п╬п╪п╣я─п╟
 		<mask number="12" bus_id="101" skip_len="2" action="connect_local">
 			<client id="0"/>
 			<client id="1"/>
@@ -556,7 +556,7 @@
 		<connection id="7"/>
 	</Station>
 	<Busses>
-		Пучки для локальных линий // 0 - 100
+		п÷я┐я┤п╨п╦ п╢п╩я▐ п╩п╬п╨п╟п╩я▄п╫я▀я┘ п╩п╦п╫п╦п╧ // 0 - 100
 		<bus id="0">
 			<line id="0"/>
 		</bus>
@@ -581,7 +581,7 @@
 		<bus id="7">
 			<line id="7"/>
 		</bus>
-		Пучек операторов	// 101 - 200
+		п÷я┐я┤п╣п╨ п╬п©п╣я─п╟я┌п╬я─п╬п╡	// 101 - 200
 		<bus id="101" roll="false">
 			<line id="0"/>
 			<line id="2"/>
@@ -597,7 +597,7 @@
 			<line id="0"/>
 			<line id="2"/>
 		</bus>
-		Пучки внешних линий 	// 201 - 300
+		п÷я┐я┤п╨п╦ п╡п╫п╣я┬п╫п╦я┘ п╩п╦п╫п╦п╧ 	// 201 - 300
 		<bus id="201">
 			<line id="8"/>
 		</bus>

@@ -10,7 +10,7 @@
 #include <unistd.h>
 
 
-//для работы с железом закоментировать 
+//п╢п╩я▐ я─п╟п╠п╬я┌я▀ я│ п╤п╣п╩п╣п╥п╬п╪ п╥п╟п╨п╬п╪п╣п╫я┌п╦я─п╬п╡п╟я┌я▄ 
 //#define NO_HARD_SLEEP
 
 #define CONF_FILE_NAME "/usr/share/mir/mir.conf.xml"

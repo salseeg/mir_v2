@@ -1,30 +1,30 @@
 #ifndef __MIR__MASK
 #define __MIR__MASK
 //
-//	Маска
-//	телефонных номеров и
-//	дополнительных услуг
+//	п°п╟я│п╨п╟
+//	я┌п╣п╩п╣я└п╬п╫п╫я▀я┘ п╫п╬п╪п╣я─п╬п╡ п╦
+//	п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘ я┐я│п╩я┐пЁ
 //
 #include "mask_actions.h"
 #include "aux/ring_.h"
 
 enum mask_check{
-	mask_check__completed,		//	маска совпала
-	mask_check__not_completed,	//	маска может совпасть необходимо больше цифр
-	mask_check__not_match,		//	маска не подходит
-	mask_check__not_allowed		//	нет прав для доступа к маске
+	mask_check__completed,		//	п╪п╟я│п╨п╟ я│п╬п╡п©п╟п╩п╟
+	mask_check__not_completed,	//	п╪п╟я│п╨п╟ п╪п╬п╤п╣я┌ я│п╬п╡п©п╟я│я┌я▄ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ п╠п╬п╩я▄я┬п╣ я├п╦я└я─
+	mask_check__not_match,		//	п╪п╟я│п╨п╟ п╫п╣ п©п╬п╢я┘п╬п╢п╦я┌
+	mask_check__not_allowed		//	п╫п╣я┌ п©я─п╟п╡ п╢п╩я▐ п╢п╬я│я┌я┐п©п╟ п╨ п╪п╟я│п╨п╣
 };
 
 class C_mask{
 	private:		
-		char * number;		//	маска номера
-		C_ring_<int> secure;	//	профили доступа
+		char * number;		//	п╪п╟я│п╨п╟ п╫п╬п╪п╣я─п╟
+		C_ring_<int> secure;	//	п©я─п╬я└п╦п╩п╦ п╢п╬я│я┌я┐п©п╟
 
 		bool check_permission(int line_id);
 	public:
-		int skip_len;		//	длина префикса доступа
-		mask_action func;	//	вид услуги
-		int bus_id;		//	номер пучка
+		int skip_len;		//	п╢п╩п╦п╫п╟ п©я─п╣я└п╦п╨я│п╟ п╢п╬я│я┌я┐п©п╟
+		mask_action func;	//	п╡п╦п╢ я┐я│п╩я┐пЁп╦
+		int bus_id;		//	п╫п╬п╪п╣я─ п©я┐я┤п╨п╟
 
 		C_mask();
 		~C_mask();

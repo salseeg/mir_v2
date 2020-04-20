@@ -3,38 +3,38 @@
 
 #include "constants.h"
 
-/*	Сосотояние линии	*/
+/*	п║п╬я│п╬я┌п╬я▐п╫п╦п╣ п╩п╦п╫п╦п╦	*/
 struct status_bit{
-	short state_fixed;				/*	фиксированное состояние (SH_CONNECTED/SH_BROKEN)	*/
-	short state_flow;				/* 	текущее	сотояние (SH_CONNECTED/SH_BROKEN)	*/
-	unsigned long time_fixed;			/* 	длительность фиксированного состояния (мкс)	*/
-	unsigned long time_flow;			/*	длительность текущего состояния	(мкс)	*/
+	short state_fixed;				/*	я└п╦п╨я│п╦я─п╬п╡п╟п╫п╫п╬п╣ я│п╬я│я┌п╬я▐п╫п╦п╣ (SH_CONNECTED/SH_BROKEN)	*/
+	short state_flow;				/* 	я┌п╣п╨я┐я┴п╣п╣	я│п╬я┌п╬я▐п╫п╦п╣ (SH_CONNECTED/SH_BROKEN)	*/
+	unsigned long time_fixed;			/* 	п╢п╩п╦я┌п╣п╩я▄п╫п╬я│я┌я▄ я└п╦п╨я│п╦я─п╬п╡п╟п╫п╫п╬пЁп╬ я│п╬я│я┌п╬я▐п╫п╦я▐ (п╪п╨я│)	*/
+	unsigned long time_flow;			/*	п╢п╩п╦я┌п╣п╩я▄п╫п╬я│я┌я▄ я┌п╣п╨я┐я┴п╣пЁп╬ я│п╬я│я┌п╬я▐п╫п╦я▐	(п╪п╨я│)	*/
 	unsigned short powered;
 };
 
 struct digit_recognition{
-	short	count;				/*	счетчик количества импульсов	*/
-	short	may_count;			/*	флаг позволяющий (при 1) посчитать импульс	*/
+	short	count;				/*	я│я┤п╣я┌я┤п╦п╨ п╨п╬п╩п╦я┤п╣я│я┌п╡п╟ п╦п╪п©я┐п╩я▄я│п╬п╡	*/
+	short	may_count;			/*	я└п╩п╟пЁ п©п╬п╥п╡п╬п╩я▐я▌я┴п╦п╧ (п©я─п╦ 1) п©п╬я│я┤п╦я┌п╟я┌я▄ п╦п╪п©я┐п╩я▄я│	*/
 };
 
-/*	Таймер для подачи разнообразных сигналов : занято, вызов, контроль вызова, попытка дозвона	*/
+/*	п╒п╟п╧п╪п╣я─ п╢п╩я▐ п©п╬п╢п╟я┤п╦ я─п╟п╥п╫п╬п╬п╠я─п╟п╥п╫я▀я┘ я│п╦пЁп╫п╟п╩п╬п╡ : п╥п╟п╫я▐я┌п╬, п╡я▀п╥п╬п╡, п╨п╬п╫я┌я─п╬п╩я▄ п╡я▀п╥п╬п╡п╟, п©п╬п©я▀я┌п╨п╟ п╢п╬п╥п╡п╬п╫п╟	*/
 struct timer{
-	short	type;				/*	тип сигнала	*/
-	short	state;				/*	состояние (0/1)	*/
-	long	time_to_change;			/*	время до смены состояния	*/
-	short	owner;				/*	инициатор сигнала (матричный номер)	*/
+	short	type;				/*	я┌п╦п© я│п╦пЁп╫п╟п╩п╟	*/
+	short	state;				/*	я│п╬я│я┌п╬я▐п╫п╦п╣ (0/1)	*/
+	long	time_to_change;			/*	п╡я─п╣п╪я▐ п╢п╬ я│п╪п╣п╫я▀ я│п╬я│я┌п╬я▐п╫п╦я▐	*/
+	short	owner;				/*	п╦п╫п╦я├п╦п╟я┌п╬я─ я│п╦пЁп╫п╟п╩п╟ (п╪п╟я┌я─п╦я┤п╫я▀п╧ п╫п╬п╪п╣я─)	*/
 	int	count;
 };
 
 struct service_buffer{
-	short length;				/*	длина серии цифр	*/
-	short digits[NUMBER_LENGTH];		/*	набираемая последоывательность	*/
+	short length;				/*	п╢п╩п╦п╫п╟ я│п╣я─п╦п╦ я├п╦я└я─	*/
+	short digits[NUMBER_LENGTH];		/*	п╫п╟п╠п╦я─п╟п╣п╪п╟я▐ п©п╬я│п╩п╣п╢п╬я▀п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄	*/
 };
 
 /**********************************************************************************************************/
 struct status_array{
 	struct status_bit inner[N_INNER], outer[N_OUTER];
-	long	delta;					/*	изменение времени с предыдущего вызова	*/
+	long	delta;					/*	п╦п╥п╪п╣п╫п╣п╫п╦п╣ п╡я─п╣п╪п╣п╫п╦ я│ п©я─п╣п╢я▀п╢я┐я┴п╣пЁп╬ п╡я▀п╥п╬п╡п╟	*/
 };
 
 struct digits_array{
@@ -46,28 +46,28 @@ struct timers_array{
 };
 
 struct states_array{
-	short	inner[N_INNER],outer[N_OUTER];		/* 	стадия жизненного цикла	*/
+	short	inner[N_INNER],outer[N_OUTER];		/* 	я│я┌п╟п╢п╦я▐ п╤п╦п╥п╫п╣п╫п╫п╬пЁп╬ я├п╦п╨п╩п╟	*/
 };
 
 struct last_numbers_array{
-	short 	inner[N_INNER][NUMBER_LENGTH];		/*	последний набранный номер	*/
+	short 	inner[N_INNER][NUMBER_LENGTH];		/*	п©п╬я│п╩п╣п╢п╫п╦п╧ п╫п╟п╠я─п╟п╫п╫я▀п╧ п╫п╬п╪п╣я─	*/
 };
 
 struct line_numbers_array{
-	short	inner[N_INNER],outer[N_OUTER];		/*	номер для каждой линии	*/
+	short	inner[N_INNER],outer[N_OUTER];		/*	п╫п╬п╪п╣я─ п╢п╩я▐ п╨п╟п╤п╢п╬п╧ п╩п╦п╫п╦п╦	*/
 };
  
 struct connection{
-	short 	lines[N_LINES];				/*	кто из абонентов проключен в соединении	*/
-	short	quantity;				/*	кол-во абонентов в соединении	*/
+	short 	lines[N_LINES];				/*	п╨я┌п╬ п╦п╥ п╟п╠п╬п╫п╣п╫я┌п╬п╡ п©я─п╬п╨п╩я▌я┤п╣п╫ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦	*/
+	short	quantity;				/*	п╨п╬п╩-п╡п╬ п╟п╠п╬п╫п╣п╫я┌п╬п╡ п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╦	*/
 };
 
 struct cur_con{
-	short  inner[N_INNER],outer[N_OUTER];		/*	текущие соединения	*/
+	short  inner[N_INNER],outer[N_OUTER];		/*	я┌п╣п╨я┐я┴п╦п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐	*/
 };
 
 struct main_lines_array{
-	short inner[N_INNER],outer[N_OUTER];		/*	номер линии главного абононента	*/
+	short inner[N_INNER],outer[N_OUTER];		/*	п╫п╬п╪п╣я─ п╩п╦п╫п╦п╦ пЁп╩п╟п╡п╫п╬пЁп╬ п╟п╠п╬п╫п╬п╫п╣п╫я┌п╟	*/
 };
 
 struct srv_buf_array{
@@ -75,22 +75,22 @@ struct srv_buf_array{
 };
 /***********************************************************************************************************/	
 struct station{
-	struct states_array states;			/*	стадии жизненого цикла	*/
-	struct status_array status;			/*	состояние каждой линии	*/
-	struct timers_array timers;			/*	таймер	*/
-	struct digits_array digits;			/*	набираемая цифра	*/
-	struct last_numbers_array last_numbers;		/*	последний набранный номер	*/
-	struct line_numbers_array line_numbers;		/*	номера для линий	*/
-	unsigned char registers[N_REGS];		/*	выходные регистры	*/
-	short next_free_connection;			/*	индекс следующего свободного соед (-1 ?)	*/
-	struct connection connections[N_CONN];		/*	массив соединений == матрица	*/
-	short	inner2matrix[N_INNER];			/*	номер внутр линии - номер на матрице	*/
-	short	outer2matrix[N_OUTER];			/*	номер внешн линни - номер на матрице	*/
-	short	special2matrix[N_SPECIAL];		/*	номер спец линии  - номер на матрице	*/ /*	музыка	*/	
-	short	incoming_connections[N_INNER];		/*	номер входящего соединения	*/
-	struct	cur_con current_connections;		/*	номер текущего соединения	*/	
-	struct 	main_lines_array main_lines;		/*	номера линий главных абонентов	*/
-	struct 	srv_buf_array service_buffers;		/*	последовательности набираемых цифр в режиме дополнительных услуг	*/
+	struct states_array states;			/*	я│я┌п╟п╢п╦п╦ п╤п╦п╥п╫п╣п╫п╬пЁп╬ я├п╦п╨п╩п╟	*/
+	struct status_array status;			/*	я│п╬я│я┌п╬я▐п╫п╦п╣ п╨п╟п╤п╢п╬п╧ п╩п╦п╫п╦п╦	*/
+	struct timers_array timers;			/*	я┌п╟п╧п╪п╣я─	*/
+	struct digits_array digits;			/*	п╫п╟п╠п╦я─п╟п╣п╪п╟я▐ я├п╦я└я─п╟	*/
+	struct last_numbers_array last_numbers;		/*	п©п╬я│п╩п╣п╢п╫п╦п╧ п╫п╟п╠я─п╟п╫п╫я▀п╧ п╫п╬п╪п╣я─	*/
+	struct line_numbers_array line_numbers;		/*	п╫п╬п╪п╣я─п╟ п╢п╩я▐ п╩п╦п╫п╦п╧	*/
+	unsigned char registers[N_REGS];		/*	п╡я▀я┘п╬п╢п╫я▀п╣ я─п╣пЁп╦я│я┌я─я▀	*/
+	short next_free_connection;			/*	п╦п╫п╢п╣п╨я│ я│п╩п╣п╢я┐я▌я┴п╣пЁп╬ я│п╡п╬п╠п╬п╢п╫п╬пЁп╬ я│п╬п╣п╢ (-1 ?)	*/
+	struct connection connections[N_CONN];		/*	п╪п╟я│я│п╦п╡ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧ == п╪п╟я┌я─п╦я├п╟	*/
+	short	inner2matrix[N_INNER];			/*	п╫п╬п╪п╣я─ п╡п╫я┐я┌я─ п╩п╦п╫п╦п╦ - п╫п╬п╪п╣я─ п╫п╟ п╪п╟я┌я─п╦я├п╣	*/
+	short	outer2matrix[N_OUTER];			/*	п╫п╬п╪п╣я─ п╡п╫п╣я┬п╫ п╩п╦п╫п╫п╦ - п╫п╬п╪п╣я─ п╫п╟ п╪п╟я┌я─п╦я├п╣	*/
+	short	special2matrix[N_SPECIAL];		/*	п╫п╬п╪п╣я─ я│п©п╣я├ п╩п╦п╫п╦п╦  - п╫п╬п╪п╣я─ п╫п╟ п╪п╟я┌я─п╦я├п╣	*/ /*	п╪я┐п╥я▀п╨п╟	*/	
+	short	incoming_connections[N_INNER];		/*	п╫п╬п╪п╣я─ п╡я┘п╬п╢я▐я┴п╣пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐	*/
+	struct	cur_con current_connections;		/*	п╫п╬п╪п╣я─ я┌п╣п╨я┐я┴п╣пЁп╬ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐	*/	
+	struct 	main_lines_array main_lines;		/*	п╫п╬п╪п╣я─п╟ п╩п╦п╫п╦п╧ пЁп╩п╟п╡п╫я▀я┘ п╟п╠п╬п╫п╣п╫я┌п╬п╡	*/
+	struct 	srv_buf_array service_buffers;		/*	п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌п╦ п╫п╟п╠п╦я─п╟п╣п╪я▀я┘ я├п╦я└я─ п╡ я─п╣п╤п╦п╪п╣ п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘ я┐я│п╩я┐пЁ	*/
 	short 	line_owners[N_OUTER];			/* 	line reserving	*/
 };
 

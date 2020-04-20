@@ -69,19 +69,19 @@ C_service::C_service(C_socket * s){
 
 	inet_address * os = sock->get_other_side();
 	Log->set_priority(log_priority__info);
-	Log->rec() << "õÓÔÁÎÏ×ÌÅÎÏ ÓÏÅÄÉÎÅÎÉÅ Ó " << os->name << " : " << os->port;
+	Log->rec() << "Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ " << os->name << " : " << os->port;
 	Log->write();
 }
 
 C_service::~C_service(){
 	inet_address * os = sock->get_other_side();
 	Log->set_priority(log_priority__info);
-	Log->rec() << "úÁ×ÅÒÛÅÎÏ ÓÏÅÄÉÎÅÎÉÅ Ó " << os->name << " : " << os->port;
+	Log->rec() << "Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¾ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ " << os->name << " : " << os->port;
 	Log->write();
 	
 	if (service_name) delete[] service_name;
 	if (plugin_handle){
-		// ÒÁÚÏÒ×ÁÔØ ÓÏÅÄÉÎÅÎÉÅ Ó ËÌÉÅÎÔÏÍ
+		// Ñ€Ð°Ð·Ð¾Ñ€Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð¼
 		C_service_command command(0xffff, 0, NULL);
 		write(command);
 
@@ -174,7 +174,7 @@ int C_service::execute(){
 			delete command;
 			return -1;
 		}
-		// ÐÁÒÓÉÔØ ÓÔÒÏËÉ , ÐÏÄËÌÀÞÁÔØ ÐÌÁÇÉÎ
+		// Ð¿Ð°Ñ€ÑÐ¸Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÐ¸ , Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð°Ñ‚ÑŒ Ð¿Ð»Ð°Ð³Ð¸Ð½
 		char * plugin_filename = new char[::strlen(plugins_path) + command->data_size + 1];
 		char * p;
 		char * str = new char[command->data_size];
@@ -206,7 +206,7 @@ int C_service::execute(){
 			
 			struct inet_address * os = sock->get_other_side();
 			Log->set_priority(log_priority__warning);
-			Log->rec() << "ðÌÁÇÉÎ ÎÅ ÎÁÊÄÅÎ : " << plugin_filename << " [";
+			Log->rec() << "ÐŸÐ»Ð°Ð³Ð¸Ð½ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ : " << plugin_filename << " [";
 			Log->rec() << os->name << " : " << os->port << "]";
 			Log->write();
 
@@ -225,7 +225,7 @@ int C_service::execute(){
 			delete command;
 
 			Log->set_priority(log_priority__error);
-			Log->rec() << "îÅ ÎÁÊÄÅÎÁ ×ÈÏÄÎÁÑ ÔÏÞËÁ 'execute()' × ÐÌÁÇÉÎÅ " << plugin_filename;
+			Log->rec() << "ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ð²Ñ…Ð¾Ð´Ð½Ð°Ñ Ñ‚Ð¾Ñ‡ÐºÐ° 'execute()' Ð² Ð¿Ð»Ð°Ð³Ð¸Ð½Ðµ " << plugin_filename;
 			Log->write();
 
 			delete [] plugin_filename;
@@ -235,7 +235,7 @@ int C_service::execute(){
 
 		struct inet_address * os = sock->get_other_side();
 		Log->set_priority(log_priority__info);
-		Log->rec() << "ðÌÁÇÉÎ : " << service_name << " [" <<os->name << " : ";
+		Log->rec() << "ÐŸÐ»Ð°Ð³Ð¸Ð½ : " << service_name << " [" <<os->name << " : ";
 		Log->rec() << os->port <<  "]";
 		Log->write();
 

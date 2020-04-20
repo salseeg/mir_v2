@@ -1,4 +1,4 @@
-(* óÏÅÄÉÎÅÎÉÅ ÞÅÒÅÚ ÕËÁÚÁÎÉÑ ÁÄÒÅÓÁ É ÎÏÍÅÒÁ ÐÏÒÔÁ *)
+(* Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ‡ÐµÑ€ÐµÐ· ÑƒÐºÐ°Ð·Ð°Ð½Ð¸Ñ Ð°Ð´Ñ€ÐµÑÐ° Ð¸ Ð½Ð¾Ð¼ÐµÑ€Ð° Ð¿Ð¾Ñ€Ñ‚Ð° *)
 (* let make_connection addres_string port_number = 
 	let addr1 = Unix.inet_addr_of_string addres_string in
 	let in_addr = Unix.ADDR_INET( addr1, port_number) in
@@ -42,7 +42,7 @@ let _ =
   (* Menu and Menubutton *)
   let meb = Menubutton.create ~text:"Menu" bar in
   let men = Menu.create meb in
-  Menu.add_command ~label:"óÏÅÄÉÎÅÎÉÅConnection" ~command:(fun () -> com base) men;
+  Menu.add_command ~label:"Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸ÐµConnection" ~command:(fun () -> com base) men;
   Menu.add_command ~label:"Quit" ~command:(fun () -> closeTk (); exit 0) men;
   pack ~side:`Left [meb];
   Menubutton.configure ~menu:men meb;

@@ -1,7 +1,7 @@
 #ifndef __MIR__MASKS
 #define __MIR__MASKS
 //
-//	Массив масок
+//	п°п╟я│я│п╦п╡ п╪п╟я│п╬п╨
 //
 #include "mask.h"
 #include "aux/ring_.h"
@@ -22,8 +22,8 @@ class C_masks{
 
 		bool retranslate_recognized(int line_id, int bus_id, int skip_len);
 	public:
-		C_ring_<C_mask> ring;		//	кольцо масок
-		void check(int line_id);	//	проверка маски и перевод линии в соотв сост
+		C_ring_<C_mask> ring;		//	п╨п╬п╩я▄я├п╬ п╪п╟я│п╬п╨
+		void check(int line_id);	//	п©я─п╬п╡п╣я─п╨п╟ п╪п╟я│п╨п╦ п╦ п©п╣я─п╣п╡п╬п╢ п╩п╦п╫п╦п╦ п╡ я│п╬п╬я┌п╡ я│п╬я│я┌
 };
 
 extern C_masks * Masks;

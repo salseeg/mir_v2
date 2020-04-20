@@ -10,18 +10,18 @@
 int mir_fd;
 static unsigned int line_states;
 
-//установка бита в единицу
+//я┐я│я┌п╟п╫п╬п╡п╨п╟ п╠п╦я┌п╟ п╡ п╣п╢п╦п╫п╦я├я┐
 void set1( char c)
 {
 	line_states |= 1<<c;
 }
-//установка бита в ноль
+//я┐я│я┌п╟п╫п╬п╡п╨п╟ п╠п╦я┌п╟ п╡ п╫п╬п╩я▄
 void set0( char c)
 {
 	line_states &= ~(1<<c);
 }
 	
-//эмулятор прерываний
+//я█п╪я┐п╩я▐я┌п╬я─ п©я─п╣я─я▀п╡п╟п╫п╦п╧
 void * int_emul(void *_arg)
 {
 	for (;;)
@@ -31,7 +31,7 @@ void * int_emul(void *_arg)
 	}
 }
 
-//возврат управления scheduler'у
+//п╡п╬п╥п╡я─п╟я┌ я┐п©я─п╟п╡п╩п╣п╫п╦я▐ scheduler'я┐
 int pth_y( ClientData x, Tcl_Interp *a, int argc, char * argv[])
 {
 	pth_yield(NULL);
@@ -66,10 +66,10 @@ void * make_call(void * arg)
 		int j=data->s[i]-'0';
 		unsigned char n = data->n;
 		printf("[%c]\n",data->s[i]);
-		//если ноль набор 10
+		//п╣я│п╩п╦ п╫п╬п╩я▄ п╫п╟п╠п╬я─ 10
 		if (j == 0) j=10;
-		//уровни для набора цифр могут
-		//различаться !!!!
+		//я┐я─п╬п╡п╫п╦ п╢п╩я▐ п╫п╟п╠п╬я─п╟ я├п╦я└я─ п╪п╬пЁя┐я┌
+		//я─п╟п╥п╩п╦я┤п╟я┌я▄я│я▐ !!!!
 		set1(n);
 		pth_usleep(300000);
 		while (j-- > 0){
@@ -103,9 +103,9 @@ void My_TclExt()
 		printf("Error open /dev/mir\n");
 		return;
 	}
-	//вводим в игру нити
+	//п╡п╡п╬п╢п╦п╪ п╡ п╦пЁя─я┐ п╫п╦я┌п╦
 	pth_init();
-	//включаем препывания
+	//п╡п╨п╩я▌я┤п╟п╣п╪ п©я─п╣п©я▀п╡п╟п╫п╦я▐
 	pth_spawn(PTH_ATTR_DEFAULT, int_emul, NULL);
 	
 	

@@ -4,28 +4,28 @@
 #include "aux/ring_.h"
 
 
-enum melody_state{			// Состояние мелодии
-	melody_state__error = -1,	//	ошибка
-	melody_state__low,		//	не воспроизводить сигнал
-	melody_state__high		//	воспроизводить сигнал
+enum melody_state{			// п║п╬я│я┌п╬я▐п╫п╦п╣ п╪п╣п╩п╬п╢п╦п╦
+	melody_state__error = -1,	//	п╬я┬п╦п╠п╨п╟
+	melody_state__low,		//	п╫п╣ п╡п╬я│п©я─п╬п╦п╥п╡п╬п╢п╦я┌я▄ я│п╦пЁп╫п╟п╩
+	melody_state__high		//	п╡п╬я│п©я─п╬п╦п╥п╡п╬п╢п╦я┌я▄ я│п╦пЁп╫п╟п╩
 };
 
-struct melody_frame{			// Кадр мелодии
-	unsigned long duration;		//	длительность кадра
-	enum melody_state state;	//	состояние мелодии в течение кадра		
+struct melody_frame{			// п п╟п╢я─ п╪п╣п╩п╬п╢п╦п╦
+	unsigned long duration;		//	п╢п╩п╦я┌п╣п╩я▄п╫п╬я│я┌я▄ п╨п╟п╢я─п╟
+	enum melody_state state;	//	я│п╬я│я┌п╬я▐п╫п╦п╣ п╪п╣п╩п╬п╢п╦п╦ п╡ я┌п╣я┤п╣п╫п╦п╣ п╨п╟п╢я─п╟		
 };
 
 class C_melody{
 	private:
-		bool loop;			//	циклическая мелодия ?
-		long unsigned duration;		//	длительность одного цикла мелодии
-		C_ring_<melody_frame> frames;	//	кадры мелодии
+		bool loop;			//	я├п╦п╨п╩п╦я┤п╣я│п╨п╟я▐ п╪п╣п╩п╬п╢п╦я▐ ?
+		long unsigned duration;		//	п╢п╩п╦я┌п╣п╩я▄п╫п╬я│я┌я▄ п╬п╢п╫п╬пЁп╬ я├п╦п╨п╩п╟ п╪п╣п╩п╬п╢п╦п╦
+		C_ring_<melody_frame> frames;	//	п╨п╟п╢я─я▀ п╪п╣п╩п╬п╢п╦п╦
 	public:
 		C_melody(bool looped);
 		~C_melody();
 		
-		void add_frame(melody_frame frame);		//	добавить кадр
-		melody_state get_state(unsigned long time);	//	получить состояние в указанный от начала моммент
-		bool get_looped();				//	циклична ли мелодия ?
+		void add_frame(melody_frame frame);		//	п╢п╬п╠п╟п╡п╦я┌я▄ п╨п╟п╢я─
+		melody_state get_state(unsigned long time);	//	п©п╬п╩я┐я┤п╦я┌я▄ я│п╬я│я┌п╬я▐п╫п╦п╣ п╡ я┐п╨п╟п╥п╟п╫п╫я▀п╧ п╬я┌ п╫п╟я┤п╟п╩п╟ п╪п╬п╪п╪п╣п╫я┌
+		bool get_looped();				//	я├п╦п╨п╩п╦я┤п╫п╟ п╩п╦ п╪п╣п╩п╬п╢п╦я▐ ?
 };
 #endif

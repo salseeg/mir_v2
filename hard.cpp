@@ -14,7 +14,7 @@ C_hard::C_hard(char * fn, int n_i, int n_o){
 	driver_descriptor = ::open(fn, O_RDWR);
 	if (driver_descriptor < 0){
 		Log->set_priority(log_priority__alert);
-		Log->rec() << "îÅ ÍÏÇÕ ÏÔËÒÙÔØ " << fn;
+		Log->rec() << "ÐÐµ Ð¼Ð¾Ð³Ñƒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ " << fn;
 		Log->write();
 		exit(-1);
 	}
